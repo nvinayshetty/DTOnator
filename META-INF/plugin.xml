@@ -38,6 +38,10 @@
 
   <actions>
     <!-- Add your actions here -->
+      <action id="generateAction" class="com.nvinayshetty.DTOnator.generateActionListener" text="DTO from JSON"
+              description="generates Data Transfer Object(DTO) from given JSON feed">
+          <add-to-group group-id="GenerateGroup" anchor="first"/>
+      </action>
   </actions>
 
 </idea-plugin>
