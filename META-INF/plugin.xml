@@ -1,47 +1,47 @@
 <idea-plugin version="2">
-  <id>com.nvinayshetty.DTOnator</id>
-  <name>DTOnator</name>
-  <version>1.0</version>
-  <vendor email="nvinayshetty@gmail.com" url="http://winnowcraft.wordpress.com">nvinayshetty</vendor>
+    <id>com.nvinayshetty.DTOnator</id>
+    <name>DTOnator</name>
+    <version>1.0</version>
+    <vendor email="nvinayshetty@gmail.com" url="http://winnowcraft.wordpress.com">nvinayshetty</vendor>
 
-  <description><![CDATA[
+    <description><![CDATA[
       Enter short description for your plugin here.<br>
       <em>most HTML tags may be used</em>
     ]]></description>
 
-  <change-notes><![CDATA[
+    <change-notes><![CDATA[
       Add change notes here.<br>
       <em>most HTML tags may be used</em>
     ]]>
-  </change-notes>
+    </change-notes>
 
-  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
-  <idea-version since-build="131"/>
+    <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
+    <idea-version since-build="131"/>
 
-  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
-       on how to target different products -->
-  <!-- uncomment to enable plugin in all products
-  <depends>com.intellij.modules.lang</depends>
-  -->
+    <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
 
-  <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
-  </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
 
-  <application-components>
-    <!-- Add your application components here -->
-  </application-components>
+    <application-components>
+        <!-- Add your application components here -->
+    </application-components>
 
-  <project-components>
-    <!-- Add your project components here -->
-  </project-components>
+    <project-components>
+        <!-- Add your project components here -->
+    </project-components>
 
-  <actions>
-    <!-- Add your actions here -->
-      <action id="generateAction" class="com.nvinayshetty.DTOnator.generateActionListener" text="DTO from JSON"
-              description="generates Data Transfer Object(DTO) from given JSON feed">
-          <add-to-group group-id="GenerateGroup" anchor="first"/>
-      </action>
-  </actions>
-
+    <actions>
+        <!-- Add your actions here -->
+        <action id="ActionListener" class="com.nvinayshetty.DTOnator.GenerateActionListener" text="DTO from JSON"
+                description="generates Data Transfer Object(DTO) from given JSON feed">
+            <add-to-group group-id="GenerateGroup" anchor="first"/>
+        </action>
+    </actions>
+    <extensions defaultExtensionNs="com.intellij"><!-- Add your extensions here --></extensions>
 </idea-plugin>

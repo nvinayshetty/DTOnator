@@ -14,17 +14,14 @@ import java.awt.event.MouseEvent;
  */
 public class ContextMenuMouseListener extends MouseAdapter {
     private JPopupMenu popup = new JPopupMenu();
-
     private Action cutAction;
     private Action copyAction;
     private Action pasteAction;
     private Action undoAction;
     private Action selectAllAction;
-
     private JTextComponent textComponent;
     private String savedString = "";
     private Actions lastActionSelected;
-
     public ContextMenuMouseListener() {
         undoAction = new AbstractAction("Undo") {
 
@@ -122,4 +119,5 @@ public class ContextMenuMouseListener extends MouseAdapter {
     }
 
     private enum Actions {UNDO, CUT, COPY, PASTE, SELECT_ALL}
+
 }

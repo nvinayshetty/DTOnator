@@ -19,7 +19,10 @@ public class InputDialog extends JDialog {
     private PsiClass mClass;
 
 
-    public InputDialog() {
+    public InputDialog(PsiClass mClass, Project project, PsiFile mFile) {
+        this.mClass = mClass;
+        this.project = project;
+        this.mFile = mFile;
         setContentPane(contentPane);
         setModal(true);
         setTitle("Generate DTO");
@@ -81,13 +84,12 @@ public class InputDialog extends JDialog {
 
     private void onOK() {
         dispose();
-// add your code here
-       /* String  jsonSTR=   textPane.getText().toString();
-        new WriterUtil(this, jsonSTR ,  mFile,  project , mClass).execute() ;*/
+
+        String jsonSTR = textPane.getText().toString();
+        new DtoGenerator(project, mFile, jsonSTR, mClass, mFile).execute();
     }
 
     private void onCancel() {
-// add your code here if necessary
         dispose();
     }
 

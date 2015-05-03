@@ -5,7 +5,6 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiElementFactory;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.psi.util.PsiUtilBase;
@@ -13,23 +12,23 @@ import com.intellij.psi.util.PsiUtilBase;
 /**
  * Created by vinay on 11/4/15.
  */
-public class generateActionListener extends AnAction {
+public class GenerateActionListener extends AnAction {
 
     private PsiClass mClass;
-    private PsiElementFactory mFactory;
     private Project project;
 
+    public GenerateActionListener() {
+        super();
+    }
+
     public void actionPerformed(AnActionEvent event) {
-
-
         project = event.getData(PlatformDataKeys.PROJECT);
         Editor editor = event.getData(PlatformDataKeys.EDITOR);
         PsiFile mFile = PsiUtilBase.getPsiFileInEditor(editor, project);
         mClass = getPsiClassFromContext(event);
 
-
-        InputDialog dialog = new InputDialog();
-        dialog.setSize(400, 200);
+        InputDialog dialog = new InputDialog(mClass, project, mFile);
+        dialog.setSize(800, 200);
         dialog.setVisible(true);
     }
 
@@ -37,10 +36,10 @@ public class generateActionListener extends AnAction {
     public void update(AnActionEvent event) {
         PsiClass psiClass = getPsiClassFromContext(event);
         Presentation presentation = event.getPresentation();
-        presentation.setEnabled(isGenerationDtoOptionEnabled(psiClass));
+        presentation.setEnabled(isGenerateDtoOptionEnabled(psiClass));
     }
 
-    private boolean isGenerationDtoOptionEnabled(PsiClass psiClass) {
+    private boolean isGenerateDtoOptionEnabled(PsiClass psiClass) {
         return psiClass != null;
     }
 
