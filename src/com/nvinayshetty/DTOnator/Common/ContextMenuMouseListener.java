@@ -1,4 +1,4 @@
-package com.nvinayshetty.DTOnator;
+package com.nvinayshetty.DTOnator.Common;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;

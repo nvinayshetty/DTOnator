@@ -1,9 +1,11 @@
-package com.nvinayshetty.DTOnator;
+package com.nvinayshetty.DTOnator.Dialog;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElementFactory;
 import com.intellij.psi.PsiFile;
+import com.nvinayshetty.DTOnator.Common.ContextMenuMouseListener;
+import com.nvinayshetty.DTOnator.DtoGenerators.DtoGenerator;
 
 import javax.swing.*;
 import java.awt.event.*;

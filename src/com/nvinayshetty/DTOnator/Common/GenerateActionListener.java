@@ -1,4 +1,4 @@
-package com.nvinayshetty.DTOnator;
+package com.nvinayshetty.DTOnator.Common;
 
 import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.editor.Editor;
@@ -8,6 +8,7 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.psi.util.PsiUtilBase;
+import com.nvinayshetty.DTOnator.Dialog.InputDialog;
 
 /**
  * Created by vinay on 11/4/15.
