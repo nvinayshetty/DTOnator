@@ -1,5 +1,6 @@
 package com.nvinayshetty.DTOnator.Dialog;
 
+import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElementFactory;
@@ -10,7 +11,7 @@ import com.nvinayshetty.DTOnator.DtoGenerators.DtoGenerator;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class InputDialog extends JDialog {
+public class InputDialog extends JFrame {
     protected PsiElementFactory mFactory;
     protected PsiFile mFile;
     protected Project project;
@@ -18,6 +19,8 @@ public class InputDialog extends JDialog {
     private JButton buttonOK;
     private JButton buttonCancel;
     private JTextPane textPane;
+    private JRadioButton createSeparateFileForRadioButton;
+    private JRadioButton creteSingleFileWithRadioButton;
     private PsiClass mClass;
 
 
@@ -26,7 +29,7 @@ public class InputDialog extends JDialog {
         this.project = project;
         this.mFile = mFile;
         setContentPane(contentPane);
-        setModal(true);
+        //setModal(true);
         setTitle("Generate DTO");
         getRootPane().setDefaultButton(buttonOK);
 
@@ -86,9 +89,16 @@ public class InputDialog extends JDialog {
 
     private void onOK() {
         dispose();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                String jsonSTR = textPane.getText().toString();
+                WriteCommandAction.Simple commandAction = new DtoGenerator(project, mFile, jsonSTR, mClass, mFile);
+                commandAction.execute();
 
-        String jsonSTR = textPane.getText().toString();
-        new DtoGenerator(project, mFile, jsonSTR, mClass, mFile).execute();
+            }
+        });
+
     }
 
     private void onCancel() {

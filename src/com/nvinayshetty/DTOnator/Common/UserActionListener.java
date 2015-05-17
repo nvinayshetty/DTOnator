@@ -13,12 +13,12 @@ import com.nvinayshetty.DTOnator.Dialog.InputDialog;
 /**
  * Created by vinay on 11/4/15.
  */
-public class GenerateActionListener extends AnAction {
+public class UserActionListener extends AnAction {
 
     private PsiClass mClass;
     private Project project;
 
-    public GenerateActionListener() {
+    public UserActionListener() {
         super();
     }
 

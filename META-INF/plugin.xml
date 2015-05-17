@@ -38,7 +38,7 @@
 
     <actions>
         <!-- Add your actions here -->
-        <action id="ActionListener" class="com.nvinayshetty.DTOnator.Common.GenerateActionListener" text="DTO from JSON"
+        <action id="ActionListener" class="com.nvinayshetty.DTOnator.Common.UserActionListener" text="DTO from JSON"
                 description="generates Data Transfer Object(DTO) from given JSON feed">
             <add-to-group group-id="GenerateGroup" anchor="first"/>
         </action>

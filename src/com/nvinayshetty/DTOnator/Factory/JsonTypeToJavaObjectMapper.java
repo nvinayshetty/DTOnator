@@ -5,7 +5,7 @@ import com.nvinayshetty.DTOnator.Utility.DtoHelper;
 /**
  * Created by vinay on 9/5/15.
  */
-public enum JAVA_TYPES implements DtoHelper.primitiveConverter {
+public enum JsonTypeToJavaObjectMapper implements DtoHelper.primitiveConverter {
     BOOLEAN {
         @Override
         public String getFieldRepresentationFor(String key) {
@@ -31,7 +31,7 @@ public enum JAVA_TYPES implements DtoHelper.primitiveConverter {
         @Override
         public String getFieldRepresentationFor(String key) {
             String className = DtoHelper.getSubClassName(key);
-            return new StringBuilder().append(ANNOTATION_PREFIX).append(key).append(ANNOTATION_SUFFIX).append(CLASS_ACCESS_MODIFIER).append(" java.util.List<").append(className).append(">").append(SPACE).append(key).append(CLASS_FIELD_SUFFIX).toString();
+            return new StringBuilder().append(ANNOTATION_PREFIX).append(key).append(ANNOTATION_SUFFIX).append(CLASS_ACCESS_MODIFIER).append("java.util.List<").append(className).append(">").append(SPACE).append(key).append(CLASS_FIELD_SUFFIX).toString();
         }
     }, STRING {
         @Override
