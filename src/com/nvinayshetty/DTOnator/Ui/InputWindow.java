@@ -1,4 +1,4 @@
-package com.nvinayshetty.DTOnator.Dialog;
+package com.nvinayshetty.DTOnator.Ui;
 
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.project.Project;
@@ -11,35 +11,37 @@ import com.nvinayshetty.DTOnator.DtoGenerators.DtoGenerator;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class InputDialog extends JFrame {
+public class InputWindow extends JFrame {
     protected PsiElementFactory mFactory;
     protected PsiFile mFile;
     protected Project project;
     private JPanel contentPane;
-    private JButton buttonOK;
     private JButton buttonCancel;
+    private JButton buttonOk;
     private JTextPane textPane;
     private JRadioButton createSeparateFileForRadioButton;
     private JRadioButton creteSingleFileWithRadioButton;
     private PsiClass mClass;
 
 
-    public InputDialog(PsiClass mClass, Project project, PsiFile mFile) {
+    public InputWindow(PsiClass mClass, Project project, PsiFile mFile) {
         this.mClass = mClass;
         this.project = project;
         this.mFile = mFile;
         setContentPane(contentPane);
         //setModal(true);
+//        setSize(400,600);
+        setSize(1000, 2000);
         setTitle("Generate DTO");
-        getRootPane().setDefaultButton(buttonOK);
+        getRootPane().setDefaultButton(buttonCancel);
 
-        buttonOK.addActionListener(new ActionListener() {
+        buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();
             }
         });
 
-        buttonCancel.addActionListener(new ActionListener() {
+        buttonOk.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
             }

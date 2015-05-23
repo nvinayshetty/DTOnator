@@ -8,7 +8,7 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.psi.util.PsiUtilBase;
-import com.nvinayshetty.DTOnator.Dialog.InputDialog;
+import com.nvinayshetty.DTOnator.Ui.InputWindow;
 
 /**
  * Created by vinay on 11/4/15.
@@ -28,8 +28,7 @@ public class UserActionListener extends AnAction {
         PsiFile mFile = PsiUtilBase.getPsiFileInEditor(editor, project);
         mClass = getPsiClassFromContext(event);
 
-        InputDialog dialog = new InputDialog(mClass, project, mFile);
-        dialog.setSize(800, 200);
+        InputWindow dialog = new InputWindow(mClass, project, mFile);
         dialog.setVisible(true);
     }
 
