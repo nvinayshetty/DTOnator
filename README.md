@@ -22,6 +22,6 @@ Most of the existing tools
 
 last but not the least I wanted to apply the  design patterns that I freshly learnt and wanted to create a project by TDD
 
-###A special thanks to creator of the repository https://github.com/nvinayshetty/GsonFormat
+###A special thanks to creator of the repository https://github.com/zzz40500/GsonFormat
 This is the repository which gave me the idea of bringing a dto generator to an IDE.
 
