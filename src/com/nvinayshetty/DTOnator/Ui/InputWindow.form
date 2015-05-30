@@ -76,7 +76,7 @@
               <text value="How you want to create?"/>
             </properties>
           </component>
-          <component id="3e966" class="javax.swing.JRadioButton" binding="createSeparateFileForRadioButton" default-binding="true">
+          <component id="3e966" class="javax.swing.JRadioButton" binding="createSeparateFileRadioButton" default-binding="true">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -84,7 +84,7 @@
               <text value="Create separate file for each object in the same package"/>
             </properties>
           </component>
-          <component id="29dd7" class="javax.swing.JRadioButton" binding="creteSingleFileWithRadioButton" default-binding="true">
+          <component id="29dd7" class="javax.swing.JRadioButton" binding="creteSingleFileRadioButton" default-binding="true">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>

@@ -1,4 +1,4 @@
-package com.nvinayshetty.DTOnator.Common;
+package com.nvinayshetty.DTOnator.ActionListener;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
@@ -22,6 +22,7 @@ public class ContextMenuMouseListener extends MouseAdapter {
     private JTextComponent textComponent;
     private String savedString = "";
     private Actions lastActionSelected;
+
     public ContextMenuMouseListener() {
         undoAction = new AbstractAction("Undo") {
 

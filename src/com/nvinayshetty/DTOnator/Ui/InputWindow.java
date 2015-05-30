@@ -1,11 +1,10 @@
 package com.nvinayshetty.DTOnator.Ui;
 
-import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElementFactory;
 import com.intellij.psi.PsiFile;
-import com.nvinayshetty.DTOnator.Common.ContextMenuMouseListener;
+import com.nvinayshetty.DTOnator.ActionListener.ContextMenuMouseListener;
 import com.nvinayshetty.DTOnator.DtoGenerators.DtoGenerator;
 
 import javax.swing.*;
@@ -19,8 +18,8 @@ public class InputWindow extends JFrame {
     private JButton buttonCancel;
     private JButton buttonOk;
     private JTextPane textPane;
-    private JRadioButton createSeparateFileForRadioButton;
-    private JRadioButton creteSingleFileWithRadioButton;
+    private JRadioButton createSeparateFileRadioButton;
+    private JRadioButton creteSingleFileRadioButton;
     private PsiClass mClass;
 
 
@@ -31,17 +30,17 @@ public class InputWindow extends JFrame {
         setContentPane(contentPane);
         //setModal(true);
 //        setSize(400,600);
-        setSize(1000, 2000);
+        setSize(1000, 1200);
         setTitle("Generate DTO");
-        getRootPane().setDefaultButton(buttonCancel);
+        getRootPane().setDefaultButton(buttonOk);
 
-        buttonCancel.addActionListener(new ActionListener() {
+        buttonOk.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();
             }
         });
 
-        buttonOk.addActionListener(new ActionListener() {
+        buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
             }
@@ -73,7 +72,7 @@ public class InputWindow extends JFrame {
             }
         });
 
-// call onCancel() when cross is clicked
+
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -81,7 +80,7 @@ public class InputWindow extends JFrame {
             }
         });
 
-// call onCancel() on ESCAPE
+
         contentPane.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
@@ -90,17 +89,16 @@ public class InputWindow extends JFrame {
     }
 
     private void onOK() {
-        dispose();
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 String jsonSTR = textPane.getText().toString();
-                WriteCommandAction.Simple commandAction = new DtoGenerator(project, mFile, jsonSTR, mClass, mFile);
+                DtoGenerator commandAction = new DtoGenerator(project, mFile, jsonSTR, mClass, mFile);
                 commandAction.execute();
+                dispose();
 
             }
         });
-
     }
 
     private void onCancel() {

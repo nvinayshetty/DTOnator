@@ -1,4 +1,4 @@
-package com.nvinayshetty.DTOnator.Common;
+package com.nvinayshetty.DTOnator.ActionListener;
 
 import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.editor.Editor;
