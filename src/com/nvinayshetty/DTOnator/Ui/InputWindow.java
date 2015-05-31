@@ -5,7 +5,10 @@ import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElementFactory;
 import com.intellij.psi.PsiFile;
 import com.nvinayshetty.DTOnator.ActionListener.ContextMenuMouseListener;
-import com.nvinayshetty.DTOnator.DtoGenerators.DtoGenerator;
+import com.nvinayshetty.DTOnator.DtoGenerators.JsonDtoGenerator;
+import com.nvinayshetty.DTOnator.validator.FeedType;
+import com.nvinayshetty.DTOnator.validator.InputValidator;
+import org.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -17,6 +20,7 @@ public class InputWindow extends JFrame {
     private JPanel contentPane;
     private JButton buttonCancel;
     private JButton buttonOk;
+    private JLabel exceptionLabel;
     private JTextPane textPane;
     private JRadioButton createSeparateFileRadioButton;
     private JRadioButton creteSingleFileRadioButton;
@@ -93,7 +97,9 @@ public class InputWindow extends JFrame {
             @Override
             public void run() {
                 String jsonSTR = textPane.getText().toString();
-                DtoGenerator commandAction = new DtoGenerator(project, mFile, jsonSTR, mClass, mFile);
+                InputValidator validator = new InputValidator(FeedType.JsonObject, exceptionLabel);
+                if (validator.isValidFeed(jsonSTR, exceptionLabel)) ;
+                JsonDtoGenerator commandAction = new JsonDtoGenerator(project, mFile, (JSONObject) validator.getValidFeed(), mClass, mFile);
                 commandAction.execute();
                 dispose();
 

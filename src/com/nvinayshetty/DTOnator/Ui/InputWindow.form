@@ -101,9 +101,10 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="db0f8" class="javax.swing.JLabel">
+          <component id="db0f8" class="javax.swing.JLabel" binding="exceptionLabel" default-binding="true">
             <constraints/>
             <properties>
+              <foreground color="-60857"/>
               <text value="If some thing goes wrong StackTrce appers here"/>
               <verticalAlignment value="1"/>
               <verticalTextPosition value="1"/>
