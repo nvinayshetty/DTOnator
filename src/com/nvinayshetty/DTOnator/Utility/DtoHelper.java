@@ -9,6 +9,7 @@ public class DtoHelper {
     }
 
     public interface primitiveConverter {
+        public String getSimpleFieldRepresentation(String key);
         public String getFieldRepresentationFor(String key);
     }
 

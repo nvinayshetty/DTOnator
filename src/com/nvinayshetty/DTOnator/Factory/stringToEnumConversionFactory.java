@@ -5,19 +5,19 @@ package com.nvinayshetty.DTOnator.Factory;
  */
 public class stringToEnumConversionFactory {
 
-    public static JsonTypeToJavaObjectMapper convert(String type) {
+    public static ObjectType convert(String type) {
         if (type.equals("Boolean")) {
-            return JsonTypeToJavaObjectMapper.BOOLEAN;
+            return ObjectType.BOOLEAN;
         } else if (type.equals("Integer")) {
-            return JsonTypeToJavaObjectMapper.INTEGER;
+            return ObjectType.INTEGER;
         } else if (type.equals("Double")) {
-            return JsonTypeToJavaObjectMapper.DOUBLE;
+            return ObjectType.DOUBLE;
         } else if (type.equals("JSONObject")) {
-            return JsonTypeToJavaObjectMapper.JSON_OBJECT;
+            return ObjectType.JSON_OBJECT;
         } else if (type.equals("JSONArray")) {
-            return JsonTypeToJavaObjectMapper.JSON_ARRAY;
+            return ObjectType.JSON_ARRAY;
         } else {
-            return JsonTypeToJavaObjectMapper.STRING;
+            return ObjectType.STRING;
         }
     }
 }

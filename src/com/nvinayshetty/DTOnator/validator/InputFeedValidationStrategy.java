@@ -1,15 +1,17 @@
 package com.nvinayshetty.DTOnator.validator;
 
+import com.nvinayshetty.DTOnator.DtoGenerators.FeedType;
+
 import javax.swing.*;
 
 /**
  * Created by vinay on 30/5/15.
  */
-public class InputValidator implements FeedValidator {
+public class InputFeedValidationStrategy implements FeedValidator {
     FeedValidator feedValidator;
     JLabel exJLabel;
 
-    public InputValidator(FeedType feedType, JLabel exceptionLabel) {
+    public InputFeedValidationStrategy(FeedType feedType, JLabel exceptionLabel) {
         exJLabel = exceptionLabel;
         switch (feedType) {
             case JsonObject:

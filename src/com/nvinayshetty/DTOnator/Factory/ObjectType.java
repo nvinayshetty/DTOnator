@@ -5,8 +5,13 @@ import com.nvinayshetty.DTOnator.Utility.DtoHelper;
 /**
  * Created by vinay on 9/5/15.
  */
-public enum JsonTypeToJavaObjectMapper implements DtoHelper.primitiveConverter {
+public enum ObjectType implements DtoHelper.primitiveConverter {
     BOOLEAN {
+        @Override
+        public String getSimpleFieldRepresentation(String key) {
+            return new StringBuilder().append(ACCESS_MODIFIER_PUBLIC).append("boolean").append(SPACE).append(key).append(CLASS_FIELD_SUFFIX).toString();
+        }
+
         @Override
         public String getFieldRepresentationFor(String key) {
             return getAnnotationFor(key).append(ACCESS_MODIFIER_PUBLIC).append("boolean").append(SPACE).append(key).append(CLASS_FIELD_SUFFIX).toString();
@@ -15,15 +20,32 @@ public enum JsonTypeToJavaObjectMapper implements DtoHelper.primitiveConverter {
 
     }, INTEGER {
         @Override
+        public String getSimpleFieldRepresentation(String key) {
+            return new StringBuilder().append(ACCESS_MODIFIER_PUBLIC).append("int").append(SPACE).append(key).append(CLASS_FIELD_SUFFIX).toString();
+        }
+
+        @Override
         public String getFieldRepresentationFor(String key) {
             return getAnnotationFor(key).append(ACCESS_MODIFIER_PUBLIC).append("int").append(SPACE).append(key).append(CLASS_FIELD_SUFFIX).toString();
         }
     }, DOUBLE {
         @Override
+        public String getSimpleFieldRepresentation(String key) {
+            return new StringBuilder().append(ACCESS_MODIFIER_PUBLIC).append("double").append(SPACE).append(key).append(CLASS_FIELD_SUFFIX).toString();
+        }
+
+        @Override
         public String getFieldRepresentationFor(String key) {
             return getAnnotationFor(key).append(ACCESS_MODIFIER_PUBLIC).append("double").append(SPACE).append(key).append(CLASS_FIELD_SUFFIX).toString();
         }
     }, JSON_OBJECT {
+
+        @Override
+        public String getSimpleFieldRepresentation(String key) {
+            String className = DtoHelper.getSubClassName(key);
+            return new StringBuilder().append(ACCESS_MODIFIER_PUBLIC).append(className).append(SPACE).append(key).append(CLASS_FIELD_SUFFIX).toString();
+        }
+
         @Override
         public String getFieldRepresentationFor(String key) {
             String className = DtoHelper.getSubClassName(key);
@@ -31,11 +53,22 @@ public enum JsonTypeToJavaObjectMapper implements DtoHelper.primitiveConverter {
         }
     }, JSON_ARRAY {
         @Override
+        public String getSimpleFieldRepresentation(String key) {
+            String className = DtoHelper.getSubClassName(key);
+            return new StringBuilder().append(ACCESS_MODIFIER_PUBLIC).append("java.util.List<").append(className).append(">").append(SPACE).append(key).append(CLASS_FIELD_SUFFIX).toString();
+        }
+
+        @Override
         public String getFieldRepresentationFor(String key) {
             String className = DtoHelper.getSubClassName(key);
             return getAnnotationFor(key).append(ACCESS_MODIFIER_PUBLIC).append("java.util.List<").append(className).append(">").append(SPACE).append(key).append(CLASS_FIELD_SUFFIX).toString();
         }
     }, STRING {
+        @Override
+        public String getSimpleFieldRepresentation(String key) {
+            return new StringBuilder().append(ACCESS_MODIFIER_PUBLIC).append("String").append(SPACE).append(key).append(CLASS_FIELD_SUFFIX).toString();
+        }
+
         @Override
         public String getFieldRepresentationFor(String key) {
             return getAnnotationFor(key).append(ACCESS_MODIFIER_PUBLIC).append("String").append(SPACE).append(key).append(CLASS_FIELD_SUFFIX).toString();
