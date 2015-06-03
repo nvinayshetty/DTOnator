@@ -6,10 +6,10 @@ import com.intellij.psi.PsiModifier;
 /**
  * Created by vinay on 31/5/15.
  */
-public class StaticInnerClass implements ClassAdder {
+public class StaticInnerClassAdder implements ClassAdderStrategy {
     private PsiClass classUnderCaret;
 
-    public StaticInnerClass(PsiClass psiClass) {
+    public StaticInnerClassAdder(PsiClass psiClass) {
         this.classUnderCaret = psiClass;
     }
 

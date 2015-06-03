@@ -5,6 +5,6 @@ import com.intellij.psi.PsiClass;
 /**
  * Created by vinay on 31/5/15.
  */
-public interface ClassAdder {
+public interface ClassAdderStrategy {
     public void addClass(PsiClass psiClass);
 }

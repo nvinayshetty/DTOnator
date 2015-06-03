@@ -6,10 +6,10 @@ import com.intellij.psi.PsiDirectory;
 /**
  * Created by vinay on 31/5/15.
  */
-public class AddToPackage implements ClassAdder {
+public class PackageClassAdder implements ClassAdderStrategy {
     PsiDirectory pkgOfClassUnderCaret;
 
-    public AddToPackage(PsiDirectory aPackage) {
+    public PackageClassAdder(PsiDirectory aPackage) {
         pkgOfClassUnderCaret = aPackage;
     }
 

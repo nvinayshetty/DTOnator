@@ -6,10 +6,10 @@ import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElementFactory;
 import com.intellij.psi.PsiFile;
-import com.nvinayshetty.DTOnator.ClassAdder.ClassAdder;
+import com.nvinayshetty.DTOnator.ClassAdder.ClassAdderStrategy;
 import com.nvinayshetty.DTOnator.Factory.ObjectType;
-import com.nvinayshetty.DTOnator.Factory.stringToEnumConversionFactory;
-import com.nvinayshetty.DTOnator.FieldCreator.FieldCreator;
+import com.nvinayshetty.DTOnator.Factory.TypeToObjectTypeConverter;
+import com.nvinayshetty.DTOnator.FieldCreator.FieldCreationStrategy;
 import com.nvinayshetty.DTOnator.Utility.DtoHelper;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,16 +24,16 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
     private PsiClass psiClass;
     private JSONObject json;
     private PsiElementFactory psiFactory;
-    private FieldCreator fieldCreator;
-    private ClassAdder classAdder;
+    private FieldCreationStrategy fieldCreationStrategy;
+    private ClassAdderStrategy classAdderStrategy;
 
-    public JsonDtoGenerator(Project project, PsiFile file, JSONObject jsonString, PsiClass mClass, FieldCreator fieldCreator, ClassAdder classAdder) {
+    public JsonDtoGenerator(Project project, PsiFile file, JSONObject jsonString, PsiClass mClass, FieldCreationStrategy fieldCreationStrategy, ClassAdderStrategy classAdderStrategy) {
         super(project, file);
         this.psiFactory = JavaPsiFacade.getElementFactory(project);
         this.json = jsonString;
         this.psiClass = mClass;
-        this.fieldCreator = fieldCreator;
-        this.classAdder = classAdder;
+        this.fieldCreationStrategy = fieldCreationStrategy;
+        this.classAdderStrategy = classAdderStrategy;
 
     }
 
@@ -52,8 +52,8 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
             try {
                 Object object = json.get(nextKey);
                 String type1 = object.getClass().getSimpleName();
-                ObjectType type = stringToEnumConversionFactory.convert(type1);
-                filedStr1 = fieldCreator.getFieldFor(type, nextKey);
+                ObjectType type = TypeToObjectTypeConverter.convert(type1);
+                filedStr1 = fieldCreationStrategy.getFieldFor(type, nextKey);
                 generateClassForObject(json, nextKey, type);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -74,8 +74,8 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
             try {
                 Object object = json.get(nextKey);
                 String type1 = object.getClass().getSimpleName();
-                ObjectType type = stringToEnumConversionFactory.convert(type1);
-                filedStr1 = fieldCreator.getFieldFor(type, nextKey);
+                ObjectType type = TypeToObjectTypeConverter.convert(type1);
+                filedStr1 = fieldCreationStrategy.getFieldFor(type, nextKey);
                 generateClassForObject(json, nextKey, type);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -106,7 +106,7 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
         String classContent = getAllFieldsOf(jsonObject);
         PsiClass aClass = psiFactory.createClassFromText(classContent.trim(), psiClass);
         aClass.setName(className.trim());
-        classAdder.addClass(aClass);
+        classAdderStrategy.addClass(aClass);
     }
 
 

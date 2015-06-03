@@ -5,7 +5,7 @@ import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.codeStyle.JavaCodeStyleManager;
 import com.nvinayshetty.DTOnator.Factory.DtoGenerationFactory;
-import com.nvinayshetty.DTOnator.validator.InputFeedValidationStrategy;
+import com.nvinayshetty.DTOnator.validator.InputFeedValidationFactory;
 import org.json.JSONObject;
 
 import javax.swing.*;
@@ -35,7 +35,7 @@ public class DtoCreator {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                InputFeedValidationStrategy validator = new InputFeedValidationStrategy(FeedType.JsonObject, exceptionLabel);
+                InputFeedValidationFactory validator = new InputFeedValidationFactory(FeedType.JsonObject, exceptionLabel);
                 if (validator.isValidFeed(inputFeed, exceptionLabel)) {
                     DtoGenerationFactory.getDtoGeneratorFor(FeedType.JsonObject, project, psiFile, (JSONObject) validator.getValidFeed(), psiClass);
                     //foo.generateDto(project,psiFile,validator.getValidFeed(),psiClass);

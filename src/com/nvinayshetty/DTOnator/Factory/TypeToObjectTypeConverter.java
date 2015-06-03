@@ -3,7 +3,7 @@ package com.nvinayshetty.DTOnator.Factory;
 /**
  * Created by vinay on 9/5/15.
  */
-public class stringToEnumConversionFactory {
+public class TypeToObjectTypeConverter {
 
     public static ObjectType convert(String type) {
         if (type.equals("Boolean")) {

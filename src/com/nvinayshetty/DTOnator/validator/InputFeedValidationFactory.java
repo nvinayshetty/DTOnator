@@ -7,11 +7,11 @@ import javax.swing.*;
 /**
  * Created by vinay on 30/5/15.
  */
-public class InputFeedValidationStrategy implements FeedValidator {
+public class InputFeedValidationFactory implements FeedValidator {
     FeedValidator feedValidator;
     JLabel exJLabel;
 
-    public InputFeedValidationStrategy(FeedType feedType, JLabel exceptionLabel) {
+    public InputFeedValidationFactory(FeedType feedType, JLabel exceptionLabel) {
         exJLabel = exceptionLabel;
         switch (feedType) {
             case JsonObject:
