@@ -8,10 +8,5 @@ public class DtoHelper {
         return key.substring(0, 1).toUpperCase() + key.substring(1);
     }
 
-    public interface primitiveConverter {
-        public String getSimpleFieldRepresentation(String key);
-        public String getFieldRepresentationFor(String key);
-    }
-
 
 }

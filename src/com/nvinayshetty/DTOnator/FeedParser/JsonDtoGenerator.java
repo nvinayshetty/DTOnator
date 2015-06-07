@@ -6,14 +6,18 @@ import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElementFactory;
 import com.intellij.psi.PsiFile;
-import com.nvinayshetty.DTOnator.ClassAdder.ClassAdderStrategy;
-import com.nvinayshetty.DTOnator.Factory.ObjectType;
-import com.nvinayshetty.DTOnator.Factory.TypeToObjectTypeConverter;
+import com.nvinayshetty.DTOnator.ClassCreator.ClassCreatorStrategy;
+import com.nvinayshetty.DTOnator.ClassCreator.EncapsulatedClassCreator;
+import com.nvinayshetty.DTOnator.DtoCreators.PrivateFieldOptions;
+import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
 import com.nvinayshetty.DTOnator.FieldCreator.FieldCreationStrategy;
+import com.nvinayshetty.DTOnator.FieldCreator.ObjectType;
+import com.nvinayshetty.DTOnator.FieldCreator.TypeToObjectTypeConverter;
 import com.nvinayshetty.DTOnator.Utility.DtoHelper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.EnumSet;
 import java.util.Iterator;
 
 
@@ -25,15 +29,19 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
     private JSONObject json;
     private PsiElementFactory psiFactory;
     private FieldCreationStrategy fieldCreationStrategy;
-    private ClassAdderStrategy classAdderStrategy;
+    private ClassCreatorStrategy classAdderStrategy;
+    private AccessModifier accessModifier;
+    private EnumSet<PrivateFieldOptions> privateFieldOptionse;
 
-    public JsonDtoGenerator(Project project, PsiFile file, JSONObject jsonString, PsiClass mClass, FieldCreationStrategy fieldCreationStrategy, ClassAdderStrategy classAdderStrategy) {
+    public JsonDtoGenerator(Project project, PsiFile file, JSONObject jsonString, PsiClass mClass, AccessModifier accessModifier, FieldCreationStrategy fieldCreationStrategy, ClassCreatorStrategy fileCreatorStrategy, EnumSet<PrivateFieldOptions> privateFieldOptionse) {
         super(project, file);
         this.psiFactory = JavaPsiFacade.getElementFactory(project);
         this.json = jsonString;
         this.psiClass = mClass;
         this.fieldCreationStrategy = fieldCreationStrategy;
-        this.classAdderStrategy = classAdderStrategy;
+        this.classAdderStrategy = fileCreatorStrategy;
+        this.accessModifier = accessModifier;
+        this.privateFieldOptionse = privateFieldOptionse;
 
     }
 
@@ -53,12 +61,15 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
                 Object object = json.get(nextKey);
                 String type1 = object.getClass().getSimpleName();
                 ObjectType type = TypeToObjectTypeConverter.convert(type1);
-                filedStr1 = fieldCreationStrategy.getFieldFor(type, nextKey);
+                filedStr1 = fieldCreationStrategy.getFieldFor(type, accessModifier, nextKey);
                 generateClassForObject(json, nextKey, type);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             filedStr = filedStr1 + "\n";
+            if (privateFieldOptionse.contains(PrivateFieldOptions.PROVIDE_PRIVATE_FIELD)) {
+                psiClass = new EncapsulatedClassCreator(privateFieldOptionse).getClassWithEncapsulatedFileds(psiClass);
+            }
             psiClass.add(psiFactory.createFieldFromText(filedStr, psiClass));
         }
     }
@@ -75,7 +86,7 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
                 Object object = json.get(nextKey);
                 String type1 = object.getClass().getSimpleName();
                 ObjectType type = TypeToObjectTypeConverter.convert(type1);
-                filedStr1 = fieldCreationStrategy.getFieldFor(type, nextKey);
+                filedStr1 = fieldCreationStrategy.getFieldFor(type, accessModifier, nextKey);
                 generateClassForObject(json, nextKey, type);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -106,6 +117,9 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
         String classContent = getAllFieldsOf(jsonObject);
         PsiClass aClass = psiFactory.createClassFromText(classContent.trim(), psiClass);
         aClass.setName(className.trim());
+        if (privateFieldOptionse.contains(PrivateFieldOptions.PROVIDE_PRIVATE_FIELD)) {
+            aClass = new EncapsulatedClassCreator(privateFieldOptionse).getClassWithEncapsulatedFileds(aClass);
+        }
         classAdderStrategy.addClass(aClass);
     }
 

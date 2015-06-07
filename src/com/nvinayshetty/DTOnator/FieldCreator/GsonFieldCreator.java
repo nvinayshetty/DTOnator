@@ -1,14 +1,12 @@
 package com.nvinayshetty.DTOnator.FieldCreator;
 
-import com.nvinayshetty.DTOnator.Factory.ObjectType;
-
 /**
  * Created by vinay on 31/5/15.
  */
 public class GsonFieldCreator implements FieldCreationStrategy {
 
     @Override
-    public String getFieldFor(ObjectType type, String key) {
-        return type.getFieldRepresentationFor(key);
+    public String getFieldFor(ObjectType type, AccessModifier modifier, String key) {
+        return type.getGsonFieldRepresentationFor(modifier, key);
     }
 }

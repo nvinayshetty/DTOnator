@@ -1,6 +1,6 @@
 package com.nvinayshetty.DTOnator.validator;
 
-import com.nvinayshetty.DTOnator.DtoGenerators.FeedType;
+import com.nvinayshetty.DTOnator.DtoCreators.FeedType;
 
 import javax.swing.*;
 
@@ -14,12 +14,10 @@ public class InputFeedValidationFactory implements FeedValidator {
     public InputFeedValidationFactory(FeedType feedType, JLabel exceptionLabel) {
         exJLabel = exceptionLabel;
         switch (feedType) {
-            case JsonObject:
+            case JSON:
                 feedValidator = new JsonFeedValidator();
                 break;
-            case JsonArray:
-                break;
-            case XmlFeed:
+            case XML:
                 break;
         }
     }

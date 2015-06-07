@@ -1,109 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="module_dtonator" default="compile.module.dtonator">
-  <dirname property="module.dtonator.basedir" file="${ant.file.module_dtonator}"/>
-  
-  <property name="module.jdk.home.dtonator" value="${project.jdk.home}"/>
-  <property name="module.jdk.bin.dtonator" value="${project.jdk.bin}"/>
-  <property name="module.jdk.classpath.dtonator" value="${project.jdk.classpath}"/>
-  
-  <property name="compiler.args.dtonator" value="-encoding UTF-8 -source 1.7 ${compiler.args}"/>
-  
-  <property name="dtonator.output.dir" value="${module.dtonator.basedir}/out/production/DTOnator"/>
-  <property name="dtonator.testoutput.dir" value="${module.dtonator.basedir}/out/test/DTOnator"/>
-  
-  <path id="dtonator.module.bootclasspath">
-    <!-- Paths to be included in compilation bootclasspath -->
-  </path>
-  
-  <path id="dtonator.module.production.classpath">
-    <path refid="${module.jdk.classpath.dtonator}"/>
-  </path>
-  
-  <path id="dtonator.runtime.production.module.classpath">
-    <pathelement location="${dtonator.output.dir}"/>
-  </path>
-  
-  <path id="dtonator.module.classpath">
-    <path refid="${module.jdk.classpath.dtonator}"/>
-    <pathelement location="${dtonator.output.dir}"/>
-  </path>
-  
-  <path id="dtonator.runtime.module.classpath">
-    <pathelement location="${dtonator.testoutput.dir}"/>
-    <pathelement location="${dtonator.output.dir}"/>
-  </path>
-  
-  
-  <patternset id="excluded.from.module.dtonator">
-    <patternset refid="ignored.files"/>
-    <exclude name="out/**"/>
-    <exclude name="out/production/**"/>
-    <exclude name="out/production/DTOnator/**"/>
-    <exclude name="out/production/DTOnator/com/**"/>
-    <exclude name="out/production/DTOnator/com/intellij/**"/>
-    <exclude name="out/production/DTOnator/com/intellij/uiDesigner/**"/>
-    <exclude name="out/production/DTOnator/com/intellij/uiDesigner/core/**"/>
-    <exclude name="out/production/DTOnator/.idea/**"/>
-    <exclude name="out/production/DTOnator/.idea/scopes/**"/>
-    <exclude name="out/production/DTOnator/.idea/copyright/**"/>
-    <exclude name="out/production/DTOnator/.idea/libraries/**"/>
-    <exclude name="out/production/DTOnator/META-INF/**"/>
-  </patternset>
-  
-  <patternset id="excluded.from.compilation.dtonator">
-    <patternset refid="excluded.from.module.dtonator"/>
-  </patternset>
-  
-  <path id="dtonator.module.sourcepath">
-    <dirset dir="${module.dtonator.basedir}/../../mygit">
-      <include name="DTOnator/src"/>
-      <include name="DTOnator"/>
-    </dirset>
-  </path>
-  
-  
-  <target name="compile.module.dtonator" depends="compile.module.dtonator.production,compile.module.dtonator.tests" description="Compile module DTOnator"/>
-  
-  <target name="compile.module.dtonator.production" depends="register.custom.compilers" description="Compile module DTOnator; production classes">
-    <mkdir dir="${dtonator.output.dir}"/>
-    <javac2 destdir="${dtonator.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.dtonator}/javac">
-      <compilerarg line="${compiler.args.dtonator}"/>
-      <bootclasspath refid="dtonator.module.bootclasspath"/>
-      <classpath refid="dtonator.module.production.classpath"/>
-      <src refid="dtonator.module.sourcepath"/>
-      <patternset refid="excluded.from.compilation.dtonator"/>
-    </javac2>
-    
-    <copy todir="${dtonator.output.dir}">
-      <fileset dir="${module.dtonator.basedir}/src">
-        <patternset refid="compiler.resources"/>
-        <type type="file"/>
-      </fileset>
-      <fileset dir="${module.dtonator.basedir}">
-        <patternset refid="compiler.resources"/>
-        <type type="file"/>
-      </fileset>
-    </copy>
-  </target>
-  
-  <target name="compile.module.dtonator.tests" depends="register.custom.compilers,compile.module.dtonator.production" description="compile module DTOnator; test classes" unless="skip.tests"/>
-  
-  <target name="clean.module.dtonator" description="cleanup module">
-    <delete dir="${dtonator.output.dir}"/>
-    <delete dir="${dtonator.testoutput.dir}"/>
-  </target>
-  
-  <property name="dtonator.plugin.path.jar" value="${module.dtonator.basedir}/DTOnator.jar"/>
-  
-  <!-- Build archive for plugin 'DTOnator' -->
-  <target name="plugin.build.jar.dtonator" depends="compile.module.dtonator" description="Build plugin archive for module &#39;DTOnator&#39;">
-    <jar destfile="${dtonator.plugin.path.jar}" duplicate="preserve">
-      <zipfileset dir="${module.dtonator.basedir}/out/production/DTOnator"/>
-      <zipfileset file="${module.dtonator.basedir}/META-INF/plugin.xml" prefix="META-INF"/>
-      <manifest>
-        <attribute name="Created-By" value="IntelliJ IDEA"/>
-        <attribute name="Manifest-Version" value="1.0"/>
-      </manifest>
-    </jar>
-  </target>
+    <dirname property="module.dtonator.basedir" file="${ant.file.module_dtonator}"/>
+
+    <property name="module.jdk.home.dtonator" value="${project.jdk.home}"/>
+    <property name="module.jdk.bin.dtonator" value="${project.jdk.bin}"/>
+    <property name="module.jdk.classpath.dtonator" value="${project.jdk.classpath}"/>
+
+    <property name="compiler.args.dtonator" value="-encoding UTF-8 -source 1.7 ${compiler.args}"/>
+
+    <property name="dtonator.output.dir" value="${module.dtonator.basedir}/out/production/DTOnator"/>
+    <property name="dtonator.testoutput.dir" value="${module.dtonator.basedir}/out/test/DTOnator"/>
+
+    <path id="dtonator.module.bootclasspath">
+        <!-- Paths to be included in compilation bootclasspath -->
+    </path>
+
+    <path id="dtonator.module.production.classpath">
+        <path refid="${module.jdk.classpath.dtonator}"/>
+    </path>
+
+    <path id="dtonator.runtime.production.module.classpath">
+        <pathelement location="${dtonator.output.dir}"/>
+    </path>
+
+    <path id="dtonator.module.classpath">
+        <path refid="${module.jdk.classpath.dtonator}"/>
+        <pathelement location="${dtonator.output.dir}"/>
+    </path>
+
+    <path id="dtonator.runtime.module.classpath">
+        <pathelement location="${dtonator.testoutput.dir}"/>
+        <pathelement location="${dtonator.output.dir}"/>
+    </path>
+
+
+    <patternset id="excluded.from.module.dtonator">
+        <patternset refid="ignored.files"/>
+        <exclude name="out/**"/>
+        <exclude name="out/production/**"/>
+        <exclude name="out/production/DTOnator/**"/>
+        <exclude name="out/production/DTOnator/com/**"/>
+        <exclude name="out/production/DTOnator/com/intellij/**"/>
+        <exclude name="out/production/DTOnator/com/intellij/uiDesigner/**"/>
+        <exclude name="out/production/DTOnator/com/intellij/uiDesigner/core/**"/>
+        <exclude name="out/production/DTOnator/.idea/**"/>
+        <exclude name="out/production/DTOnator/.idea/scopes/**"/>
+        <exclude name="out/production/DTOnator/.idea/copyright/**"/>
+        <exclude name="out/production/DTOnator/.idea/libraries/**"/>
+        <exclude name="out/production/DTOnator/META-INF/**"/>
+    </patternset>
+
+    <patternset id="excluded.from.compilation.dtonator">
+        <patternset refid="excluded.from.module.dtonator"/>
+    </patternset>
+
+    <path id="dtonator.module.sourcepath">
+        <dirset dir="${module.dtonator.basedir}/../../mygit">
+            <include name="DTOnator/src"/>
+            <include name="DTOnator"/>
+        </dirset>
+    </path>
+
+
+    <target name="compile.module.dtonator" depends="compile.module.dtonator.production,compile.module.dtonator.tests"
+            description="Compile module DTOnator"/>
+
+    <target name="compile.module.dtonator.production" depends="register.custom.compilers"
+            description="Compile module DTOnator; production classes">
+        <mkdir dir="${dtonator.output.dir}"/>
+        <javac2 destdir="${dtonator.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}"
+                memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.dtonator}/javac">
+            <compilerarg line="${compiler.args.dtonator}"/>
+            <bootclasspath refid="dtonator.module.bootclasspath"/>
+            <classpath refid="dtonator.module.production.classpath"/>
+            <src refid="dtonator.module.sourcepath"/>
+            <patternset refid="excluded.from.compilation.dtonator"/>
+        </javac2>
+
+        <copy todir="${dtonator.output.dir}">
+            <fileset dir="${module.dtonator.basedir}/src">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+            <fileset dir="${module.dtonator.basedir}">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="compile.module.dtonator.tests" depends="register.custom.compilers,compile.module.dtonator.production"
+            description="compile module DTOnator; test classes" unless="skip.tests"/>
+
+    <target name="clean.module.dtonator" description="cleanup module">
+        <delete dir="${dtonator.output.dir}"/>
+        <delete dir="${dtonator.testoutput.dir}"/>
+    </target>
+
+    <property name="dtonator.plugin.path.jar" value="${module.dtonator.basedir}/DTOnator.jar"/>
+
+    <!-- Build archive for plugin 'DTOnator' -->
+    <target name="plugin.build.jar.dtonator" depends="compile.module.dtonator"
+            description="Build plugin archive for module &#39;DTOnator&#39;">
+        <jar destfile="${dtonator.plugin.path.jar}" duplicate="preserve">
+            <zipfileset dir="${module.dtonator.basedir}/out/production/DTOnator"/>
+            <zipfileset file="${module.dtonator.basedir}/META-INF/plugin.xml" prefix="META-INF"/>
+            <manifest>
+                <attribute name="Created-By" value="IntelliJ IDEA"/>
+                <attribute name="Manifest-Version" value="1.0"/>
+            </manifest>
+        </jar>
+    </target>
 </project>

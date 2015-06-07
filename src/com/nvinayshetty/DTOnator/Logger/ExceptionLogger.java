@@ -1,4 +1,4 @@
-package com.nvinayshetty.DTOnator.Ui;
+package com.nvinayshetty.DTOnator.Logger;
 
 import javax.swing.*;
 

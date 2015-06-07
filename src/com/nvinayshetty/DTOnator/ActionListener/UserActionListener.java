@@ -28,7 +28,7 @@ public class UserActionListener extends AnAction {
         PsiFile mFile = PsiUtilBase.getPsiFileInEditor(editor, project);
         mClass = getPsiClassFromContext(event);
 
-        InputWindow dialog = new InputWindow(mClass, project, mFile);
+        InputWindow dialog = new InputWindow(mClass);
         dialog.setVisible(true);
     }
 

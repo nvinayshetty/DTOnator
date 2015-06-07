@@ -1,6 +1,6 @@
 package com.nvinayshetty.DTOnator.validator;
 
-import com.nvinayshetty.DTOnator.Ui.ExceptionLogger;
+import com.nvinayshetty.DTOnator.Logger.ExceptionLogger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
