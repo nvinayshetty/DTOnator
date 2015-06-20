@@ -1,4 +1,4 @@
-package com.nvinayshetty.DTOnator.validator;
+package com.nvinayshetty.DTOnator.FeedValidator;
 
 import com.nvinayshetty.DTOnator.DtoCreators.FeedType;
 

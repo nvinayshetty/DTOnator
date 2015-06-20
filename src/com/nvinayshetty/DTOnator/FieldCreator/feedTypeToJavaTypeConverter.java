@@ -3,7 +3,7 @@ package com.nvinayshetty.DTOnator.FieldCreator;
 /**
  * Created by vinay on 9/5/15.
  */
-public class TypeToObjectTypeConverter {
+public class feedTypeToJavaTypeConverter {
 
     public static ObjectType convert(String type) {
         if (type.equals("Boolean")) {

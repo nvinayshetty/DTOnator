@@ -41,26 +41,22 @@ public enum ObjectType implements primitiveConverter {
     }, JSON_OBJECT {
         @Override
         public String getSimpleFieldRepresentationFor(AccessModifier accessModifier, String key) {
-            String className = DtoHelper.getSubClassName(key);
-            return new StringBuilder().append(accessModifier.getModifier()).append(className).append(suffix(key)).toString();
+            return new StringBuilder().append(accessModifier.getModifier()).append(DtoHelper.getSubClassName(key)).append(suffix(key)).toString();
         }
 
         @Override
         public String getGsonFieldRepresentationFor(AccessModifier accessModifier, String key) {
-            String className = DtoHelper.getSubClassName(key);
-            return getGsonAnnotationFor(key).append(getSimpleFieldRepresentationFor(accessModifier, className)).toString();
+            return getGsonAnnotationFor(key).append(getSimpleFieldRepresentationFor(accessModifier, key)).toString();
         }
     }, JSON_ARRAY {
         @Override
         public String getSimpleFieldRepresentationFor(AccessModifier accessModifier, String key) {
-            String className = DtoHelper.getSubClassName(key);
-            return new StringBuilder().append(accessModifier.getModifier()).append("java.util.List<").append(className).append(">").append(suffix(key)).toString();
+            return new StringBuilder().append(accessModifier.getModifier()).append("java.util.List<").append(DtoHelper.getSubClassName(key)).append(">").append(suffix(key)).toString();
         }
 
         @Override
         public String getGsonFieldRepresentationFor(AccessModifier accessModifier, String key) {
-            String className = DtoHelper.getSubClassName(key);
-            return getGsonAnnotationFor(key).append(getSimpleFieldRepresentationFor(accessModifier, className)).toString();
+            return getGsonAnnotationFor(key).append(getSimpleFieldRepresentationFor(accessModifier, key)).toString();
         }
     }, STRING {
         @Override

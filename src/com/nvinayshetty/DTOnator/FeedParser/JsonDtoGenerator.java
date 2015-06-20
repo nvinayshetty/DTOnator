@@ -1,23 +1,19 @@
 package com.nvinayshetty.DTOnator.FeedParser;
 
 import com.intellij.openapi.command.WriteCommandAction;
-import com.intellij.openapi.project.Project;
 import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElementFactory;
-import com.intellij.psi.PsiFile;
-import com.nvinayshetty.DTOnator.ClassCreator.ClassCreatorStrategy;
 import com.nvinayshetty.DTOnator.ClassCreator.EncapsulatedClassCreator;
-import com.nvinayshetty.DTOnator.DtoCreators.PrivateFieldOptions;
-import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
-import com.nvinayshetty.DTOnator.FieldCreator.FieldCreationStrategy;
+import com.nvinayshetty.DTOnator.DtoCreators.DtoCreater;
+import com.nvinayshetty.DTOnator.DtoCreators.FieldEncapsulatopnOptions;
 import com.nvinayshetty.DTOnator.FieldCreator.ObjectType;
-import com.nvinayshetty.DTOnator.FieldCreator.TypeToObjectTypeConverter;
+import com.nvinayshetty.DTOnator.FieldCreator.feedTypeToJavaTypeConverter;
+import com.nvinayshetty.DTOnator.Ui.FeedProgressDialog;
 import com.nvinayshetty.DTOnator.Utility.DtoHelper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.EnumSet;
 import java.util.Iterator;
 
 
@@ -25,26 +21,23 @@ import java.util.Iterator;
  * Created by vinay on 19/4/15.
  */
 public class JsonDtoGenerator extends WriteCommandAction.Simple {
+    private static JsonDtoBuilder jsonDtoBuilder;
     private PsiClass psiClass;
     private JSONObject json;
     private PsiElementFactory psiFactory;
-    private FieldCreationStrategy fieldCreationStrategy;
-    private ClassCreatorStrategy classAdderStrategy;
-    private AccessModifier accessModifier;
-    private EnumSet<PrivateFieldOptions> privateFieldOptionse;
+    private DtoCreater dtoCreater;
 
-    public JsonDtoGenerator(Project project, PsiFile file, JSONObject jsonString, PsiClass mClass, AccessModifier accessModifier, FieldCreationStrategy fieldCreationStrategy, ClassCreatorStrategy fileCreatorStrategy, EnumSet<PrivateFieldOptions> privateFieldOptionse) {
-        super(project, file);
-        this.psiFactory = JavaPsiFacade.getElementFactory(project);
-        this.json = jsonString;
-        this.psiClass = mClass;
-        this.fieldCreationStrategy = fieldCreationStrategy;
-        this.classAdderStrategy = fileCreatorStrategy;
-        this.accessModifier = accessModifier;
-        this.privateFieldOptionse = privateFieldOptionse;
-
+    private JsonDtoGenerator(JsonDtoBuilder builder) {
+        super(builder.aClass.getProject(), builder.aClass.getContainingFile());
+        psiFactory = JavaPsiFacade.getElementFactory(builder.aClass.getProject());
+        json = builder.jsonString;
+        psiClass = builder.aClass;
+        dtoCreater = builder.dtoCreater;
     }
 
+    public static JsonDtoBuilder getJsonDtoBuilder() {
+        return jsonDtoBuilder = new JsonDtoBuilder();
+    }
 
     @Override
     protected void run() {
@@ -55,48 +48,40 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
         Iterator<?> keysIterator = json.keys();
         String filedStr = null;
         while (keysIterator.hasNext()) {
-            String nextKey = (String) keysIterator.next();
-            String filedStr1 = "";
-            try {
-                Object object = json.get(nextKey);
-                String type1 = object.getClass().getSimpleName();
-                ObjectType type = TypeToObjectTypeConverter.convert(type1);
-                filedStr1 = fieldCreationStrategy.getFieldFor(type, accessModifier, nextKey);
-                generateClassForObject(json, nextKey, type);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            filedStr = filedStr1 + "\n";
-            if (privateFieldOptionse.contains(PrivateFieldOptions.PROVIDE_PRIVATE_FIELD)) {
-                psiClass = new EncapsulatedClassCreator(privateFieldOptionse).getClassWithEncapsulatedFileds(psiClass);
-            }
+            filedStr = getClassFields(json, keysIterator) + "\n";
             psiClass.add(psiFactory.createFieldFromText(filedStr, psiClass));
+        }
+        if (dtoCreater.getPrivateFieldOptionse().contains(FieldEncapsulatopnOptions.PROVIDE_PRIVATE_FIELD)) {
+            psiClass = new EncapsulatedClassCreator(dtoCreater.getPrivateFieldOptionse()).getClassWithEncapsulatedFileds(psiClass);
         }
     }
 
-
     private String getAllFieldsOf(JSONObject json) {
-        Iterator<?> keysIterator = json.keys();
-        String filedStr = null;
+        //Todo:String builder is used as the compliler can't optimize the String to internally use string Builder,Verify
         StringBuilder subClassFields = new StringBuilder();
+        String filedStr = null;
+        Iterator<?> keysIterator = json.keys();
         while (keysIterator.hasNext()) {
-            String nextKey = (String) keysIterator.next();
-            String filedStr1 = null;
-            try {
-                Object object = json.get(nextKey);
-                String type1 = object.getClass().getSimpleName();
-                ObjectType type = TypeToObjectTypeConverter.convert(type1);
-                filedStr1 = fieldCreationStrategy.getFieldFor(type, accessModifier, nextKey);
-                generateClassForObject(json, nextKey, type);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            filedStr = filedStr1;
+            filedStr = getClassFields(json, keysIterator);
             subClassFields.append(filedStr + "\n");
         }
         return subClassFields.toString();
     }
 
+    private String getClassFields(JSONObject json, Iterator<?> keysIterator) {
+        String nextKey = (String) keysIterator.next();
+        String filedStr1 = "";
+        try {
+            Object object = json.get(nextKey);
+            String type1 = object.getClass().getSimpleName();
+            ObjectType type = feedTypeToJavaTypeConverter.convert(type1);
+            filedStr1 = dtoCreater.getFieldCreationStrategy().getFieldFor(type, dtoCreater.getAccessModifier(), nextKey);
+            generateClassForObject(json, nextKey, type);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return filedStr1;
+    }
 
     private void generateClassForObject(JSONObject json, String key, ObjectType objectType) throws JSONException {
         switch (objectType) {
@@ -117,10 +102,41 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
         String classContent = getAllFieldsOf(jsonObject);
         PsiClass aClass = psiFactory.createClassFromText(classContent.trim(), psiClass);
         aClass.setName(className.trim());
-        if (privateFieldOptionse.contains(PrivateFieldOptions.PROVIDE_PRIVATE_FIELD)) {
-            aClass = new EncapsulatedClassCreator(privateFieldOptionse).getClassWithEncapsulatedFileds(aClass);
+        if (dtoCreater.getPrivateFieldOptionse().contains(FieldEncapsulatopnOptions.PROVIDE_PRIVATE_FIELD)) {
+            aClass = new EncapsulatedClassCreator(dtoCreater.getPrivateFieldOptionse()).getClassWithEncapsulatedFileds(aClass);
         }
-        classAdderStrategy.addClass(aClass);
+        dtoCreater.getClassAdderStrategy().addClass(aClass);
+    }
+
+    public static class JsonDtoBuilder {
+        private JSONObject jsonString;
+        private PsiClass aClass;
+        private DtoCreater dtoCreater;
+        private FeedProgressDialog dlg;
+
+        public JsonDtoBuilder setJsonString(JSONObject jsonString) {
+            this.jsonString = jsonString;
+            return this;
+        }
+
+        public JsonDtoBuilder setaClass(PsiClass aClass) {
+            this.aClass = aClass;
+            return this;
+        }
+
+        public JsonDtoBuilder setDtoCreater(DtoCreater dtoCreater) {
+            this.dtoCreater = dtoCreater;
+            return this;
+        }
+
+        public JsonDtoBuilder setDlg(FeedProgressDialog dlg) {
+            this.dlg = dlg;
+            return this;
+        }
+
+        public JsonDtoGenerator createJsonDtoGenerator() {
+            return new JsonDtoGenerator(this);
+        }
     }
 
 

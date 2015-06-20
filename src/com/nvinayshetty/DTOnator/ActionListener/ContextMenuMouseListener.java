@@ -30,7 +30,6 @@ public class ContextMenuMouseListener extends MouseAdapter {
             public void actionPerformed(ActionEvent ae) {
                 textComponent.setText("");
                 textComponent.replaceSelection(savedString);
-
                 lastActionSelected = Actions.UNDO;
             }
         };
@@ -39,7 +38,6 @@ public class ContextMenuMouseListener extends MouseAdapter {
         popup.addSeparator();
 
         cutAction = new AbstractAction("Cut") {
-
             @Override
             public void actionPerformed(ActionEvent ae) {
                 lastActionSelected = Actions.CUT;

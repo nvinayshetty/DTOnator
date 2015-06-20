@@ -13,6 +13,7 @@ public class ExceptionLogger {
     }
 
     public void Log(Exception exception) {
+        exceptionLabel.setVisible(true);
         exceptionLabel.setText(exception.toString());
     }
 

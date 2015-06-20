@@ -9,6 +9,7 @@ import com.nvinayshetty.DTOnator.ClassCreator.ClassType;
 import com.nvinayshetty.DTOnator.FeedParser.JsonDtoGenerator;
 import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
 import com.nvinayshetty.DTOnator.FieldCreator.FieldCreationFactory;
+import com.nvinayshetty.DTOnator.Ui.FeedProgressDialog;
 import org.json.JSONObject;
 
 import java.util.EnumSet;
@@ -17,16 +18,17 @@ import java.util.EnumSet;
  * Created by vinay on 17/5/15.
  */
 public class DtoGenerationFactory {
-    public static WriteCommandAction getDtoGeneratorFor(FeedType type, ClassType classType, FieldType fieldType, EnumSet<PrivateFieldOptions> privateFieldOptions, Project project, PsiFile psiFile, JSONObject validFeed, PsiClass psiClass) {
+    public static WriteCommandAction getDtoGeneratorFor(FeedType type, ClassType classType, FieldType fieldType, EnumSet<FieldEncapsulatopnOptions> fieldEncapsulatopnOptions, Project project, PsiFile psiFile, JSONObject validFeed, PsiClass psiClass, FeedProgressDialog dialog) {
         AccessModifier accessModifier = null;
-        if (privateFieldOptions.contains(PrivateFieldOptions.PROVIDE_PRIVATE_FIELD))
+        if (fieldEncapsulatopnOptions.contains(FieldEncapsulatopnOptions.PROVIDE_PRIVATE_FIELD))
             accessModifier = AccessModifier.PRIVATE;
         else
             accessModifier = AccessModifier.PUBLIC;
 
         switch (type) {
             case JSON:
-                return new JsonDtoGenerator(project, psiFile, validFeed, psiClass, accessModifier, FieldCreationFactory.getFieldCreatorFor(fieldType), ClassCreationFactory.getFileCreatorFor(classType, psiClass), privateFieldOptions);
+                DtoCreater dtoCreater = new DtoCreater(FieldCreationFactory.getFieldCreatorFor(fieldType), ClassCreationFactory.getFileCreatorFor(classType, psiClass), accessModifier, fieldEncapsulatopnOptions);
+                return JsonDtoGenerator.getJsonDtoBuilder().setaClass(psiClass).setDtoCreater(dtoCreater).setJsonString(validFeed).setDlg(dialog).createJsonDtoGenerator();//JsonDtoBuilder.s.createJsonDtoGenerator(validFeed,psiClass,dtoCreationStrategy,dialog);//new JsonDtoBuilder().setJsonString(validFeed).setmClass(psiClass).setAccessModifier(accessModifier).setDlg(dialog).createJsonDtoGenerator();
         }
         return null;
     }

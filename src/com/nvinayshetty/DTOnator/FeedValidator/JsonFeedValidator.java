@@ -1,4 +1,4 @@
-package com.nvinayshetty.DTOnator.validator;
+package com.nvinayshetty.DTOnator.FeedValidator;
 
 import com.nvinayshetty.DTOnator.Logger.ExceptionLogger;
 import org.json.JSONArray;
@@ -11,25 +11,26 @@ import javax.swing.*;
  * Created by vinay on 30/5/15.
  */
 public class JsonFeedValidator implements FeedValidator {
-    JSONObject json;
+    JSONObject json = null;
 
     @Override
     public boolean isValidFeed(String inputFeed, JLabel exceptionLabel) {
         try {
             json = new JSONObject(inputFeed);
         } catch (JSONException ex) {
-            //Todo:remove this log
             new ExceptionLogger(exceptionLabel).Log(ex);
+            return false;
+        }
+        if (json == null) {
             try {
                 JSONArray jsonArray = new JSONArray(inputFeed);
-                Object jsonobject = jsonArray.get(0);
-                if (jsonobject instanceof JSONObject)
-                    json = (JSONObject) jsonobject;
+                json = (JSONObject) jsonArray.get(0);
             } catch (JSONException ex1) {
                 new ExceptionLogger(exceptionLabel).Log(ex1);
                 return false;
             }
         }
+
         return true;
     }
 

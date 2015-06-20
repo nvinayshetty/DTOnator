@@ -17,20 +17,24 @@
 
     <path id="dtonator.module.production.classpath">
         <path refid="${module.jdk.classpath.dtonator}"/>
+        <path refid="library.org.json-20120521.classpath"/>
     </path>
 
     <path id="dtonator.runtime.production.module.classpath">
         <pathelement location="${dtonator.output.dir}"/>
+        <path refid="library.org.json-20120521.classpath"/>
     </path>
 
     <path id="dtonator.module.classpath">
         <path refid="${module.jdk.classpath.dtonator}"/>
         <pathelement location="${dtonator.output.dir}"/>
+        <path refid="library.org.json-20120521.classpath"/>
     </path>
 
     <path id="dtonator.runtime.module.classpath">
         <pathelement location="${dtonator.testoutput.dir}"/>
         <pathelement location="${dtonator.output.dir}"/>
+        <path refid="library.org.json-20120521.classpath"/>
     </path>
 
 
@@ -43,6 +47,17 @@
         <exclude name="out/production/DTOnator/com/intellij/**"/>
         <exclude name="out/production/DTOnator/com/intellij/uiDesigner/**"/>
         <exclude name="out/production/DTOnator/com/intellij/uiDesigner/core/**"/>
+        <exclude name="out/production/DTOnator/com/nvinayshetty/**"/>
+        <exclude name="out/production/DTOnator/com/nvinayshetty/DTOnator/**"/>
+        <exclude name="out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/**"/>
+        <exclude name="out/production/DTOnator/com/nvinayshetty/DTOnator/Logger/**"/>
+        <exclude name="out/production/DTOnator/com/nvinayshetty/DTOnator/Utility/**"/>
+        <exclude name="out/production/DTOnator/com/nvinayshetty/DTOnator/FeedParser/**"/>
+        <exclude name="out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreators/**"/>
+        <exclude name="out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/**"/>
+        <exclude name="out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/**"/>
+        <exclude name="out/production/DTOnator/com/nvinayshetty/DTOnator/FeedValidator/**"/>
+        <exclude name="out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/**"/>
         <exclude name="out/production/DTOnator/.idea/**"/>
         <exclude name="out/production/DTOnator/.idea/scopes/**"/>
         <exclude name="out/production/DTOnator/.idea/copyright/**"/>
@@ -97,12 +112,15 @@
         <delete dir="${dtonator.testoutput.dir}"/>
     </target>
 
-    <property name="dtonator.plugin.path.jar" value="${module.dtonator.basedir}/DTOnator.jar"/>
+    <property name="dtonator.plugin.path.jar" value="${module.dtonator.basedir}/DTOnator.zip"/>
 
     <!-- Build archive for plugin 'DTOnator' -->
     <target name="plugin.build.jar.dtonator" depends="compile.module.dtonator"
             description="Build plugin archive for module &#39;DTOnator&#39;">
-        <jar destfile="${dtonator.plugin.path.jar}" duplicate="preserve">
+        <property name="tmp.dir.dtonator" value="${module.dtonator.basedir}/../temp"/>
+        <mkdir dir="${tmp.dir.dtonator}"/>
+        <mkdir dir="${tmp.dir.dtonator}/lib"/>
+        <jar destfile="${tmp.dir.dtonator}/lib/DTOnator.jar" duplicate="preserve">
             <zipfileset dir="${module.dtonator.basedir}/out/production/DTOnator"/>
             <zipfileset file="${module.dtonator.basedir}/META-INF/plugin.xml" prefix="META-INF"/>
             <manifest>
@@ -110,5 +128,11 @@
                 <attribute name="Manifest-Version" value="1.0"/>
             </manifest>
         </jar>
+        <copy file="${module.dtonator.basedir}/../../../../../home/vinay/Downloads/org.json-20120521.jar"
+              tofile="${tmp.dir.dtonator}/lib/org.json-20120521.jar"/>
+        <zip destfile="${dtonator.plugin.path.jar}">
+            <fileset dir="${module.dtonator.basedir}/../temp"/>
+        </zip>
+        <delete dir="${tmp.dir.dtonator}"/>
     </target>
 </project>

@@ -182,6 +182,10 @@
 
 
     <!-- Project Libraries -->
+
+    <path id="library.org.json-20120521.classpath">
+        <pathelement location="${basedir}/../../../../../home/vinay/Downloads/org.json-20120521.jar"/>
+    </path>
     <!-- Register Custom Compiler Taskdefs -->
     <property name="javac2.home" value="${idea.home}/lib"/>
     <path id="javac2.classpath">
