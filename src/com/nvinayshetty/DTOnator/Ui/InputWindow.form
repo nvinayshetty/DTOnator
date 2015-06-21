@@ -12,7 +12,9 @@
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <toolTipText value="How many Files you want to Have?"/>
+        </properties>
         <border type="none" title="How you want It?"/>
         <children>
           <component id="3e966" class="javax.swing.JRadioButton" binding="createSeparateFile" default-binding="true">
@@ -61,6 +63,7 @@
                 <properties>
                   <background color="-1"/>
                   <text value=""/>
+                  <toolTipText value="Enter Feed Here"/>
                 </properties>
               </component>
             </children>
@@ -100,7 +103,9 @@
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <toolTipText value="Choose Type of Dto"/>
+        </properties>
         <border type="none" title="Type"/>
         <children>
           <component id="f0ae3" class="javax.swing.JRadioButton" binding="pojoRadioButton" default-binding="true">
@@ -132,7 +137,7 @@
             <constraints/>
             <properties>
               <foreground color="-393216"/>
-              <text value="Label"/>
+              <text value="If something goes wrong StackTrace appears here"/>
               <verticalAlignment value="1"/>
             </properties>
           </component>
@@ -143,7 +148,9 @@
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <toolTipText value="Choose Options for encapsulation"/>
+        </properties>
         <border type="none" title="Encapsulate"/>
         <children>
           <component id="b01d7" class="javax.swing.JRadioButton" binding="provideSetter" default-binding="true">

@@ -7,7 +7,7 @@ import javax.swing.*;
  */
 public interface FeedValidator {
 
-    boolean isValidFeed(String inputFeed, JLabel label);
+    boolean isValidFeed(String inputFeed, JScrollPane exceptionLoggerPane, JLabel label);
 
     public Object getValidFeed();
 }

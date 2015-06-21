@@ -8,10 +8,9 @@ import com.nvinayshetty.DTOnator.ActionListener.ContextMenuMouseListener;
 import com.nvinayshetty.DTOnator.ClassCreator.ClassType;
 import com.nvinayshetty.DTOnator.DtoCreators.DtoGenerationFactory;
 import com.nvinayshetty.DTOnator.DtoCreators.FeedType;
-import com.nvinayshetty.DTOnator.DtoCreators.FieldEncapsulatopnOptions;
+import com.nvinayshetty.DTOnator.DtoCreators.FieldEncapsulationOptions;
 import com.nvinayshetty.DTOnator.DtoCreators.FieldType;
 import com.nvinayshetty.DTOnator.FeedValidator.InputFeedValidationFactory;
-import com.nvinayshetty.DTOnator.Logger.ExceptionLogger;
 import org.json.JSONObject;
 
 import javax.swing.*;
@@ -42,12 +41,11 @@ public class InputWindow extends JFrame {
     private ButtonGroup feedTypeButtonGroup;
     private JScrollPane exceptionLoggerPane;
 
-    private EnumSet<FieldEncapsulatopnOptions> fieldEncapsulatopnOptions = EnumSet.noneOf(FieldEncapsulatopnOptions.class);
 
     public InputWindow(PsiClass mClass) {
         this.mClass = mClass;
-        this.project = mClass.getProject();
-        this.mFile = mClass.getContainingFile();
+        project = mClass.getProject();
+        mFile = mClass.getContainingFile();
         setContentPane(contentPane);
         inputFeedText.getRootPane().setSize(500, 400);
         setSize(1000, 500);
@@ -70,8 +68,8 @@ public class InputWindow extends JFrame {
     }
 
     private void setDefaultConditions() {
-        setPrivateFieldOptionsVisible(false);
-        exceptionLoggerPane.setVisible(true);
+        exceptionLoggerPane.setVisible(false);
+        setEncapsulationOptionsVisible(false);
         gsonRadioButton.setSelected(true);
         creteSingleFile.setSelected(true);
     }
@@ -103,21 +101,21 @@ public class InputWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (makeFieldsPrivate.isSelected()) {
-                    setPrivateFieldOptionsVisible(true);
-                    SetPrivateFieldOptionsSelected(true);
+                    setEncapsulationOptionsVisible(true);
+                    SetEncapsulationOptionsSelected(true);
                 } else {
-                    setPrivateFieldOptionsVisible(false);
+                    setEncapsulationOptionsVisible(false);
                 }
             }
         });
     }
 
-    private void SetPrivateFieldOptionsSelected(boolean condition) {
+    private void SetEncapsulationOptionsSelected(boolean condition) {
         provideGetter.setSelected(condition);
         provideSetter.setSelected(condition);
     }
 
-    private void setPrivateFieldOptionsVisible(boolean condition) {
+    private void setEncapsulationOptionsVisible(boolean condition) {
         provideGetter.setVisible(condition);
         provideSetter.setVisible(condition);
     }
@@ -143,19 +141,18 @@ public class InputWindow extends JFrame {
 
     private void onOK() {
         progressDialog = new FeedProgressDialog(this);
-        getPrivateFieldPreferences();
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                InputFeedValidationFactory validator = new InputFeedValidationFactory(getFeedType(), exceptionLabel);
-                if (validator.isValidFeed(inputFeedText.getText(), exceptionLabel)) {
-                    WriteCommandAction writeAction = DtoGenerationFactory.getDtoGeneratorFor(getFeedType(), getClassTypePreference(), getFieldTYpe(), fieldEncapsulatopnOptions, project, mClass.getContainingFile(), (JSONObject) validator.getValidFeed(), mClass, progressDialog);
+                InputFeedValidationFactory validator = new InputFeedValidationFactory(getFeedType());
+                if (validator.isValidFeed(inputFeedText.getText(), exceptionLoggerPane, exceptionLabel)) {
+                    dispose();
+
+                    WriteCommandAction writeAction = DtoGenerationFactory.getDtoGeneratorFor(getFeedType(), getClassTypePreference(), getFieldTYpe(), getFieldEncapsulationOptions(), project, mClass.getContainingFile(), (JSONObject) validator.getValidFeed(), mClass, progressDialog);
                     writeAction.execute();
                 }
             }
         });
-        dispose();
-
     }
 
     private FieldType getFieldTYpe() {
@@ -170,14 +167,15 @@ public class InputWindow extends JFrame {
         return FeedType.JSON;
     }
 
-    private EnumSet<FieldEncapsulatopnOptions> getPrivateFieldPreferences() {
+    private EnumSet<FieldEncapsulationOptions> getFieldEncapsulationOptions() {
+        EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions = EnumSet.noneOf(FieldEncapsulationOptions.class);
         if (makeFieldsPrivate.isSelected())
-            fieldEncapsulatopnOptions.add(FieldEncapsulatopnOptions.PROVIDE_PRIVATE_FIELD);
+            fieldEncapsulationOptions.add(FieldEncapsulationOptions.PROVIDE_PRIVATE_FIELD);
         if (provideGetter.isSelected())
-            fieldEncapsulatopnOptions.add(FieldEncapsulatopnOptions.PROVIDE_GETTER);
+            fieldEncapsulationOptions.add(FieldEncapsulationOptions.PROVIDE_GETTER);
         if (provideSetter.isSelected())
-            fieldEncapsulatopnOptions.add(FieldEncapsulatopnOptions.PROVIDE_SETTER);
-        return fieldEncapsulatopnOptions;
+            fieldEncapsulationOptions.add(FieldEncapsulationOptions.PROVIDE_SETTER);
+        return fieldEncapsulationOptions;
     }
 
     private ClassType getClassTypePreference() {
@@ -192,11 +190,7 @@ public class InputWindow extends JFrame {
         dispose();
     }
 
-    public void setData(ExceptionLogger data) {
-    }
 
-    public void getData(ExceptionLogger data) {
-    }
 
 
 }

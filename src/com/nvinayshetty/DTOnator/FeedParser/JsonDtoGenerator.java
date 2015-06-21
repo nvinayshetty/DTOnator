@@ -6,7 +6,7 @@ import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElementFactory;
 import com.nvinayshetty.DTOnator.ClassCreator.EncapsulatedClassCreator;
 import com.nvinayshetty.DTOnator.DtoCreators.DtoCreater;
-import com.nvinayshetty.DTOnator.DtoCreators.FieldEncapsulatopnOptions;
+import com.nvinayshetty.DTOnator.DtoCreators.FieldEncapsulationOptions;
 import com.nvinayshetty.DTOnator.FieldCreator.ObjectType;
 import com.nvinayshetty.DTOnator.FieldCreator.feedTypeToJavaTypeConverter;
 import com.nvinayshetty.DTOnator.Ui.FeedProgressDialog;
@@ -51,7 +51,7 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
             filedStr = getClassFields(json, keysIterator) + "\n";
             psiClass.add(psiFactory.createFieldFromText(filedStr, psiClass));
         }
-        if (dtoCreater.getPrivateFieldOptionse().contains(FieldEncapsulatopnOptions.PROVIDE_PRIVATE_FIELD)) {
+        if (dtoCreater.getPrivateFieldOptionse().contains(FieldEncapsulationOptions.PROVIDE_PRIVATE_FIELD)) {
             psiClass = new EncapsulatedClassCreator(dtoCreater.getPrivateFieldOptionse()).getClassWithEncapsulatedFileds(psiClass);
         }
     }
@@ -102,7 +102,7 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
         String classContent = getAllFieldsOf(jsonObject);
         PsiClass aClass = psiFactory.createClassFromText(classContent.trim(), psiClass);
         aClass.setName(className.trim());
-        if (dtoCreater.getPrivateFieldOptionse().contains(FieldEncapsulatopnOptions.PROVIDE_PRIVATE_FIELD)) {
+        if (dtoCreater.getPrivateFieldOptionse().contains(FieldEncapsulationOptions.PROVIDE_PRIVATE_FIELD)) {
             aClass = new EncapsulatedClassCreator(dtoCreater.getPrivateFieldOptionse()).getClassWithEncapsulatedFileds(aClass);
         }
         dtoCreater.getClassAdderStrategy().addClass(aClass);

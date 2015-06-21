@@ -13,9 +13,9 @@ public class DtoCreater {
     private FieldCreationStrategy fieldCreationStrategy;
     private ClassCreatorStrategy classAdderStrategy;
     private AccessModifier accessModifier;
-    private EnumSet<FieldEncapsulatopnOptions> privateFieldOptionse;
+    private EnumSet<FieldEncapsulationOptions> privateFieldOptionse;
 
-    public DtoCreater(FieldCreationStrategy fieldCreationStrategy, ClassCreatorStrategy classAdderStrategy, AccessModifier accessModifier, EnumSet<FieldEncapsulatopnOptions> privateFieldOptionse) {
+    public DtoCreater(FieldCreationStrategy fieldCreationStrategy, ClassCreatorStrategy classAdderStrategy, AccessModifier accessModifier, EnumSet<FieldEncapsulationOptions> privateFieldOptionse) {
         this.fieldCreationStrategy = fieldCreationStrategy;
         this.classAdderStrategy = classAdderStrategy;
         this.accessModifier = accessModifier;
@@ -46,11 +46,11 @@ public class DtoCreater {
         this.accessModifier = accessModifier;
     }
 
-    public EnumSet<FieldEncapsulatopnOptions> getPrivateFieldOptionse() {
+    public EnumSet<FieldEncapsulationOptions> getPrivateFieldOptionse() {
         return privateFieldOptionse;
     }
 
-    public void setPrivateFieldOptionse(EnumSet<FieldEncapsulatopnOptions> privateFieldOptionse) {
+    public void setPrivateFieldOptionse(EnumSet<FieldEncapsulationOptions> privateFieldOptionse) {
         this.privateFieldOptionse = privateFieldOptionse;
     }
 }

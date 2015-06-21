@@ -70,7 +70,7 @@ public enum ObjectType implements primitiveConverter {
         }
     };
 
-    private static final String ANNOTATION_PREFIX = "@SerializedName(\"";
+    private static final String ANNOTATION_PREFIX = "@com.google.gson.annotations.SerializedName(\"";
     private static final String ANNOTATION_SUFFIX = "\")\n";
     private static final String SPACE = " ";
     private static final String CLASS_FIELD_SUFFIX = ";\n";

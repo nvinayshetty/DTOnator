@@ -2,31 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="283d42db-bd28-4878-8334-6c056286dea1" name="Default" comment="Added builder for DtoCreator">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/DtoCreators/DtoCreater.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/validator/FeedValidator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/validator/JsonFeedValidator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/ClassAdder/PackageClassAdder.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/DtoCreators/DtoCreator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/DtoCreators/DtoCreatorBuilder.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/DtoCreators/PrivateFieldOptions.java" afterPath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/DtoCreators/FieldEncapsulatopnOptions.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FieldCreator/TypeToObjectTypeConverter.java" afterPath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FieldCreator/feedTypeToJavaTypeConverter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/validator/FeedValidator.java" afterPath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/FeedValidator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/validator/InputFeedValidationFactory.java" afterPath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/InputFeedValidationFactory.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/validator/JsonFeedValidator.java" afterPath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/JsonFeedValidator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DTOnator.zip" afterPath="$PROJECT_DIR$/DTOnator.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/DTOnator.zip" afterPath="$PROJECT_DIR$/out/production/DTOnator/DTOnator.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/ClassCreator/ClassType.java" afterPath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/ClassCreator/ClassType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener.java" afterPath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/DtoCreators/FieldEncapsulatopnOptions.java" afterPath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/DtoCreators/FieldEncapsulationOptions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/DtoCreators/DtoCreater.java" afterPath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/DtoCreators/DtoCreater.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/DtoCreators/DtoGenerationFactory.java" afterPath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/DtoCreators/DtoGenerationFactory.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/ClassCreator/EncapsulatedClassCreator.java" afterPath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/ClassCreator/EncapsulatedClassCreator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Logger/ExceptionLogger.java" afterPath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Logger/ExceptionLogger.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/FeedValidator.java" afterPath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/FeedValidator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/InputFeedValidationFactory.java" afterPath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/InputFeedValidationFactory.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Ui/InputWindow.form" afterPath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Ui/InputWindow.form" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Ui/InputWindow.java" afterPath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Ui/InputWindow.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedParser/JsonDtoGenerator.java" afterPath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedParser/JsonDtoGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FieldCreator/ObjectType.java" afterPath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FieldCreator/ObjectType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dtonator.xml" afterPath="$PROJECT_DIR$/dtonator.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/JsonFeedValidator.java" afterPath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/JsonFeedValidator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/dtonator.xml" afterPath="$PROJECT_DIR$/out/production/DTOnator/dtonator.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module_dtonator.xml" afterPath="$PROJECT_DIR$/module_dtonator.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/module_dtonator.xml" afterPath="$PROJECT_DIR$/out/production/DTOnator/module_dtonator.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/DTOnator/.idea/workspace.xml" />
     </list>
@@ -62,38 +49,58 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="JsonDtoGenerator.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedParser/JsonDtoGenerator.java">
+      <file leaf-file-name="InputWindow.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Ui/InputWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.46666667" vertical-offset="1435" max-vertical-offset="2115">
-              <caret line="91" column="52" selection-start-line="91" selection-start-column="52" selection-end-line="91" selection-end-column="52" />
-              <folding>
-                <element signature="e#1099#1100#0" expanded="true" />
-                <element signature="e#1157#1158#0" expanded="true" />
-                <element signature="e#1963#1964#0" expanded="true" />
-                <element signature="e#2020#2021#0" expanded="true" />
-                <element signature="e#2424#2425#0" expanded="true" />
-                <element signature="e#2473#2474#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="feedTypeToJavaTypeConverter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FieldCreator/feedTypeToJavaTypeConverter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="26" max-vertical-offset="450">
-              <caret line="5" column="40" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2475">
+              <caret line="76" column="34" selection-start-line="76" selection-start-column="34" selection-end-line="76" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FieldCreationStrategy.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FieldCreator/FieldCreationStrategy.java">
+      <file leaf-file-name="InputWindow.form" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Ui/InputWindow.form">
+          <provider selected="true" editor-type-id="ui-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InputFeedValidationFactory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/InputFeedValidationFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="210">
-              <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+              <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FeedValidator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/FeedValidator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+              <caret line="9" column="73" selection-start-line="9" selection-start-column="73" selection-end-line="9" selection-end-column="73" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JsonFeedValidator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/JsonFeedValidator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="780">
+              <caret line="24" column="37" selection-start-line="23" selection-start-column="10" selection-end-line="25" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExceptionLogger.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Logger/ExceptionLogger.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
+              <caret line="18" column="36" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -120,8 +127,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/DtoCreators/FileType.java" />
-        <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/DtoCreators/MutatorOptions.java" />
         <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/DtoCreators/PrivateFieldOptions.java" />
         <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FileType/PackageClassAdder.java" />
         <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FileType/PublicClassCreator.java" />
@@ -153,17 +158,13 @@
         <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/ClassCreator/EncapsulatedClass.java" />
         <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/ClassCreator/EncapsulatedClassGenerator.java" />
         <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FieldCreator/ObjectType.java" />
-        <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Ui/InputWindow.form" />
         <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener.java" />
         <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Ui/ProgressDialog.java" />
         <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/DtoCreators/DtoCreatorBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/ClassCreator/ClassType.java" />
         <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/ClassCreator/EncapsulatedClassCreator.java" />
         <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Ui/FeedProgressDialog.java" />
-        <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Logger/ExceptionLogger.java" />
-        <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/JsonFeedValidator.java" />
         <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/DtoCreators/DtoCreator.java" />
-        <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Ui/InputWindow.java" />
         <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedParser/JsonDtoBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedParser/JsonDtoGeneratorBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/DtoCreators/DtoCreationStrategy.java" />
@@ -171,6 +172,12 @@
         <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/DtoCreators/DtoGenerationFactory.java" />
         <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FieldCreator/feedTypeToJavaTypeConverter.java" />
         <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedParser/JsonDtoGenerator.java" />
+        <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/FeedValidator.java" />
+        <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/InputFeedValidationFactory.java" />
+        <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/JsonFeedValidator.java" />
+        <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Logger/ExceptionLogger.java" />
+        <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Ui/InputWindow.java" />
+        <option value="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Ui/InputWindow.form" />
       </list>
     </option>
   </component>
@@ -222,7 +229,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -277,8 +283,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="FieldCreator" />
+              <option name="myItemId" value="Ui" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="InputWindow" />
+              <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -299,57 +309,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="FeedValidator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DTOnator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DTOnator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DTOnator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FeedParser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DTOnator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DTOnator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DTOnator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DtoCreators" />
+              <option name="myItemId" value="Ui" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -478,19 +445,6 @@
       </ExternalSystemSettings>
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -517,6 +471,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -688,7 +655,19 @@
       <option name="project" value="LOCAL" />
       <updated>1433698148371</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="code refactoring">
+      <created>1434815914997</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1434815914997</updated>
+    </task>
+    <task id="LOCAL-00015" summary="refactoring">
+      <created>1434816021906</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1434816021906</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -722,7 +701,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.49960285" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1498847" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3939394" sideWeight="0.49960285" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3923445" sideWeight="0.49960285" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33971292" sideWeight="0.25019857" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.49960285" order="0" side_tool="false" content_ui="tabs" />
@@ -733,8 +712,8 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962668" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4003177" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25972995" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33971292" sideWeight="0.74980146" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17871326" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.020733653" sideWeight="0.74980146" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -743,24 +722,24 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.49960285" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1498847" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33971292" sideWeight="0.25019857" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.8197767" sideWeight="0.49960285" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25972995" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33971292" sideWeight="0.74980146" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17871326" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32854864" sideWeight="0.74980146" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.49960285" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25199363" sideWeight="0.6664019" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3939394" sideWeight="0.49960285" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3923445" sideWeight="0.49960285" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.49960285" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33333334" sideWeight="0.4988086" order="4" side_tool="false" content_ui="tabs" />
@@ -803,7 +782,9 @@
     <MESSAGE value="added missing files&#10;" />
     <MESSAGE value="Refactored the names to reflect the patterns used" />
     <MESSAGE value="First fully functioning build" />
-    <option name="LAST_COMMIT_MESSAGE" value="First fully functioning build" />
+    <MESSAGE value="code refactoring" />
+    <MESSAGE value="refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -817,8 +798,14 @@
           <properties />
           <option name="timeStamp" value="19" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Logger/ExceptionLogger.java</url>
+          <line>16</line>
+          <properties />
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="62" />
+      <option name="time" value="74" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -831,7 +818,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="210">
           <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1039,14 +1025,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Ui/FeedProgressDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="630">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/DtoCreators/FieldEncapsulatopnOptions.java">
+    <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/DtoCreators/FieldEncapsulationOptions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
           <caret line="5" column="37" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="37" />
@@ -1057,24 +1036,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1365">
           <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1329#1330#0" expanded="false" />
-            <element signature="e#1402#1403#0" expanded="false" />
-          </folding>
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Logger/ExceptionLogger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.475" vertical-offset="0" max-vertical-offset="600">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Ui/InputWindow.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/Downloads/org.json-20120521.jar!/org/json/JSONTokener.class">
@@ -1112,38 +1074,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/InputFeedValidationFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="100" max-vertical-offset="540">
-          <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/FeedValidator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
-          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/JsonFeedValidator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43833333" vertical-offset="7" max-vertical-offset="630">
-          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FieldCreator/AccessModifier.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16968326" vertical-offset="0" max-vertical-offset="442">
           <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Ui/InputWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="111" max-vertical-offset="2610">
-          <caret line="191" column="47" selection-start-line="191" selection-start-column="47" selection-end-line="191" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -1158,9 +1092,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7619048" vertical-offset="237" max-vertical-offset="615">
           <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1173,33 +1105,76 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FieldCreator/FieldCreationStrategy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
+        <state vertical-scroll-proportion="0.18789144" vertical-offset="0" max-vertical-offset="479">
           <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FieldCreator/feedTypeToJavaTypeConverter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="26" max-vertical-offset="450">
+        <state vertical-scroll-proportion="0.1565762" vertical-offset="0" max-vertical-offset="479">
           <caret line="5" column="40" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedParser/JsonDtoGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.46666667" vertical-offset="1435" max-vertical-offset="2115">
-          <caret line="91" column="52" selection-start-line="91" selection-start-column="52" selection-end-line="91" selection-end-column="52" />
-          <folding>
-            <element signature="e#1099#1100#0" expanded="true" />
-            <element signature="e#1157#1158#0" expanded="true" />
-            <element signature="e#1963#1964#0" expanded="true" />
-            <element signature="e#2020#2021#0" expanded="true" />
-            <element signature="e#2424#2425#0" expanded="true" />
-            <element signature="e#2473#2474#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="-0.72746783" vertical-offset="1149" max-vertical-offset="2025">
+          <caret line="68" column="5" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Ui/FeedProgressDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="630">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/JsonFeedValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="780">
+          <caret line="24" column="37" selection-start-line="23" selection-start-column="10" selection-end-line="25" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/FeedValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+          <caret line="9" column="73" selection-start-line="9" selection-start-column="73" selection-end-line="9" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/FeedValidator/InputFeedValidationFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+          <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Logger/ExceptionLogger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
+          <caret line="18" column="36" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Ui/InputWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2475">
+          <caret line="76" column="34" selection-start-line="76" selection-start-column="34" selection-end-line="76" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/Ui/InputWindow.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
       </provider>
     </entry>
   </component>

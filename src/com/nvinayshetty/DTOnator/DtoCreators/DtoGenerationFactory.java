@@ -18,16 +18,16 @@ import java.util.EnumSet;
  * Created by vinay on 17/5/15.
  */
 public class DtoGenerationFactory {
-    public static WriteCommandAction getDtoGeneratorFor(FeedType type, ClassType classType, FieldType fieldType, EnumSet<FieldEncapsulatopnOptions> fieldEncapsulatopnOptions, Project project, PsiFile psiFile, JSONObject validFeed, PsiClass psiClass, FeedProgressDialog dialog) {
+    public static WriteCommandAction getDtoGeneratorFor(FeedType type, ClassType classType, FieldType fieldType, EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions, Project project, PsiFile psiFile, JSONObject validFeed, PsiClass psiClass, FeedProgressDialog dialog) {
         AccessModifier accessModifier = null;
-        if (fieldEncapsulatopnOptions.contains(FieldEncapsulatopnOptions.PROVIDE_PRIVATE_FIELD))
+        if (fieldEncapsulationOptions.contains(FieldEncapsulationOptions.PROVIDE_PRIVATE_FIELD))
             accessModifier = AccessModifier.PRIVATE;
         else
             accessModifier = AccessModifier.PUBLIC;
 
         switch (type) {
             case JSON:
-                DtoCreater dtoCreater = new DtoCreater(FieldCreationFactory.getFieldCreatorFor(fieldType), ClassCreationFactory.getFileCreatorFor(classType, psiClass), accessModifier, fieldEncapsulatopnOptions);
+                DtoCreater dtoCreater = new DtoCreater(FieldCreationFactory.getFieldCreatorFor(fieldType), ClassCreationFactory.getFileCreatorFor(classType, psiClass), accessModifier, fieldEncapsulationOptions);
                 return JsonDtoGenerator.getJsonDtoBuilder().setaClass(psiClass).setDtoCreater(dtoCreater).setJsonString(validFeed).setDlg(dialog).createJsonDtoGenerator();//JsonDtoBuilder.s.createJsonDtoGenerator(validFeed,psiClass,dtoCreationStrategy,dialog);//new JsonDtoBuilder().setJsonString(validFeed).setmClass(psiClass).setAccessModifier(accessModifier).setDlg(dialog).createJsonDtoGenerator();
         }
         return null;

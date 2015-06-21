@@ -9,10 +9,8 @@ import javax.swing.*;
  */
 public class InputFeedValidationFactory implements FeedValidator {
     FeedValidator feedValidator;
-    JLabel exJLabel;
 
-    public InputFeedValidationFactory(FeedType feedType, JLabel exceptionLabel) {
-        exJLabel = exceptionLabel;
+    public InputFeedValidationFactory(FeedType feedType) {
         switch (feedType) {
             case JSON:
                 feedValidator = new JsonFeedValidator();
@@ -23,8 +21,8 @@ public class InputFeedValidationFactory implements FeedValidator {
     }
 
     @Override
-    public boolean isValidFeed(String inputFeed, JLabel exceptionLabel) {
-        return feedValidator.isValidFeed(inputFeed, exceptionLabel);
+    public boolean isValidFeed(String inputFeed, JScrollPane exceptionLoggerPane, JLabel exceptionLabel) {
+        return feedValidator.isValidFeed(inputFeed, exceptionLoggerPane, exceptionLabel);
     }
 
     @Override

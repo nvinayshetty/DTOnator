@@ -14,11 +14,16 @@ public class JsonFeedValidator implements FeedValidator {
     JSONObject json = null;
 
     @Override
-    public boolean isValidFeed(String inputFeed, JLabel exceptionLabel) {
+    public boolean isValidFeed(String inputFeed, JScrollPane exceptionLoggerPane, JLabel exceptionLabel) {
         try {
             json = new JSONObject(inputFeed);
         } catch (JSONException ex) {
+            exceptionLoggerPane.setVisible(true);
+            exceptionLabel.setVisible(true);
             new ExceptionLogger(exceptionLabel).Log(ex);
+            exceptionLoggerPane.invalidate();
+            exceptionLoggerPane.validate();
+            exceptionLoggerPane.repaint();
             return false;
         }
         if (json == null) {
@@ -26,7 +31,12 @@ public class JsonFeedValidator implements FeedValidator {
                 JSONArray jsonArray = new JSONArray(inputFeed);
                 json = (JSONObject) jsonArray.get(0);
             } catch (JSONException ex1) {
+                exceptionLoggerPane.setVisible(true);
+                exceptionLabel.setVisible(true);
                 new ExceptionLogger(exceptionLabel).Log(ex1);
+                exceptionLoggerPane.invalidate();
+                exceptionLoggerPane.validate();
+                exceptionLoggerPane.repaint();
                 return false;
             }
         }

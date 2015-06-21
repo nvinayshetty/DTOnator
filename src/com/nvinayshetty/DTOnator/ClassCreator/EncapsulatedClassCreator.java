@@ -4,7 +4,7 @@ import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElementFactory;
 import com.intellij.psi.PsiField;
-import com.nvinayshetty.DTOnator.DtoCreators.FieldEncapsulatopnOptions;
+import com.nvinayshetty.DTOnator.DtoCreators.FieldEncapsulationOptions;
 
 import java.util.EnumSet;
 
@@ -12,10 +12,10 @@ import java.util.EnumSet;
  * Created by vinay on 7/6/15.
  */
 public class EncapsulatedClassCreator {
-    EnumSet<FieldEncapsulatopnOptions> fieldEncapsulationOptions;
+    EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions;
 
 
-    public EncapsulatedClassCreator(EnumSet<FieldEncapsulatopnOptions> fieldEncapsulationOptions) {
+    public EncapsulatedClassCreator(EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions) {
         this.fieldEncapsulationOptions = fieldEncapsulationOptions;
     }
 
@@ -31,11 +31,11 @@ public class EncapsulatedClassCreator {
     }
 
     private boolean isSetterOptionChecked() {
-        return fieldEncapsulationOptions.contains(FieldEncapsulatopnOptions.PROVIDE_SETTER);
+        return fieldEncapsulationOptions.contains(FieldEncapsulationOptions.PROVIDE_SETTER);
     }
 
     private boolean isGetterOptionChecked() {
-        return fieldEncapsulationOptions.contains(FieldEncapsulatopnOptions.PROVIDE_GETTER);
+        return fieldEncapsulationOptions.contains(FieldEncapsulationOptions.PROVIDE_GETTER);
     }
 
     private boolean isBothGetterSetterOptiosAreChecked() {
