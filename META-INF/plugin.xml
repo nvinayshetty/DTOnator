@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <id>com.nvinayshetty.DTOnator</id>
-    <name>DTOnator</name>
-    <version>1.0</version>
+    <name>DTO generator</name>
+    <version>V0.4</version>
     <vendor email="nvinayshetty@gmail.com" url="http://winnowcraft.wordpress.com">nvinayshetty</vendor>
 
     <description><![CDATA[

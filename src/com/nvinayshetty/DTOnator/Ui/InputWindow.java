@@ -43,6 +43,7 @@ public class InputWindow extends JFrame {
     private ButtonGroup feedTypeButtonGroup;
     private JScrollPane exceptionLoggerPane;
 
+
     public InputWindow(PsiClass mClass) {
         this.mClass = mClass;
         project = mClass.getProject();
@@ -138,106 +139,23 @@ public class InputWindow extends JFrame {
         feedTypeButtonGroup = new ButtonGroup();
         feedTypeButtonGroup.add(pojoRadioButton);
         feedTypeButtonGroup.add(gsonRadioButton);
-    }//
-
-    public synchronized void showNotification() {
-        final Notification processingNotification = new Notification("test", "Dto generation in Progress", "We are processing the feed,This may take few seconds depending on length of the feed", NotificationType.INFORMATION);
-        processingNotification.notify(project);
     }
 
 
     private void onOK() {
-
-        // int offset = editor.getCaretModel().getOffset();
-        //RelativePoint where=new RelativePoint(RelativePoint.getCenterOf(editor.getComponent()), Balloon.Position.above);
-
-        // final ToolWindow tw = ToolWindowManager.getInstance(project).getToolWindow(ToolWindowId.MESSAGES_WINDOW);
-
-      /*  int flags =
-                HintManager.HIDE_BY_ANY_KEY |
-                        HintManager.HIDE_BY_TEXT_CHANGE |
-                        HintManager.HIDE_BY_SCROLLING;
-        int timeout = 0; // default?
-        HintManager.getInstance().showErrorHint(editor, errorDisplayString,
-                offset, offset + 1,
-                HintManager.ABOVE, flags, timeout);*/
-        // RelativePoint where = new RelativePoint(e.getComponent(), e.getComponent().getLocationOnScreen());
-
-       /* BalloonBuilder builder =
-                JBPopupFactory.getInstance().createHtmlTextBalloonBuilder("hello", MessageType.INFO, null);
-        Balloon balloon = builder.createBalloon();*/
-        //  RelativePoint where = new RelativePoint(e.getComponent(), e.getComponent().getLocationOnScreen());
-        // balloon.show(where, Balloon.Position.above);
-
-        //.show(RelativePoint.getCenterOf(SwingUtilities.TOP),
-        //   Balloon.Position.atRight);
-
-
-
-       /* Editor editor = (Editor) DataManager.getInstance().getDataContext().getData(DataConstants.EDITOR);
-        JBPopupFactory.getInstance()
-                .createHtmlTextBalloonBuilder("hello", MessageType.INFO, null)
-                .setFadeoutTime(7500)
-                .createBalloon()
-                .show(RelativePoint.getCenterOf(editor.getComponent()),
-                        Balloon.Position.atRight);*/
-        // showNotification();
-
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                Thread t = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        SwingUtilities.invokeLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                showNotification();
-                            }
-                        });
-                    }
-
-                });
-                t.start();
-
-               /* try {
-                    SwingUtilities.invokeAndWait(new Runnable() {
-                        @Override
-                        public void run() {
-
-                        }
-                    });
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                }*/
-               /* StatusBar statusBar = WindowManager.getInstance()
-                        .getStatusBar(project);*/
-
-
-                //  processingNotification.notify(project);
+                final Notification processingNotification = new Notification("DtoGenerator", "Dto generation in Progress", "please wait it may takes few seconds to generate Dto depending on length of the feed", NotificationType.INFORMATION);
+                processingNotification.notify(project);
                 InputFeedValidationFactory validator = new InputFeedValidationFactory(getFeedType());
                 if (validator.isValidFeed(inputFeedText.getText(), exceptionLoggerPane, exceptionLabel)) {
                     dispose();
-                   /* final StatusBar statusBar = WindowManager.getInstance()
-                            .getStatusBar(project);*/
-                    //    Popup p = PopupFactory.getSharedInstance().getPopup(getContentPane(), new JLabel("It's a hint!"), getWidth()-50, 5);
-
-                    //   p.show();
-
-                  /*  JBPopupFactory.getInstance()
-                            .createHtmlTextBalloonBuilder("tse dsdfas sd sdfsa fasd sfd fds sdf sf sft", MessageType.INFO, null)
-                            .setFadeoutTime(10500)
-                            .createBalloon().show(RelativePoint.getCenterOf(statusBar.getComponent()), Balloon.Position.above);*///.showInCenterOf(getLayeredPane());//show(RelativePoint.getCenterOf(project.)), above);
                     WriteCommandAction writeAction = DtoGenerationFactory.getDtoGeneratorFor(getFeedType(), getClassTypePreference(), getFieldTYpe(), getFieldEncapsulationOptions(), project, mClass.getContainingFile(), (JSONObject) validator.getValidFeed(), mClass, progressDialog);
                     writeAction.execute();
-                    //  p.hide();
-                    //  processingNotification.expire();
+                    processingNotification.expire();
                 }
             }
-
-
         });
     }
 
@@ -275,8 +193,6 @@ public class InputWindow extends JFrame {
     private void onCancel() {
         dispose();
     }
-
-
 
 
 }

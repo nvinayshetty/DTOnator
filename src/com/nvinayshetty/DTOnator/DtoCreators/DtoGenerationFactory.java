@@ -27,8 +27,8 @@ public class DtoGenerationFactory {
 
         switch (type) {
             case JSON:
-                DtoCreater dtoCreater = new DtoCreater(FieldCreationFactory.getFieldCreatorFor(fieldType), ClassCreationFactory.getFileCreatorFor(classType, psiClass), accessModifier, fieldEncapsulationOptions);
-                return JsonDtoGenerator.getJsonDtoBuilder().setaClass(psiClass).setDtoCreater(dtoCreater).setJsonString(validFeed).setDlg(dialog).createJsonDtoGenerator();//JsonDtoBuilder.s.createJsonDtoGenerator(validFeed,psiClass,dtoCreationStrategy,dialog);//new JsonDtoBuilder().setJsonString(validFeed).setmClass(psiClass).setAccessModifier(accessModifier).setDlg(dialog).createJsonDtoGenerator();
+                DtoCreationOptions dtoCreationOptions = new DtoCreationOptions(FieldCreationFactory.getFieldCreatorFor(fieldType), ClassCreationFactory.getFileCreatorFor(classType, psiClass), accessModifier, fieldEncapsulationOptions);
+                return JsonDtoGenerator.getJsonDtoBuilder().setaClass(psiClass).setDtoCreationOptions(dtoCreationOptions).setJsonString(validFeed).setDlg(dialog).createJsonDtoGenerator();
         }
         return null;
     }

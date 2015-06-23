@@ -5,7 +5,7 @@ import com.nvinayshetty.DTOnator.Utility.DtoHelper;
 /**
  * Created by vinay on 9/5/15.
  */
-public enum ObjectType implements primitiveConverter {
+public enum FieldRepresentor implements primitiveConverter {
     BOOLEAN {
         @Override
         public String getSimpleFieldRepresentationFor(AccessModifier accessModifier, String key) {

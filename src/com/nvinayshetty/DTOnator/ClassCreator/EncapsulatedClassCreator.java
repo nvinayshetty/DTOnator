@@ -21,7 +21,7 @@ public class EncapsulatedClassCreator {
 
     public PsiClass getClassWithEncapsulatedFileds(PsiClass aClass) {
         if (aClass != null)
-        if (isBothGetterSetterOptiosAreChecked())
+            if (isBothGetterSetterOptionsAreChecked())
             encapsulate(aClass);
         else if (isGetterOptionChecked())
             addAccesor(aClass);
@@ -38,7 +38,7 @@ public class EncapsulatedClassCreator {
         return fieldEncapsulationOptions.contains(FieldEncapsulationOptions.PROVIDE_GETTER);
     }
 
-    private boolean isBothGetterSetterOptiosAreChecked() {
+    private boolean isBothGetterSetterOptionsAreChecked() {
         return isGetterOptionChecked() && isSetterOptionChecked();
     }
 

@@ -6,7 +6,7 @@ package com.nvinayshetty.DTOnator.FieldCreator;
 public class GsonFieldCreator implements FieldCreationStrategy {
 
     @Override
-    public String getFieldFor(ObjectType type, AccessModifier modifier, String key) {
+    public String getFieldFor(FieldRepresentor type, AccessModifier modifier, String key) {
         return type.getGsonFieldRepresentationFor(modifier, key);
     }
 }
