@@ -48,31 +48,35 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
 
     private void addFieldsToTheTopLevelClass(JSONObject json) {
         Iterator<?> keysIterator = json.keys();
+        String filedStr = "";
         while (keysIterator.hasNext()) {
-            String filedStr = getClassFields(json, keysIterator) /*+ "\n\n"*/;
+            String key = (String) keysIterator.next();
+            filedStr = getClassFields(json, key) + "\n";
             classUnderCaret.add(psiFactory.createFieldFromText(filedStr, classUnderCaret));
         }
         if (dtoCreationOptions.getPrivateFieldOptionse().contains(FieldEncapsulationOptions.PROVIDE_PRIVATE_FIELD)) {
-           /* classUnderCaret =*/
-            new EncapsulatedClassCreator(dtoCreationOptions.getPrivateFieldOptionse()).getClassWithEncapsulatedFileds(classUnderCaret);
+            classUnderCaret = new EncapsulatedClassCreator(dtoCreationOptions.getPrivateFieldOptionse()).getClassWithEncapsulatedFileds(classUnderCaret);
         }
     }
 
-    private String getAllFieldsOf(JSONObject json) {
-        //Todo:String builder is used as the compliler can't optimize the String to internally use string Builder,Verify
-        StringBuilder subClassFields = new StringBuilder();
-        Iterator<?> keysIterator = json.keys();
+    private void addClass(String name, JSONObject jsonObject) {
+        Iterator<?> keysIterator = jsonObject.keys();
+        String className = DtoHelper.getSubClassName(name);
+        PsiClass aClass = psiFactory.createClass(className);
         while (keysIterator.hasNext()) {
-            String filedStr = getClassFields(json, keysIterator);
-            subClassFields.append(filedStr /*+ "\n"*/);
+            String key = (String) keysIterator.next();
+            String filedStr = getClassFields(jsonObject, key) + "\n";
+            aClass.add(psiFactory.createFieldFromText(filedStr, aClass));
         }
-        return subClassFields.toString();
+        if (dtoCreationOptions.getPrivateFieldOptionse().contains(FieldEncapsulationOptions.PROVIDE_PRIVATE_FIELD)) {
+            aClass = new EncapsulatedClassCreator(dtoCreationOptions.getPrivateFieldOptionse()).getClassWithEncapsulatedFileds(aClass);
+        }
+        dtoCreationOptions.getClassAdderStrategy().addClass(aClass);
     }
 
-    private String getClassFields(JSONObject json, Iterator<?> keysIterator) {
-        String key = (String) keysIterator.next();
+    private String getClassFields(JSONObject json, String key) {
         String keyType = key;
-        String filedStr1 = "";
+        String filedStr1 = null;
         try {
             Object object = json.get(key);
             String dataType = object.getClass().getSimpleName();
@@ -89,7 +93,7 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return filedStr1 + "\n";
+        return filedStr1;
     }
 
     private void generateClassForObject(JSONObject json, String key, FieldRepresentor fieldRepresentor) throws JSONException {
@@ -107,16 +111,6 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
         }
     }
 
-    private void addClass(String key, JSONObject jsonObject) {
-        String className = DtoHelper.getSubClassName(key);
-        String classContent = getAllFieldsOf(jsonObject);
-        PsiClass aClass = psiFactory.createClassFromText(classContent.trim(), classUnderCaret);
-        aClass.setName(className.trim());
-        if (dtoCreationOptions.getPrivateFieldOptionse().contains(FieldEncapsulationOptions.PROVIDE_PRIVATE_FIELD)) {
-            aClass = new EncapsulatedClassCreator(dtoCreationOptions.getPrivateFieldOptionse()).getClassWithEncapsulatedFileds(aClass);
-        }
-        dtoCreationOptions.getClassAdderStrategy().addClass(aClass);
-    }
 
     public static class JsonDtoBuilder {
         private JSONObject json;

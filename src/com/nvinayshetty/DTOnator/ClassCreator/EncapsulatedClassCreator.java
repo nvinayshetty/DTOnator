@@ -14,19 +14,19 @@ import java.util.EnumSet;
 public class EncapsulatedClassCreator {
     EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions;
 
-
     public EncapsulatedClassCreator(EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions) {
         this.fieldEncapsulationOptions = fieldEncapsulationOptions;
     }
 
     public PsiClass getClassWithEncapsulatedFileds(PsiClass aClass) {
-        if (aClass != null)
+        if (aClass != null) {
             if (isBothGetterSetterOptionsAreChecked())
-            encapsulate(aClass);
-        else if (isGetterOptionChecked())
-            addAccesor(aClass);
-        else if (isSetterOptionChecked())
-            addMutator(aClass);
+                encapsulate(aClass);
+            else if (isGetterOptionChecked())
+                addAccesor(aClass);
+            else if (isSetterOptionChecked())
+                addMutator(aClass);
+        }
         return aClass;
     }
 
@@ -43,10 +43,10 @@ public class EncapsulatedClassCreator {
     }
 
     private PsiClass addMutator(PsiClass aClass) {
-        PsiField[] psiFields = aClass.getAllFields();
-        for (int i = 0; i <= psiFields.length - 1; i++) {
+        PsiField[] psiFields = aClass.getFields();
+        for (PsiField psiField : psiFields) {
             PsiElementFactory factory = JavaPsiFacade.getElementFactory(aClass.getProject());
-            String method = generateSetter(psiFields[i]);
+            String method = generateSetter(psiField);
             aClass.add(factory.createMethodFromText(method, aClass));
         }
         return aClass;
@@ -57,10 +57,10 @@ public class EncapsulatedClassCreator {
     }
 
     private PsiClass addAccesor(PsiClass aClass) {
-        PsiField[] psiFields = aClass.getAllFields();
-        for (int i = 0; i <= psiFields.length - 1; i++) {
+        PsiField[] psiFields = aClass.getFields();
+        for (PsiField psiField : psiFields) {
             PsiElementFactory factory = JavaPsiFacade.getElementFactory(aClass.getProject());
-            String method = generateGetter(psiFields[i]);
+            String method = generateGetter(psiField);
             aClass.add(factory.createMethodFromText(method, aClass));
         }
         return aClass;
@@ -76,12 +76,12 @@ public class EncapsulatedClassCreator {
     }
 
     private PsiClass encapsulate(PsiClass aClass) {
-        PsiField[] psiFields = aClass.getAllFields();
-        for (int i = 0; i <= psiFields.length - 1; i++) {
+        PsiField[] psiFields = aClass.getFields();
+        for (PsiField psiField : psiFields) {
             PsiElementFactory factory = JavaPsiFacade.getElementFactory(aClass.getProject());
-            String getter = generateGetter(psiFields[i]);
+            String getter = generateGetter(psiField);
             aClass.add(factory.createMethodFromText(getter, aClass));
-            String setter = generateSetter(psiFields[i]);
+            String setter = generateSetter(psiField);
             aClass.add(factory.createMethodFromText(setter, aClass));
         }
         return aClass;

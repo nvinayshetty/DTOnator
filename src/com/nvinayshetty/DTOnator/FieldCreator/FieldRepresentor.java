@@ -59,9 +59,9 @@ public enum FieldRepresentor implements primitiveConverter {
                 fieldName = values[1];
             } else {
                 dataType = DtoHelper.getSubClassName(key);
-                fieldName = suffix(key);
+                fieldName = key;
             }
-            return new StringBuilder().append(accessModifier.getModifier()).append("java.util.List<").append(dataType).append(">").append(fieldName).toString();
+            return new StringBuilder().append(accessModifier.getModifier()).append("java.util.List<").append(dataType).append(">").append(suffix(fieldName)).toString();
         }
 
         @Override
@@ -69,7 +69,7 @@ public enum FieldRepresentor implements primitiveConverter {
             String fieldName;
             if (key.contains("111")) {
                 String[] values = key.split("111");
-                fieldName = values[0];
+                fieldName = values[1];
             } else {
                 fieldName = suffix(key);
             }
