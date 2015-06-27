@@ -1,17 +1,21 @@
 <idea-plugin version="2">
     <id>com.nvinayshetty.DTOnator</id>
-    <name>DTOnator</name>
-    <version>1.0</version>
-    <vendor email="nvinayshetty@gmail.com" url="http://winnowcraft.wordpress.com">nvinayshetty</vendor>
+    <name>DTO generator</name>
+    <version>V0.4</version>
+    <vendor email="nvinayshetty@gmail.com" url="http://winnowcraft.wordpress.com">N Vinay shetty</vendor>
 
     <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
+      Data Transfer Object(DTO) generator that generates Java classes from the given feed.<br>
+      <em>This is a open source project please raise a feature request or file a bug if any,at our <a href="https://github.com/nvinayshetty/DTOnator"> repository</a> we are looking forward for your feedBack </em>
     ]]></description>
 
     <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
+     <ul> 1.0
+            <li>DTO generation support for GSON and Plain old Java Bean  </li>
+            <li>Support to create static inner class or separate classes</li>
+            <li>Feild encapsulation support</li>
+
+        </ul>
     ]]>
     </change-notes>
 

@@ -146,7 +146,7 @@ public class InputWindow extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                final Notification processingNotification = new Notification("DtoGenerator", "Dto generation in Progress", "please wait it may takes few seconds to generate Dto depending on length of the feed", NotificationType.INFORMATION);
+                final Notification processingNotification = new Notification("DtoGenerator", "Dto generation in Progress", "please wait, it may takes few seconds to generate Dto depending on length of the feed", NotificationType.INFORMATION);
                 processingNotification.notify(project);
                 InputFeedValidationFactory validator = new InputFeedValidationFactory(getFeedType());
                 if (validator.isValidFeed(inputFeedText.getText(), exceptionLoggerPane, exceptionLabel)) {

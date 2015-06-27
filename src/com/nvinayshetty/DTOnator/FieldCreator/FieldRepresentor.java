@@ -51,12 +51,29 @@ public enum FieldRepresentor implements primitiveConverter {
     }, JSON_ARRAY {
         @Override
         public String getSimpleFieldRepresentationFor(AccessModifier accessModifier, String key) {
-            return new StringBuilder().append(accessModifier.getModifier()).append("java.util.List<").append(DtoHelper.getSubClassName(key)).append(">").append(suffix(key)).toString();
+            String dataType;
+            String fieldName;
+            if (key.contains("111")) {
+                String[] values = key.split("111");
+                dataType = values[0];
+                fieldName = values[1];
+            } else {
+                dataType = DtoHelper.getSubClassName(key);
+                fieldName = suffix(key);
+            }
+            return new StringBuilder().append(accessModifier.getModifier()).append("java.util.List<").append(dataType).append(">").append(fieldName).toString();
         }
 
         @Override
         public String getGsonFieldRepresentationFor(AccessModifier accessModifier, String key) {
-            return getGsonAnnotationFor(key).append(getSimpleFieldRepresentationFor(accessModifier, key)).toString();
+            String fieldName;
+            if (key.contains("111")) {
+                String[] values = key.split("111");
+                fieldName = values[0];
+            } else {
+                fieldName = suffix(key);
+            }
+            return getGsonAnnotationFor(fieldName).append(getSimpleFieldRepresentationFor(accessModifier, key)).toString();
         }
     }, STRING {
         @Override

@@ -23,7 +23,7 @@
               <gridbag weightx="1.0" weighty="1.0"/>
             </constraints>
             <properties>
-              <text value="Create separate file for each object in the same package"/>
+              <text value="Create separate file for each object"/>
             </properties>
           </component>
           <component id="29dd7" class="javax.swing.JRadioButton" binding="creteSingleFile" default-binding="true">
