@@ -1,7 +1,7 @@
 # DTOnator
 
 ###Motive for project
-writing  DTO(Data Transfer Object) for a single API takes me more  or less about  30 minutes depending on  the complexity of given data structure  and the repeated look up  between the IDE and the file/browser that represented the feed.
+Writing  DTO(Data Transfer Object) for a single feed takes me more  or less about  30 minutes depending on  the complexity of given data structure  and the repeated look up  between the IDE and the file/browser that representes the feed.
 
 I often felt writing DTO is  a lifeless task particularly when you are working in a highly agile environment and  the deadlines are making you scared. adding further a small typographical  error crept during the creation of a DTO may hide some horrible bugs that may take hours to debug! and may leave you with a huge frustration.
 
@@ -13,5 +13,6 @@ creating such a tool for the software craftsman and helping him in better utiliz
 #####A special thanks to creator of the repository https://github.com/zzz40500/GsonFormat
 This is the repository which gave me the idea of bringing a dto generator to an IDE.
 
+![Alt text](https://github.com/nvinayshetty/DTOnator/blob/master/Screenshot/generate.jpg "Activate on mouse click")
 ![Alt text](https://github.com/nvinayshetty/DTOnator/blob/master/Screenshot/generate.jpg "Activate on mouse click")
 
