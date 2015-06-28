@@ -37,7 +37,6 @@ public class InputWindow extends JFrame {
     private JRadioButton gsonRadioButton;
     private JRadioButton provideSetter;
     private JRadioButton provideGetter;
-    private FeedProgressDialog progressDialog;
 
     private ButtonGroup classTypeButtonGroup;
     private ButtonGroup feedTypeButtonGroup;
@@ -151,7 +150,7 @@ public class InputWindow extends JFrame {
                 InputFeedValidationFactory validator = new InputFeedValidationFactory(getFeedType());
                 if (validator.isValidFeed(inputFeedText.getText(), exceptionLoggerPane, exceptionLabel)) {
                     dispose();
-                    WriteCommandAction writeAction = DtoGenerationFactory.getDtoGeneratorFor(getFeedType(), getClassTypePreference(), getFieldTYpe(), getFieldEncapsulationOptions(), project, mClass.getContainingFile(), (JSONObject) validator.getValidFeed(), mClass, progressDialog);
+                    WriteCommandAction writeAction = DtoGenerationFactory.getDtoGeneratorFor(getFeedType(), getClassTypePreference(), getFieldTYpe(), getFieldEncapsulationOptions(), project, mClass.getContainingFile(), (JSONObject) validator.getValidFeed(), mClass);
                     writeAction.execute();
                     processingNotification.expire();
                 }

@@ -9,13 +9,13 @@ import java.util.EnumSet;
 /**
  * Created by vinay on 20/6/15.
  */
-public class DtoCreationOptions {
+public class DtoCreationOptionsFacade {
     private FieldCreationStrategy fieldCreationStrategy;
     private ClassCreatorStrategy classAdderStrategy;
     private AccessModifier accessModifier;
     private EnumSet<FieldEncapsulationOptions> privateFieldOptionse;
 
-    public DtoCreationOptions(FieldCreationStrategy fieldCreationStrategy, ClassCreatorStrategy classAdderStrategy, AccessModifier accessModifier, EnumSet<FieldEncapsulationOptions> privateFieldOptionse) {
+    public DtoCreationOptionsFacade(FieldCreationStrategy fieldCreationStrategy, ClassCreatorStrategy classAdderStrategy, AccessModifier accessModifier, EnumSet<FieldEncapsulationOptions> privateFieldOptionse) {
         this.fieldCreationStrategy = fieldCreationStrategy;
         this.classAdderStrategy = classAdderStrategy;
         this.accessModifier = accessModifier;
