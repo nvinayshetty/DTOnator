@@ -2,6 +2,8 @@ package com.nvinayshetty.DTOnator.FieldCreator;
 
 import com.nvinayshetty.DTOnator.Utility.DtoHelper;
 
+import static com.nvinayshetty.DTOnator.FeedParser.JsonDtoGenerator.SEPARATOR;
+
 /**
  * Created by vinay on 9/5/15.
  */
@@ -51,30 +53,15 @@ public enum FieldRepresentor implements primitiveConverter {
     }, JSON_ARRAY {
         @Override
         public String getSimpleFieldRepresentationFor(AccessModifier accessModifier, String key) {
-            String dataType;
-            String fieldName;
-            if (key.contains("111")) {
-                String[] values = key.split("111");
-                dataType = values[0];
-                fieldName = values[1];
-            } else {
-                dataType = DtoHelper.getSubClassName(key);
-                fieldName = key;
-            }
-            return new StringBuilder().append(accessModifier.getModifier()).append("java.util.List<").append(dataType).append(">").append(suffix(fieldName)).toString();
+            String dataType = getDataType(key);
+            return new StringBuilder().append(accessModifier.getModifier()).append("java.util.List<").append(dataType).append(">").append(suffix(getFieldName(key))).toString();
         }
 
         @Override
         public String getGsonFieldRepresentationFor(AccessModifier accessModifier, String key) {
-            String fieldName;
-            if (key.contains("111")) {
-                String[] values = key.split("111");
-                fieldName = values[1];
-            } else {
-                fieldName = suffix(key);
-            }
-            return getGsonAnnotationFor(fieldName).append(getSimpleFieldRepresentationFor(accessModifier, key)).toString();
+            return getGsonAnnotationFor(getFieldName(key)).append(getSimpleFieldRepresentationFor(accessModifier, key)).toString();
         }
+
     }, STRING {
         @Override
         public String getSimpleFieldRepresentationFor(AccessModifier accessModifier, String key) {
@@ -92,12 +79,34 @@ public enum FieldRepresentor implements primitiveConverter {
     private static final String SPACE = " ";
     private static final String CLASS_FIELD_SUFFIX = ";\n";
 
+    private static String getDataType(String key) {
+        String dataType;
+        if (key.contains(SEPARATOR)) {
+            String[] values = key.split(SEPARATOR);
+            dataType = values[0];
+        } else {
+            dataType = DtoHelper.getSubClassName(key);
+        }
+        return dataType;
+    }
+
     private static StringBuilder getGsonAnnotationFor(String key) {
         return new StringBuilder().append(ANNOTATION_PREFIX).append(key.trim()).append(ANNOTATION_SUFFIX);
     }
 
     private static String suffix(String key) {
         return new StringBuilder().append(SPACE).append(key).append(CLASS_FIELD_SUFFIX).toString();
+    }
+
+    private static String getFieldName(String key) {
+        String fieldName;
+        if (key.contains(SEPARATOR)) {
+            String[] values = key.split(SEPARATOR);
+            fieldName = values[1];
+        } else {
+            fieldName = key;
+        }
+        return fieldName;
     }
 }
 

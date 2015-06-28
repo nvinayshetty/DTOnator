@@ -20,5 +20,6 @@ public class JavaFieldFactory {
             return FieldRepresentor.STRING;
         }
     }
+
 }
 

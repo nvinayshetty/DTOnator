@@ -2,12 +2,10 @@ package com.nvinayshetty.DTOnator.ActionListener;
 
 import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.util.PsiTreeUtil;
-import com.intellij.psi.util.PsiUtilBase;
 import com.nvinayshetty.DTOnator.Ui.InputWindow;
 
 /**
@@ -16,16 +14,12 @@ import com.nvinayshetty.DTOnator.Ui.InputWindow;
 public class UserActionListener extends AnAction {
 
     private PsiClass mClass;
-    private Project project;
 
     public UserActionListener() {
         super();
     }
 
     public void actionPerformed(AnActionEvent event) {
-        project = event.getData(PlatformDataKeys.PROJECT);
-        Editor editor = event.getData(PlatformDataKeys.EDITOR);
-        PsiFile mFile = PsiUtilBase.getPsiFileInEditor(editor, project);
         mClass = getPsiClassFromContext(event);
 
         InputWindow dialog = new InputWindow(mClass);

@@ -15,33 +15,35 @@ public class JsonFeedValidator implements FeedValidator {
 
     @Override
     public boolean isValidFeed(String inputFeed, JScrollPane exceptionLoggerPane, JLabel exceptionLabel) {
+        JSONException exception = null;
+        boolean isVallid = true;
         try {
             json = new JSONObject(inputFeed);
         } catch (JSONException ex) {
-            exceptionLoggerPane.setVisible(true);
-            exceptionLabel.setVisible(true);
-            new ExceptionLogger(exceptionLabel).Log(ex);
-            exceptionLoggerPane.invalidate();
-            exceptionLoggerPane.validate();
-            exceptionLoggerPane.repaint();
-            return false;
-        }
-        if (json == null) {
+            exception = ex;
+            isVallid = false;
             try {
                 JSONArray jsonArray = new JSONArray(inputFeed);
                 json = (JSONObject) jsonArray.get(0);
+                isVallid = true;
+                exception = null;
             } catch (JSONException ex1) {
-                exceptionLoggerPane.setVisible(true);
-                exceptionLabel.setVisible(true);
-                new ExceptionLogger(exceptionLabel).Log(ex1);
-                exceptionLoggerPane.invalidate();
-                exceptionLoggerPane.validate();
-                exceptionLoggerPane.repaint();
-                return false;
+                exception = ex;
+                isVallid = false;
             }
+            if (exception != null)
+                showAlert(exceptionLoggerPane, exceptionLabel, exception);
         }
+        return isVallid;
+    }
 
-        return true;
+    private void showAlert(JScrollPane exceptionLoggerPane, JLabel exceptionLabel, JSONException ex1) {
+        exceptionLoggerPane.setVisible(true);
+        exceptionLabel.setVisible(true);
+        new ExceptionLogger(exceptionLabel).Log(ex1);
+        exceptionLoggerPane.invalidate();
+        exceptionLoggerPane.validate();
+        exceptionLoggerPane.repaint();
     }
 
     @Override
