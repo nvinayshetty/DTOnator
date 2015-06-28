@@ -10,7 +10,7 @@ Luckily for your computer creating the DTO is a simple  task and it really  does
 creating such a tool for the software craftsman and helping him in better utilization of his time and energy is the basic motive and a fascinating idea that made me to create this project
 
 
-##A special thanks to creator of the repository https://github.com/zzz40500/GsonFormat
+#####A special thanks to creator of the repository https://github.com/zzz40500/GsonFormat
 This is the repository which gave me the idea of bringing a dto generator to an IDE.
 
 ![Alt text](https://github.com/nvinayshetty/DTOnator/blob/master/Screenshot/generate.jpg "Activate on mouse click")
