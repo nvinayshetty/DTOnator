@@ -13,9 +13,9 @@ creating such a tool for the software craftsman and helping him in better utiliz
 #####A special thanks to creator of the repository https://github.com/zzz40500/GsonFormat
 This is the repository which gave me the idea of bringing a dto generator to an IDE.
 
-![Alt text](https://github.com/nvinayshetty/DTOnator/blob/master/Screenshot/output.gif
- "DTO")
+![DTO in Single class](https://github.com/nvinayshetty/DTOnator/blob/master/Screenshot/output.gif
+ "DTOnator")
  
-![Alt text](https://github.com/nvinayshetty/DTOnator/blob/master/Screenshot/output2.gif
- "DTO")
+![DTO in multiple classes](https://github.com/nvinayshetty/DTOnator/blob/master/Screenshot/output2.gif
+ "DTOnator")
 
