@@ -18,4 +18,6 @@ This is the repository which gave me the idea of bringing a dto generator to an 
 ![Alt text](https://github.com/nvinayshetty/DTOnator/blob/master/Screenshot/single_file.jpg "DTO in a single class")
 ![Alt text](https://github.com/nvinayshetty/DTOnator/blob/master/Screenshot/separate_file.jpg "DTO in a separate classes")
 ![Alt text](https://github.com/nvinayshetty/DTOnator/blob/master/Screenshot/single_file_dto.jpg "created DTO")
+![Alt text](https://github.com/nvinayshetty/DTOnator/blob/master/Screenshot/output.gif
+ "DTO")
 
