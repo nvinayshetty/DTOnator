@@ -17,7 +17,7 @@
 
 package com.nvinayshetty.DTOnator.FeedValidator;
 
-import com.nvinayshetty.DTOnator.DtoCreators.FeedType;
+import com.nvinayshetty.DTOnator.DtoCreationOptions.FeedType;
 
 import javax.swing.*;
 

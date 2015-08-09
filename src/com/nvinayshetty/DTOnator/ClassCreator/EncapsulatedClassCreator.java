@@ -21,7 +21,8 @@ import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElementFactory;
 import com.intellij.psi.PsiField;
-import com.nvinayshetty.DTOnator.DtoCreators.FieldEncapsulationOptions;
+import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldEncapsulationOptions;
+import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
 
 import java.util.EnumSet;
 
@@ -30,9 +31,11 @@ import java.util.EnumSet;
  */
 public class EncapsulatedClassCreator {
     EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions;
+    FieldNameParser nameParser;
 
-    public EncapsulatedClassCreator(EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions) {
+    public EncapsulatedClassCreator(EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions, FieldNameParser nameParser) {
         this.fieldEncapsulationOptions = fieldEncapsulationOptions;
+        this.nameParser = nameParser;
     }
 
     public PsiClass getClassWithEncapsulatedFileds(PsiClass aClass) {
@@ -70,7 +73,9 @@ public class EncapsulatedClassCreator {
     }
 
     private String generateSetter(PsiField psiField) {
-        return "public void" + " set" + firstLetterToUpperCase(psiField.getName()) + "(" + psiField.getType().getPresentableText() + " " + psiField.getName() + ") { this." + psiField.getName() + "=" + psiField.getName() + ";} ";
+        String name = psiField.getName();
+        name = nameParser.undo(name);
+        return "public void" + " set" + firstLetterToUpperCase(name) + "(" + psiField.getType().getPresentableText() + " " + psiField.getName() + ") { this." + psiField.getName() + "=" + psiField.getName() + ";} ";
     }
 
     private PsiClass addAccesor(PsiClass aClass) {
@@ -84,7 +89,9 @@ public class EncapsulatedClassCreator {
     }
 
     public String generateGetter(PsiField psiField) {
-        return "public " + psiField.getType().getPresentableText() + " get" + firstLetterToUpperCase(psiField.getName()) + "() { return " + psiField.getName() + ";} ";
+        String name = psiField.getName();
+        name = nameParser.undo(name);
+        return "public " + psiField.getType().getPresentableText() + " get" + firstLetterToUpperCase(name) + "() { return " + psiField.getName() + ";} ";
     }
 
     private String firstLetterToUpperCase(String name) {

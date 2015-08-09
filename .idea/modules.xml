@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DTOnator.iml" filepath="$PROJECT_DIR$/DTOnator.iml" />
+      <module fileurl="file://$USER_HOME$/Desktop/org/org.iml" filepath="$USER_HOME$/Desktop/org/org.iml" />
     </modules>
   </component>
 </project>

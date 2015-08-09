@@ -25,16 +25,23 @@ import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiFile;
 import com.nvinayshetty.DTOnator.ActionListener.ContextMenuMouseListener;
 import com.nvinayshetty.DTOnator.ClassCreator.ClassType;
-import com.nvinayshetty.DTOnator.DtoCreators.DtoGenerationFactory;
-import com.nvinayshetty.DTOnator.DtoCreators.FeedType;
-import com.nvinayshetty.DTOnator.DtoCreators.FieldEncapsulationOptions;
-import com.nvinayshetty.DTOnator.DtoCreators.FieldType;
+import com.nvinayshetty.DTOnator.DtoCreationOptions.DtoGenerationFactory;
+import com.nvinayshetty.DTOnator.DtoCreationOptions.FeedType;
+import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldEncapsulationOptions;
+import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldType;
 import com.nvinayshetty.DTOnator.FeedValidator.InputFeedValidationFactory;
+import com.nvinayshetty.DTOnator.NameConventionCommands.CamelCase;
+import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
+import com.nvinayshetty.DTOnator.NameConventionCommands.NamePrefixer;
+import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
+import com.nvinayshetty.DTOnator.nameConflictResolvers.PrefixingConflictResolverCommand;
 import org.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 
 public class InputWindow extends JFrame {
     private PsiClass mClass;
@@ -58,6 +65,13 @@ public class InputWindow extends JFrame {
     private ButtonGroup classTypeButtonGroup;
     private ButtonGroup feedTypeButtonGroup;
     private JScrollPane exceptionLoggerPane;
+    private JRadioButton useCamelCaseRadioButton;
+    private JRadioButton prefixEachFieldWithNamingConventionRadioButton;
+    private JRadioButton OnCOnflictPrefixFieldNameRadioButton;
+    private JTextField onConflictprefixString;
+    private JTextField nameConventionPrefix;
+    private HashSet<NameConflictResolverCommand> nameConflictResolverCommands;
+    private HashSet<NameParserCommand> fieldNameParser = new LinkedHashSet<>();
 
 
     public InputWindow(PsiClass mClass) {
@@ -65,8 +79,8 @@ public class InputWindow extends JFrame {
         project = mClass.getProject();
         mFile = mClass.getContainingFile();
         setContentPane(contentPane);
-        inputFeedText.getRootPane().setSize(500, 400);
-        setSize(1000, 500);
+        inputFeedText.getRootPane().setSize(750, 400);
+        setSize(1000, 600);
         setTitle("Generate DTO");
         getRootPane().setDefaultButton(buttonOk);
         initButtons();
@@ -90,6 +104,8 @@ public class InputWindow extends JFrame {
         setEncapsulationOptionsVisible(false);
         gsonRadioButton.setSelected(true);
         creteSingleFile.setSelected(true);
+        OnCOnflictPrefixFieldNameRadioButton.setSelected(true);
+        onConflictprefixString.setText("m");
     }
 
     private void initListeners() {
@@ -159,20 +175,33 @@ public class InputWindow extends JFrame {
 
 
     private void onOK() {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                final Notification processingNotification = new Notification("DtoGenerator", "Dto generation in Progress", "please wait, it may takes few seconds to generate Dto depending on length of the feed", NotificationType.INFORMATION);
-                processingNotification.notify(project);
-                InputFeedValidationFactory validator = new InputFeedValidationFactory(getFeedType());
-                if (validator.isValidFeed(inputFeedText.getText(), exceptionLoggerPane, exceptionLabel)) {
-                    dispose();
-                    WriteCommandAction writeAction = DtoGenerationFactory.getDtoGeneratorFor(getFeedType(), getClassTypePreference(), getFieldTYpe(), getFieldEncapsulationOptions(), project, mClass.getContainingFile(), (JSONObject) validator.getValidFeed(), mClass);
-                    writeAction.execute();
-                    processingNotification.expire();
-                }
-            }
-        });
+        final Notification processingNotification = new Notification("DtoGenerator", "Dto generation in Progress", "please wait, it may takes few seconds to generate Dto depending on length of the feed", NotificationType.INFORMATION);
+        processingNotification.notify(project);
+        dispose();
+        InputFeedValidationFactory validator = new InputFeedValidationFactory(getFeedType());
+        nameConflictResolverCommands = getNameConflictResolvers();
+        HashSet<NameParserCommand> fieldNameParser = getFieldNameParserCommands();
+        String text = inputFeedText.getText();
+        if (validator.isValidFeed(text, exceptionLoggerPane, exceptionLabel)) {
+            ClassType classType = getClassType();
+            EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions = getFieldEncapsulationOptions();
+            PsiFile containingFile = mClass.getContainingFile();
+            Object validFeed = validator.getValidFeed();
+            JSONObject jsonObject = (JSONObject) validFeed;
+            WriteCommandAction writeAction = DtoGenerationFactory.getDtoGeneratorFor(getFeedType(), classType, getFieldTYpe(), fieldEncapsulationOptions, project, containingFile, jsonObject, mClass, nameConflictResolverCommands, fieldNameParser);
+            writeAction.execute();
+
+        }
+    }
+
+    private HashSet<NameConflictResolverCommand> getNameConflictResolvers() {
+        nameConflictResolverCommands = new HashSet<NameConflictResolverCommand>();
+        if (OnCOnflictPrefixFieldNameRadioButton.isSelected()) {
+            String prefixString = getOnConflictFieldPrefixText();
+            NameConflictResolverCommand prefixingConflictResolver = new PrefixingConflictResolverCommand(prefixString);
+            updateFieldNameConflictResoverCommands(prefixingConflictResolver);
+        }
+        return nameConflictResolverCommands;
     }
 
     private FieldType getFieldTYpe() {
@@ -187,6 +216,39 @@ public class InputWindow extends JFrame {
         return FeedType.JSON;
     }
 
+    private String getOnConflictFieldPrefixText() {
+        return onConflictprefixString.getText();
+    }
+
+    private String getNameConventionPrefixText() {
+        return nameConventionPrefix.getText();
+    }
+
+
+    private void updatedFieldNameParserCommands(NameParserCommand parserCommand) {
+        fieldNameParser.remove(parserCommand);
+        fieldNameParser.add(parserCommand);
+    }
+
+    private void updateFieldNameConflictResoverCommands(NameConflictResolverCommand conflictResolver) {
+        nameConflictResolverCommands.remove(conflictResolver);
+        nameConflictResolverCommands.add(conflictResolver);
+    }
+
+    private HashSet<NameParserCommand> getFieldNameParserCommands() {
+        NameParserCommand parserCommand;
+        if (useCamelCaseRadioButton.isSelected()) {
+            parserCommand = new CamelCase();
+            updatedFieldNameParserCommands(parserCommand);
+        }
+        if (prefixEachFieldWithNamingConventionRadioButton.isSelected()) {
+            String fieldPrefixText = getNameConventionPrefixText();
+            parserCommand = NamePrefixer.prefixWith(fieldPrefixText);
+            updatedFieldNameParserCommands(parserCommand);
+        }
+        return fieldNameParser;
+    }
+
     private EnumSet<FieldEncapsulationOptions> getFieldEncapsulationOptions() {
         EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions = EnumSet.noneOf(FieldEncapsulationOptions.class);
         if (makeFieldsPrivate.isSelected())
@@ -198,7 +260,7 @@ public class InputWindow extends JFrame {
         return fieldEncapsulationOptions;
     }
 
-    private ClassType getClassTypePreference() {
+    private ClassType getClassType() {
         if (creteSingleFile.isSelected())
             return ClassType.SINGLE_FILE_WITH_INNER_CLASS;
         else
@@ -209,6 +271,5 @@ public class InputWindow extends JFrame {
     private void onCancel() {
         dispose();
     }
-
 
 }

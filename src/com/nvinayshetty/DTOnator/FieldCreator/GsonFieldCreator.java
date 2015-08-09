@@ -17,13 +17,19 @@
 
 package com.nvinayshetty.DTOnator.FieldCreator;
 
+import com.nvinayshetty.DTOnator.FieldRepresentors.FieldRepresentor;
+import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
+import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
+
 /**
  * Created by vinay on 31/5/15.
  */
 public class GsonFieldCreator implements FieldCreationStrategy {
 
     @Override
-    public String getFieldFor(FieldRepresentor type, AccessModifier modifier, String key) {
-        return type.getGsonFieldRepresentationFor(modifier, key);
+    public String getFieldFor(FieldRepresentor type, AccessModifier modifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
+        return type.gsonFieldRepresentationTemplate(modifier, key, parser, nameConflictResolver);
     }
+
+
 }

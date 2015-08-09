@@ -17,13 +17,20 @@
 
 package com.nvinayshetty.DTOnator.FieldCreator;
 
+import com.nvinayshetty.DTOnator.FeedValidator.KeywordClasifier;
+import com.nvinayshetty.DTOnator.FieldRepresentors.FieldRepresentor;
+import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
+import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
+
 /**
  * Created by vinay on 31/5/15.
  */
 public class SimpleFieldCreator implements FieldCreationStrategy {
     @Override
-    public String getFieldFor(FieldRepresentor fieldRepresentor, AccessModifier accessModifier, String key) {
-        return fieldRepresentor.getSimpleFieldRepresentationFor(accessModifier, key);
+    public String getFieldFor(FieldRepresentor fieldRepresentor, AccessModifier accessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
+        return fieldRepresentor.simpleFieldCreationTemplate(accessModifier, key, parser, nameConflictResolver, new KeywordClasifier());
     }
+
+
 }
 

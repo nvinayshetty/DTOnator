@@ -1,7 +1,24 @@
+<!--
+  ~ Copyright (C) 2015 Vinaya Prasad N
+  ~
+  ~         This program is free software: you can redistribute it and/or modify
+  ~         it under the terms of the GNU General Public License as published by
+  ~         the Free Software Foundation, either version 3 of the License, or
+  ~         (at your option) any later version.
+  ~
+  ~         This program is distributed in the hope that it will be useful,
+  ~         but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~         MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~         GNU General Public License for more details.
+  ~
+  ~         You should have received a copy of the GNU General Public License
+  ~         along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
 <idea-plugin version="2">
     <id>com.nvinayshetty.DTOnator</id>
     <name>DTO generator</name>
-    <version>V0.4</version>
+    <version>V0.44</version>
     <vendor email="nvinayshetty@gmail.com" url="http://winnowcraft.wordpress.com">N Vinay shetty</vendor>
 
     <description><![CDATA[
@@ -10,11 +27,19 @@
     ]]></description>
 
     <change-notes><![CDATA[
-     <ul> 1.0
-            <li>DTO generation support for GSON and Plain old Java Bean  </li>
+     <ul> V 1.0
+            <li>DTO generation support for GSON and Plain old Java Beans</li>
             <li>Support to create static inner class or separate classes</li>
             <li>Feild encapsulation support</li>
 
+        </ul>
+           <ul>V 2.0
+            <li>Create camel Cased fields from word separators</li>
+            <li>Prefix fields with your favourite characters</li>
+            <li>Generates class fields in the same order of the feed</li>
+            <li>Simple strategy to resolve naming conflicts</li>
+            <li>Notifications to clearly indicate problems and solutions</li>
+            <li>Consistent and bold UI across different look and feel standards</li>
         </ul>
     ]]>
     </change-notes>
