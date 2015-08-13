@@ -1,5 +1,5 @@
 # DTOnator
-
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-DTOnator-green.svg?style=flat)](https://android-arsenal.com/details/1/2289)
 ###Motive for project
 Writing  DTO(Data Transfer Object) for a single feed takes me more  or less about  30 minutes depending on  the complexity of given data structure  and the repeated look up  between the IDE and the file/browser that representes the feed.
 
