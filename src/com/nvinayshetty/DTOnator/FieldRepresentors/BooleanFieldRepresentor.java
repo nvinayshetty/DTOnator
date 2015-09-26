@@ -24,9 +24,8 @@ import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
  */
 public class BooleanFieldRepresentor extends FieldRepresentor {
     @Override
-    public String getSimpleFieldRepresentationFor(AccessModifier accessModifier, String key) {
+    public String getFieldRepresentationFor(AccessModifier accessModifier, String key) {
         return accessModifier.getModifier() + "boolean" + suffix(key);
-
     }
 
 }

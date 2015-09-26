@@ -177,12 +177,13 @@ public class InputWindow extends JFrame {
     private void onOK() {
         final Notification processingNotification = new Notification("DtoGenerator", "Dto generation in Progress", "please wait, it may takes few seconds to generate Dto depending on length of the feed", NotificationType.INFORMATION);
         processingNotification.notify(project);
-        dispose();
         InputFeedValidationFactory validator = new InputFeedValidationFactory(getFeedType());
         nameConflictResolverCommands = getNameConflictResolvers();
         HashSet<NameParserCommand> fieldNameParser = getFieldNameParserCommands();
         String text = inputFeedText.getText();
-        if (validator.isValidFeed(text, exceptionLoggerPane, exceptionLabel)) {
+        final boolean isValidFeed = validator.isValidFeed(text, exceptionLoggerPane, exceptionLabel);
+        if (isValidFeed) {
+            dispose();
             ClassType classType = getClassType();
             EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions = getFieldEncapsulationOptions();
             PsiFile containingFile = mClass.getContainingFile();
@@ -190,7 +191,6 @@ public class InputWindow extends JFrame {
             JSONObject jsonObject = (JSONObject) validFeed;
             WriteCommandAction writeAction = DtoGenerationFactory.getDtoGeneratorFor(getFeedType(), classType, getFieldTYpe(), fieldEncapsulationOptions, project, containingFile, jsonObject, mClass, nameConflictResolverCommands, fieldNameParser);
             writeAction.execute();
-
         }
     }
 

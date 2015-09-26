@@ -26,10 +26,10 @@ import com.intellij.psi.codeStyle.JavaCodeStyleManager;
 import com.nvinayshetty.DTOnator.ClassCreator.EncapsulatedClassCreator;
 import com.nvinayshetty.DTOnator.DtoCreationOptions.DtoCreationOptionsFacade;
 import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldEncapsulationOptions;
-import com.nvinayshetty.DTOnator.FeedValidator.KeywordClasifier;
+import com.nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
 import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
 import com.nvinayshetty.DTOnator.FieldCreator.FieldCreationStrategy;
-import com.nvinayshetty.DTOnator.FieldRepresentors.FeedRepresenterFactory;
+import com.nvinayshetty.DTOnator.FieldRepresentors.FieldRepresenterFactory;
 import com.nvinayshetty.DTOnator.FieldRepresentors.FieldRepresentor;
 import com.nvinayshetty.DTOnator.FieldRepresentors.JsonArrayRepresentor;
 import com.nvinayshetty.DTOnator.FieldRepresentors.JsonObjectRepresentor;
@@ -99,8 +99,8 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
 
     private void addClass(String name, JSONObject json) {
         String className = DtoHelper.firstetterToUpperCase(name);
-        final KeywordClasifier keywordClasifier = new KeywordClasifier();
-        if (!keywordClasifier.isValidJavaIdentifier(className)) {
+        final KeywordClassifier keywordClassifier = new KeywordClassifier();
+        if (!keywordClassifier.isValidJavaIdentifier(className)) {
             className = nameConflictResolver.resolveNamingConflict(name);
             className = DtoHelper.firstetterToUpperCase(className);
         }
@@ -129,7 +129,8 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
         try {
             Object object = json.get(key);
             String dataType = object.getClass().getSimpleName();
-            fieldRepresentor = FeedRepresenterFactory.convert(dataType);
+
+            fieldRepresentor = new FieldRepresenterFactory().convert(dataType);
             fieldRepresentor.setProject(classUnderCaret.getProject());
             if (fieldRepresentor instanceof JsonObjectRepresentor) {
                 ((JsonObjectRepresentor) fieldRepresentor).setNameParser(nameParser);

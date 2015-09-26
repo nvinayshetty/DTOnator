@@ -17,7 +17,7 @@
 
 package com.nvinayshetty.DTOnator.NameConventionCommands;
 
-import com.nvinayshetty.DTOnator.FeedValidator.KeywordClasifier;
+import com.nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
 import com.nvinayshetty.DTOnator.Utility.DtoHelper;
 
 /**
@@ -26,7 +26,7 @@ import com.nvinayshetty.DTOnator.Utility.DtoHelper;
 public class NamePrefixer implements NameParserCommand {
     private String prefix;
 
-    public NamePrefixer(String prefix) {
+    private NamePrefixer(String prefix) {
         this.prefix = prefix;
     }
 
@@ -45,8 +45,7 @@ public class NamePrefixer implements NameParserCommand {
         String unparsed = name;
         if (name.startsWith(prefix))
             unparsed = name.replaceFirst(prefix, "");
-
-        if (!new KeywordClasifier().isValidJavaIdentifier(unparsed))
+        if (!new KeywordClassifier().isValidJavaIdentifier(unparsed))
             unparsed = name;
         return unparsed;
     }

@@ -17,7 +17,7 @@
 
 package com.nvinayshetty.DTOnator.FieldCreator;
 
-import com.nvinayshetty.DTOnator.FeedValidator.KeywordClasifier;
+import com.nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
 import com.nvinayshetty.DTOnator.FieldRepresentors.FieldRepresentor;
 import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
 import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
@@ -28,7 +28,7 @@ import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
 public class SimpleFieldCreator implements FieldCreationStrategy {
     @Override
     public String getFieldFor(FieldRepresentor fieldRepresentor, AccessModifier accessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
-        return fieldRepresentor.simpleFieldCreationTemplate(accessModifier, key, parser, nameConflictResolver, new KeywordClasifier());
+        return fieldRepresentor.fieldCreationTemplate(accessModifier, key, parser, nameConflictResolver, new KeywordClassifier());
     }
 
 

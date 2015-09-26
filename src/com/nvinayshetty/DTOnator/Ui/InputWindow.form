@@ -55,6 +55,8 @@
             </constraints>
             <properties>
               <background color="-1"/>
+              <visible value="true"/>
+              <wheelScrollingEnabled value="true"/>
             </properties>
             <border type="none"/>
             <children>

@@ -24,7 +24,7 @@ import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
  */
 public class StringFieldRepresentor extends FieldRepresentor {
     @Override
-    public String getSimpleFieldRepresentationFor(AccessModifier accessModifier, String key) {
+    public String getFieldRepresentationFor(AccessModifier accessModifier, String key) {
         return accessModifier.getModifier() + "String" + suffix(key);
     }
 

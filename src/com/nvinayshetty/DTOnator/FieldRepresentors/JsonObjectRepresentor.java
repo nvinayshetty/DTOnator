@@ -28,8 +28,10 @@ public class JsonObjectRepresentor extends FieldRepresentor {
     FieldNameParser nameParser;
 
     @Override
-    public String getSimpleFieldRepresentationFor(AccessModifier accessModifier, String key) {
-        String Object = nameParser.undo(key);
+    public String getFieldRepresentationFor(AccessModifier accessModifier, String key) {
+        String Object = key;
+        if (nameParser != null)
+            Object = nameParser.undo(key);
         return accessModifier.getModifier() + DtoHelper.firstetterToUpperCase(Object) + suffix(key);
 
     }

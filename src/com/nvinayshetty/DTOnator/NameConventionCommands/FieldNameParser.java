@@ -30,9 +30,6 @@ public class FieldNameParser {
         this.fieldNameParser = fieldNameParser;
     }
 
-    public FieldNameParser() {
-    }
-
     public String parseField(String field) {
         String parsedFieldName = field;//= field;
         Iterator<NameParserCommand> fieldParserIterator = fieldNameParser.iterator();

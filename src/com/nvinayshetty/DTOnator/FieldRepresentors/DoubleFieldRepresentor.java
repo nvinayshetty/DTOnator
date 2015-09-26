@@ -24,7 +24,7 @@ import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
  */
 public class DoubleFieldRepresentor extends FieldRepresentor {
     @Override
-    public String getSimpleFieldRepresentationFor(AccessModifier accessModifier, String key) {
+    public String getFieldRepresentationFor(AccessModifier accessModifier, String key) {
         return accessModifier.getModifier() + "double" + suffix(key);
 
     }

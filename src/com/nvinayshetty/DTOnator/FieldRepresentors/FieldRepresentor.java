@@ -20,7 +20,7 @@ package com.nvinayshetty.DTOnator.FieldRepresentors;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.openapi.project.Project;
-import com.nvinayshetty.DTOnator.FeedValidator.KeywordClasifier;
+import com.nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
 import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
 import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
 import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
@@ -34,9 +34,9 @@ public abstract class FieldRepresentor {
     protected static final String GSON_ANNOTATION_PREFIX = "@com.google.gson.annotations.SerializedName(\"";
     protected static final String ANNOTATION_SUFFIX = "\")\n";
     private static final String SPACE = " ";
-    private static final String CLASS_FIELD_SUFFIX = ";\n";
-    Project project;
-    private KeywordClasifier keywordClasifier = new KeywordClasifier();
+    private static final String CLASS_FIELD_SUFFIX = ";";
+    private Project project;
+    private KeywordClassifier keywordClassifier = new KeywordClassifier();
 
     protected static String suffix(String key) {
         return new StringBuilder().append(SPACE).append(key).append(CLASS_FIELD_SUFFIX).toString();
@@ -46,18 +46,18 @@ public abstract class FieldRepresentor {
         return GSON_ANNOTATION_PREFIX + key + ANNOTATION_SUFFIX;
     }
 
-    public final String simpleFieldCreationTemplate(AccessModifier AccessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver, KeywordClasifier keywordClasifier) {
-        String parsedFieldName = parse(key, parser, nameConflictResolver, keywordClasifier);
-        return getSimpleFieldRepresentationFor(AccessModifier, parsedFieldName);
+    public final String fieldCreationTemplate(AccessModifier AccessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver, KeywordClassifier keywordClassifier) {
+        String parsedFieldName = parse(key, parser, nameConflictResolver, keywordClassifier);
+        return getFieldRepresentationFor(AccessModifier, parsedFieldName);
     }
 
     public final String gsonFieldRepresentationTemplate(AccessModifier AccessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
-        return getGsonAnnotationFor(key) + simpleFieldCreationTemplate(AccessModifier, key, parser, nameConflictResolver, keywordClasifier) + "\n\n";
+        return getGsonAnnotationFor(key) + fieldCreationTemplate(AccessModifier, key, parser, nameConflictResolver, keywordClassifier);
     }
 
-    protected abstract String getSimpleFieldRepresentationFor(AccessModifier AccessModifier, String key);
+    protected abstract String getFieldRepresentationFor(AccessModifier AccessModifier, String key);
 
-    public String parse(final String key, FieldNameParser parser, NameConflictResolver nameConflictResolver, KeywordClasifier keywordClasifier) {
+    private String parse(final String key, FieldNameParser parser, NameConflictResolver nameConflictResolver, KeywordClassifier keywordClassifier) {
         final String parsedField = parser.parseField(key.trim());
         String fieldRepresentation = parsedField;
 
@@ -73,7 +73,7 @@ public abstract class FieldRepresentor {
         } else if (!isVallidIdentifier(key)) {
             fieldRepresentation = nameConflictResolver.resolveNamingConflict(key);
         }
-        if (!keywordClasifier.isValidJavaIdentifier(fieldRepresentation)) {
+        if (!keywordClassifier.isValidJavaIdentifier(fieldRepresentation)) {
             fieldRepresentation = "THIS_IA_AN_INVALID_JAVA_IDENTIFIER_MANUALLY_RESOLVE_THE_ISSUE" + "//" + key;
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
@@ -87,7 +87,7 @@ public abstract class FieldRepresentor {
     }
 
     public boolean isVallidIdentifier(String key) {
-        return (keywordClasifier.isValidJavaIdentifier(key));
+        return (keywordClassifier.isValidJavaIdentifier(key));
     }
 
     public void setProject(Project project) {
