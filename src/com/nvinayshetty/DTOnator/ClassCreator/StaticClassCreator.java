@@ -23,7 +23,8 @@ import com.intellij.psi.PsiModifier;
 /**
  * Created by vinay on 31/5/15.
  */
-public class StaticClassCreator extends ClassCreatorStrategy {
+public class
+        StaticClassCreator extends ClassCreatorStrategy {
     private PsiClass classUnderCaret;
 
     public StaticClassCreator(PsiClass psiClass) {

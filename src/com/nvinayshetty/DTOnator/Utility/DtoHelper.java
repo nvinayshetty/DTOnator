@@ -21,9 +21,11 @@ package com.nvinayshetty.DTOnator.Utility;
  * Created by vinay on 9/5/15.
  */
 public class DtoHelper {
-    public static String getSubClassName(String key) {
+    public static String firstetterToUpperCase(String key) {
         return key.substring(0, 1).toUpperCase() + key.substring(1);
     }
 
-
+    public static String firstetterToLowerCase(String key) {
+        return key.substring(0, 1).toLowerCase() + key.substring(1);
+    }
 }

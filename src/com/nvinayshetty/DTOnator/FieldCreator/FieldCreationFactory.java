@@ -17,7 +17,7 @@
 
 package com.nvinayshetty.DTOnator.FieldCreator;
 
-import com.nvinayshetty.DTOnator.DtoCreators.FieldType;
+import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldType;
 
 /**
  * Created by vinay on 7/6/15.
