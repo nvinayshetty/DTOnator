@@ -2,157 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="283d42db-bd28-4878-8334-6c056286dea1" name="Default" comment="Added builder for DtoCreator">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/AbstractLayout.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/AccessModifier.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/testData/AfterGeneratingClassFromSimpleJsonObject.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/BooleanFieldRepresentor.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/fieldRepresentors/BooleanFieldRepresentorShould.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org/json/CDL.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/NameConventionCommands/CamelCase.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/NameConventionCommands/CamelCaseShould.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/ClassCreationFactory$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/ClassCreationFactory.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/ClassCreatorStrategy.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/ClassType.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$2.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$3.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$4.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$5.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$Actions.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org/json/Cookie.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org/json/CookieList.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DTOnator.zip" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/DimensionInfo.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/DoubleFieldRepresentor.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/fieldRepresentors/DoubleFieldRepresentorShould.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/DtoCreationOptionsFacade.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/DtoGenerationFactory$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/DtoGenerationFactory.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Utility/DtoHelper.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/Utility/DtoHelperTest.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/EncapsulatedClassCreator.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Logger/ExceptionLogger.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/FeedType.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedValidator/FeedValidator.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/FieldCreationFactory$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/FieldCreationFactory.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/FieldCreator/FieldCreationFactoryShould.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/FieldCreationStrategy.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/FieldEncapsulationOptions.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/NameConventionCommands/FieldNameParser.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/FieldRepresenterFactory.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/FieldRepresentor$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/FieldRepresentor$2.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/FieldRepresentor.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/fieldRepresentors/FieldRepresentorFactoryShould.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/fieldRepresentors/FieldRepresentorShould.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/FieldType.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/DtoGeneratorTest/GenerateTest.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/GridConstraints.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/GridLayoutManager.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/GsonFieldCreator.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org/json/HTTP.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org/json/HTTPTokener.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/HorizontalInfo.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedValidator/InputFeedValidationFactory$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedValidator/InputFeedValidationFactory.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$2.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$3.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$4.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$5.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$6.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/IntegerFieldRepresentor.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/fieldRepresentors/IntegerFieldRepresentorShould.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org/json/JSONArray.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org/json/JSONException.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org/json/JSONML.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org/json/JSONObject$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org/json/JSONObject$Null.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org/json/JSONObject.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org/json/JSONString.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org/json/JSONStringer.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org/json/JSONTokener.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org/json/JSONWriter.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/JsonArrayRepresentor.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/fieldRepresentors/JsonArrayRepresentorShould.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedParser/JsonDtoGenerator$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedParser/JsonDtoGenerator$JsonDtoBuilder.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedParser/JsonDtoGenerator.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedValidator/JsonFeedValidator.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/JsonObjectRepresentor.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/fieldRepresentors/JsonObjectRepresentorShould.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedValidator/KeywordClassifier.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/FeedValidator/KeyworldClassifierShould.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/LayoutState.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/nameConflictResolvers/NameConflictResolver.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/nameConflictResolvers/NameConflictResolverCommand.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/NameConventionCommands/NameParserCommand.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/NameConventionCommands/NamePrefixer.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/NameConventionCommands/NamePrefixerShould.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/nameConflictResolvers/PrefexingConflictResolverCommandShould.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/nameConflictResolvers/PrefixingConflictResolverCommand.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org/json/Property.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/PublicClassCreator.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/testData/Response.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/SimpleFieldCreator.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/Spacer.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/StaticClassCreator.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/StringFieldRepresentor.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/fieldRepresentors/StringFieldRepresentorShould.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/SupportCode.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/Screenshot/UI.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/UserActionListener.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/Util.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/VerticalInfo.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org/json/XML.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org/json/XMLTokener.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/Screenshot/camelCase.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/Screenshot/convention.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/Screenshot/dto_from_json.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/Screenshot/generate.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/Screenshot/getterSetter.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/Screenshot/output.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/Screenshot/separate_file.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/Screenshot/single_file.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/com/nvinayshetty/DTOnator/testData/AfterGeneratingClassFromSimpleJsonObject.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/com/nvinayshetty/DTOnator/NameConventionCommands/CamelCaseShould.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/DTOnator.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/com/nvinayshetty/DTOnator/FieldCreator/FieldCreationFactoryShould.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/com/nvinayshetty/DTOnator/fieldRepresentors/FieldRepresentorFactoryShould.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/com/nvinayshetty/DTOnator/fieldRepresentors/FieldRepresentorShould.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org/json/JSON-java-master.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/LICENSE.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/com/nvinayshetty/DTOnator/NameConventionCommands/NamePrefixerShould.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org/json/README" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/dtonator.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/dtonator.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/module_dtonator.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/org/org.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/META-INF/plugin.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/src/test/com/nvinayshetty/DTOnator/testData/simpleJsonObject.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/testData/simpleJsonObject.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/com/nvinayshetty/DTOnator/testData/simpleJsonObject.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/NameConventionCommands/FieldParser.java" afterPath="$PROJECT_DIR$/src/test/com/nvinayshetty/DTOnator/DtoGeneratorTest/GenerateTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/nvinayshetty/DTOnator/nameConflictResolvers/SuffixingConflictResolverCommand.java" afterPath="$PROJECT_DIR$/src/test/com/nvinayshetty/DTOnator/testData/BeforeDtoGeneration.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/com/nvinayshetty/DTOnator/FeedValidator/KeyworldClassifierShould.java" afterPath="$PROJECT_DIR$/src/test/com/nvinayshetty/DTOnator/FeedValidator/KeyworldClassifierShould.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/com/nvinayshetty/DTOnator/fieldRepresentors/BooleanFieldRepresentorShould.java" afterPath="$PROJECT_DIR$/src/test/com/nvinayshetty/DTOnator/fieldRepresentors/BooleanFieldRepresentorShould.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/com/nvinayshetty/DTOnator/fieldRepresentors/DoubleFieldRepresentorShould.java" afterPath="$PROJECT_DIR$/src/test/com/nvinayshetty/DTOnator/fieldRepresentors/DoubleFieldRepresentorShould.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/com/nvinayshetty/DTOnator/fieldRepresentors/IntegerFieldRepresentorShould.java" afterPath="$PROJECT_DIR$/src/test/com/nvinayshetty/DTOnator/fieldRepresentors/IntegerFieldRepresentorShould.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/com/nvinayshetty/DTOnator/fieldRepresentors/JsonArrayRepresentorShould.java" afterPath="$PROJECT_DIR$/src/test/com/nvinayshetty/DTOnator/fieldRepresentors/JsonArrayRepresentorShould.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/com/nvinayshetty/DTOnator/fieldRepresentors/JsonObjectRepresentorShould.java" afterPath="$PROJECT_DIR$/src/test/com/nvinayshetty/DTOnator/fieldRepresentors/JsonObjectRepresentorShould.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/com/nvinayshetty/DTOnator/fieldRepresentors/StringFieldRepresentorShould.java" afterPath="$PROJECT_DIR$/src/test/com/nvinayshetty/DTOnator/fieldRepresentors/StringFieldRepresentorShould.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/com/nvinayshetty/DTOnator/nameConflictResolvers/PrefexingConflictResolverCommandShould.java" afterPath="$PROJECT_DIR$/src/test/com/nvinayshetty/DTOnator/nameConflictResolvers/PrefexingConflictResolverCommandShould.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/com/nvinayshetty/DTOnator/utility/DtoHelperTest.java" afterPath="$PROJECT_DIR$/src/test/com/nvinayshetty/DTOnator/Utility/DtoHelperTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/META-INF/plugin.xml" afterPath="$PROJECT_DIR$/META-INF/plugin.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="DTOnator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -875,14 +725,14 @@
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850242" sideWeight="0.49960285" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850242" sideWeight="0.7545817" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27858293" sideWeight="0.27888447" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33655393" sideWeight="0.13625498" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32908365" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.77616745" sideWeight="0.48047808" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27858293" sideWeight="0.7211155" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.8083736" sideWeight="0.8693227" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27858293" sideWeight="0.7211155" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33655393" sideWeight="0.86374503" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.44780877" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.44780877" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2494043" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14980079" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
