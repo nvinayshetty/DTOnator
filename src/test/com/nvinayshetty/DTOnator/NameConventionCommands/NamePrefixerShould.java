@@ -15,7 +15,7 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package test.com.nvinayshetty.DTOnator.FeedValidator.NameConventionCommands;
+package test.com.nvinayshetty.DTOnator.NameConventionCommands;
 
 import com.nvinayshetty.DTOnator.NameConventionCommands.NamePrefixer;
 import com.nvinayshetty.DTOnator.Utility.DtoHelper;

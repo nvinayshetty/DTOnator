@@ -15,7 +15,7 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package test.com.nvinayshetty.DTOnator.FeedValidator.testData;
+package test.com.nvinayshetty.DTOnator.testData;
 
 import com.google.gson.annotations.SerializedName;
 

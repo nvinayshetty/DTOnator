@@ -15,7 +15,7 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package test.com.nvinayshetty.DTOnator.FeedValidator.FeedValidator;
+package test.com.nvinayshetty.DTOnator.FeedValidator;
 
 import com.nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
 import org.junit.Test;

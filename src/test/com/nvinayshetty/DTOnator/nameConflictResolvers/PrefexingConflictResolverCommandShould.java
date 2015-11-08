@@ -15,7 +15,7 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package test.com.nvinayshetty.DTOnator.FeedValidator.nameConflictResolvers;
+package test.com.nvinayshetty.DTOnator.nameConflictResolvers;
 
 import com.nvinayshetty.DTOnator.nameConflictResolvers.PrefixingConflictResolverCommand;
 import org.junit.Test;

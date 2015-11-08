@@ -15,7 +15,7 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package test.com.nvinayshetty.DTOnator.FeedValidator.Utility;
+package test.com.nvinayshetty.DTOnator.Utility;
 
 import com.nvinayshetty.DTOnator.Utility.DtoHelper;
 import org.junit.Test;

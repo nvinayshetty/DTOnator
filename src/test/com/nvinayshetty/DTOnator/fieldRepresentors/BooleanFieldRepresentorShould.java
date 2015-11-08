@@ -15,7 +15,7 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package test.com.nvinayshetty.DTOnator.FeedValidator.fieldRepresentors;
+package test.com.nvinayshetty.DTOnator.fieldRepresentors;
 
 import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
 import com.nvinayshetty.DTOnator.FieldRepresentors.BooleanFieldRepresentor;
