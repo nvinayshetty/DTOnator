@@ -15,7 +15,7 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.nvinayshetty.DTOnator.nameConflictResolvers;
+package nvinayshetty.DTOnator.nameConflictResolvers;
 
 /**
  * Created by vinay on 24/7/15.

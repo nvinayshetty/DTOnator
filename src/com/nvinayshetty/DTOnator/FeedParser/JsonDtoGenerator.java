@@ -15,7 +15,7 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.nvinayshetty.DTOnator.FeedParser;
+package nvinayshetty.DTOnator.FeedParser;
 
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.psi.JavaPsiFacade;
@@ -23,22 +23,22 @@ import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElementFactory;
 import com.intellij.psi.PsiField;
 import com.intellij.psi.codeStyle.JavaCodeStyleManager;
-import com.nvinayshetty.DTOnator.ClassCreator.EncapsulatedClassCreator;
-import com.nvinayshetty.DTOnator.DtoCreationOptions.DtoCreationOptionsFacade;
-import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldEncapsulationOptions;
-import com.nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
-import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
-import com.nvinayshetty.DTOnator.FieldCreator.FieldCreationStrategy;
-import com.nvinayshetty.DTOnator.FieldRepresentors.FieldRepresenterFactory;
-import com.nvinayshetty.DTOnator.FieldRepresentors.FieldRepresentor;
-import com.nvinayshetty.DTOnator.FieldRepresentors.JsonArrayRepresentor;
-import com.nvinayshetty.DTOnator.FieldRepresentors.JsonObjectRepresentor;
-import com.nvinayshetty.DTOnator.NameConventionCommands.CamelCase;
-import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
-import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
-import com.nvinayshetty.DTOnator.Utility.DtoHelper;
-import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
-import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
+import nvinayshetty.DTOnator.ClassCreator.EncapsulatedClassCreator;
+import nvinayshetty.DTOnator.DtoCreationOptions.DtoCreationOptionsFacade;
+import nvinayshetty.DTOnator.DtoCreationOptions.FieldEncapsulationOptions;
+import nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
+import nvinayshetty.DTOnator.FieldCreator.AccessModifier;
+import nvinayshetty.DTOnator.FieldCreator.FieldCreationStrategy;
+import nvinayshetty.DTOnator.FieldRepresentors.FieldRepresenterFactory;
+import nvinayshetty.DTOnator.FieldRepresentors.FieldRepresentor;
+import nvinayshetty.DTOnator.FieldRepresentors.JsonArrayRepresentor;
+import nvinayshetty.DTOnator.FieldRepresentors.JsonObjectRepresentor;
+import nvinayshetty.DTOnator.NameConventionCommands.CamelCase;
+import nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
+import nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
+import nvinayshetty.DTOnator.Utility.DtoHelper;
+import nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
+import nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
 import org.json.JSONException;
 import org.json.JSONObject;
 

@@ -17,9 +17,6 @@
 
 package test.com.nvinayshetty.DTOnator.Utility;
 
-import com.nvinayshetty.DTOnator.Utility.DtoHelper;
-import org.junit.Test;
-
 
 /**
  * Created by vinay on 1/8/15.

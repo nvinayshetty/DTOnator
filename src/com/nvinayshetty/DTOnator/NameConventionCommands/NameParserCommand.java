@@ -15,7 +15,7 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.nvinayshetty.DTOnator.NameConventionCommands;
+package nvinayshetty.DTOnator.NameConventionCommands;
 
 /**
  * Created by vinay on 2/8/15.

@@ -15,17 +15,18 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nvinayshetty.DTOnator.FieldRepresentors;
+package nvinayshetty.DTOnator.NameConventionCommands;
 
-import nvinayshetty.DTOnator.FieldCreator.AccessModifier;
+import org.apache.commons.lang.WordUtils;
 
 /**
- * Created by vinay on 12/7/15.
+ * Created by vinay on 23/1/16.
  */
-public class IntegerFieldRepresentor extends FieldRepresentor {
-    @Override
-    public String getFieldRepresentationFor(AccessModifier accessModifier, String key) {
-        return accessModifier.getModifier() + "int" + suffix(key);
+public class test {
+    public static void main(String[] args) {
+        // String string = WordUtils.capitalize("INVALID IDENTIFIER");
+        String string = WordUtils.capitalizeFully("INVALID IDENTIFIER");
+        string = WordUtils.capitalizeFully(string, new char[]{'_'});
+        System.out.println(string);
     }
-
 }

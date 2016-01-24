@@ -17,8 +17,8 @@
 
 package test.com.nvinayshetty.DTOnator.NameConventionCommands;
 
-import com.nvinayshetty.DTOnator.NameConventionCommands.NamePrefixer;
-import com.nvinayshetty.DTOnator.Utility.DtoHelper;
+import nvinayshetty.DTOnator.NameConventionCommands.NamePrefixer;
+import nvinayshetty.DTOnator.Utility.DtoHelper;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

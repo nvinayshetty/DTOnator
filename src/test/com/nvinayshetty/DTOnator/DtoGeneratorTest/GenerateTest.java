@@ -13,16 +13,19 @@
  *
  *         You should have received a copy of the GNU General Public License
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+ *//*
 
-package test.com.nvinayshetty.DTOnator.DtoGeneratorTest;
+
+package com.src.DTOnator.DtoGeneratorTest;
 
 import com.intellij.openapi.application.PathManager;
 import com.intellij.testFramework.fixtures.LightCodeInsightFixtureTestCase;
 
+*/
 /**
  * Created by vinay on 23/8/15.
- */
+ *//*
+
 public class GenerateTest extends LightCodeInsightFixtureTestCase {
     @Override
     protected String getTestDataPath() {
@@ -31,3 +34,4 @@ public class GenerateTest extends LightCodeInsightFixtureTestCase {
         return path;
     }
 }
+*/

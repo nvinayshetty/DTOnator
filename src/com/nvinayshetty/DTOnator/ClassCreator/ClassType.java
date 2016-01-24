@@ -15,7 +15,7 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.nvinayshetty.DTOnator.ClassCreator;
+package nvinayshetty.DTOnator.ClassCreator;
 
 /**
  * Created by vinay on 31/5/15.

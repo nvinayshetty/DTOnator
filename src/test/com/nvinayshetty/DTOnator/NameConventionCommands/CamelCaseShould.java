@@ -15,9 +15,9 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package test.com.nvinayshetty.DTOnator.NameConventionCommands;
+package com.nvinayshetty.DTOnator.NameConventionCommands;
 
-import com.nvinayshetty.DTOnator.NameConventionCommands.CamelCase;
+import nvinayshetty.DTOnator.NameConventionCommands.CamelCase;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

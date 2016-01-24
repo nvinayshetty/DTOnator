@@ -17,14 +17,14 @@
 
 package test.com.nvinayshetty.DTOnator.fieldRepresentors;
 
-import com.nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
-import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
-import com.nvinayshetty.DTOnator.FieldRepresentors.*;
-import com.nvinayshetty.DTOnator.NameConventionCommands.CamelCase;
-import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
-import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
-import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
-import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
+import nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
+import nvinayshetty.DTOnator.FieldCreator.AccessModifier;
+import nvinayshetty.DTOnator.FieldRepresentors.*;
+import nvinayshetty.DTOnator.NameConventionCommands.CamelCase;
+import nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
+import nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
+import nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
+import nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
 import org.jetbrains.annotations.NotNull;
 import org.junit.After;
 import org.junit.Before;

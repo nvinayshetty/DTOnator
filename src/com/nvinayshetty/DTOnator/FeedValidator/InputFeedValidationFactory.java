@@ -15,9 +15,9 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.nvinayshetty.DTOnator.FeedValidator;
+package nvinayshetty.DTOnator.FeedValidator;
 
-import com.nvinayshetty.DTOnator.DtoCreationOptions.FeedType;
+import nvinayshetty.DTOnator.DtoCreationOptions.FeedType;
 
 import javax.swing.*;
 

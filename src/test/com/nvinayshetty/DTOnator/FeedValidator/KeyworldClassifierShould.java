@@ -17,7 +17,7 @@
 
 package test.com.nvinayshetty.DTOnator.FeedValidator;
 
-import com.nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
+import nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
 import org.junit.Test;
 
 /**

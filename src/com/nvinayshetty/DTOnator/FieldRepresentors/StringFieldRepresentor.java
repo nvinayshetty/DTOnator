@@ -15,9 +15,9 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.nvinayshetty.DTOnator.FieldRepresentors;
+package nvinayshetty.DTOnator.FieldRepresentors;
 
-import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
+import nvinayshetty.DTOnator.FieldCreator.AccessModifier;
 
 /**
  * Created by vinay on 12/7/15.

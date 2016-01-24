@@ -15,9 +15,9 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.nvinayshetty.DTOnator.NameConventionCommands;
+package nvinayshetty.DTOnator.NameConventionCommands;
 
-import com.nvinayshetty.DTOnator.Utility.DtoHelper;
+import nvinayshetty.DTOnator.Utility.DtoHelper;
 import org.apache.commons.lang.WordUtils;
 
 /**
@@ -28,10 +28,13 @@ public class CamelCase implements NameParserCommand {
     public String parseFieldName(String name) {
         String capitalized = name;
         if (name.contains(" ")) {
-            capitalized = WordUtils.capitalizeFully(name, new char[]{' '});
+            capitalized = WordUtils.capitalizeFully(name);
 
         }
-        capitalized = WordUtils.capitalizeFully(capitalized, new char[]{'_'});
+        if (name.contains("_"))
+            capitalized = WordUtils.capitalizeFully(capitalized, new char[]{'_'});
+        else
+            capitalized = WordUtils.capitalizeFully(capitalized);
         String javaConvention = DtoHelper.firstetterToLowerCase(capitalized);
         String removedSpace = javaConvention.replaceAll(" ", "");
         return removedSpace.replaceAll("_", "");
@@ -46,12 +49,17 @@ public class CamelCase implements NameParserCommand {
     public boolean equals(Object o) {
         if (this == o) return true;
         CamelCase that = (CamelCase) o;
-        return o.getClass().getName().equals(that.getClass().getName());
+        return o.getClass()
+                .getName()
+                .equals(that.getClass()
+                            .getName());
 
     }
 
     @Override
     public int hashCode() {
-        return this.getClass().getName().hashCode();
+        return this.getClass()
+                   .getName()
+                   .hashCode();
     }
 }

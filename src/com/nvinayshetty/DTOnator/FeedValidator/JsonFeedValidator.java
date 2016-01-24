@@ -15,9 +15,9 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.nvinayshetty.DTOnator.FeedValidator;
+package nvinayshetty.DTOnator.FeedValidator;
 
-import com.nvinayshetty.DTOnator.Logger.ExceptionLogger;
+import nvinayshetty.DTOnator.Logger.ExceptionLogger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

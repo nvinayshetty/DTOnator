@@ -15,7 +15,7 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.nvinayshetty.DTOnator.FieldRepresentors;
+package nvinayshetty.DTOnator.FieldRepresentors;
 
 import java.util.HashMap;
 

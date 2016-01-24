@@ -15,7 +15,7 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.nvinayshetty.DTOnator.Ui;
+package nvinayshetty.DTOnator.Ui;
 
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
@@ -23,18 +23,18 @@ import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiFile;
-import com.nvinayshetty.DTOnator.ActionListener.ContextMenuMouseListener;
-import com.nvinayshetty.DTOnator.ClassCreator.ClassType;
-import com.nvinayshetty.DTOnator.DtoCreationOptions.DtoGenerationFactory;
-import com.nvinayshetty.DTOnator.DtoCreationOptions.FeedType;
-import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldEncapsulationOptions;
-import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldType;
-import com.nvinayshetty.DTOnator.FeedValidator.InputFeedValidationFactory;
-import com.nvinayshetty.DTOnator.NameConventionCommands.CamelCase;
-import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
-import com.nvinayshetty.DTOnator.NameConventionCommands.NamePrefixer;
-import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
-import com.nvinayshetty.DTOnator.nameConflictResolvers.PrefixingConflictResolverCommand;
+import nvinayshetty.DTOnator.ActionListener.ContextMenuMouseListener;
+import nvinayshetty.DTOnator.ClassCreator.ClassType;
+import nvinayshetty.DTOnator.DtoCreationOptions.DtoGenerationFactory;
+import nvinayshetty.DTOnator.DtoCreationOptions.FeedType;
+import nvinayshetty.DTOnator.DtoCreationOptions.FieldEncapsulationOptions;
+import nvinayshetty.DTOnator.DtoCreationOptions.FieldType;
+import nvinayshetty.DTOnator.FeedValidator.InputFeedValidationFactory;
+import nvinayshetty.DTOnator.NameConventionCommands.CamelCase;
+import nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
+import nvinayshetty.DTOnator.NameConventionCommands.NamePrefixer;
+import nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
+import nvinayshetty.DTOnator.nameConflictResolvers.PrefixingConflictResolverCommand;
 import org.json.JSONObject;
 
 import javax.swing.*;
