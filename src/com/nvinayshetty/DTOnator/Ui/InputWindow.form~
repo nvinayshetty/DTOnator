@@ -30,7 +30,7 @@
               <gridbag weightx="1.0" weighty="1.0"/>
             </constraints>
             <properties>
-              <text value="Crete single file with static inner classes"/>
+              <text value="Create single file with static inner classes"/>
             </properties>
           </component>
           <component id="2d0d2" class="javax.swing.JRadioButton" binding="makeFieldsPrivate" default-binding="true">
