@@ -17,12 +17,13 @@
 
 package test.com.nvinayshetty.DTOnator.fieldRepresentors;
 
-import nvinayshetty.DTOnator.FieldCreator.AccessModifier;
-import nvinayshetty.DTOnator.FieldRepresentors.JsonObjectRepresentor;
-import nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
-import nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
-import nvinayshetty.DTOnator.NameConventionCommands.NamePrefixer;
-import nvinayshetty.DTOnator.Utility.DtoHelper;
+
+import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
+import com.nvinayshetty.DTOnator.FieldRepresentors.JsonObjectRepresentor;
+import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
+import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
+import com.nvinayshetty.DTOnator.NameConventionCommands.NamePrefixer;
+import com.nvinayshetty.DTOnator.Utility.DtoHelper;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -53,7 +54,7 @@ public class JsonObjectRepresentorShould {
     @Test
     public void CreatePrivateFieldWhenAcessModifierIsPrivate() {
         fieldName = "mValid";
-        NameParserCommand nameParserCommand=NamePrefixer.prefixWith("m");
+        NameParserCommand nameParserCommand = NamePrefixer.prefixWith("m");
         HashSet<NameParserCommand> fieldNameParserCommands=new HashSet<>();
         fieldNameParserCommands.add(nameParserCommand);
         FieldNameParser nameParser=new FieldNameParser(fieldNameParserCommands);

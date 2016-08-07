@@ -15,7 +15,7 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nvinayshetty.DTOnator.Utility;
+package com.nvinayshetty.DTOnator.Utility;
 
 /**
  * Created by vinay on 9/5/15.

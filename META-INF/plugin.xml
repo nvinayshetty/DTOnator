@@ -54,7 +54,7 @@
 
     <actions>
         <!-- Add your actions here -->
-        <action id="ActionListener" class="nvinayshetty.DTOnator.ActionListener.UserActionListener"
+        <action id="ActionListener" class="com.nvinayshetty.DTOnator.ActionListener.UserActionListener"
                 text="DTO from JSON">
             <add-to-group group-id="GenerateGroup" anchor="first"/>
         </action>

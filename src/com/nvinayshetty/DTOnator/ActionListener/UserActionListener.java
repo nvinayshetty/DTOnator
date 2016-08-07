@@ -15,7 +15,7 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nvinayshetty.DTOnator.ActionListener;
+package com.nvinayshetty.DTOnator.ActionListener;
 
 import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.editor.Editor;
@@ -23,7 +23,7 @@ import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.util.PsiTreeUtil;
-import nvinayshetty.DTOnator.Ui.InputWindow;
+import com.nvinayshetty.DTOnator.Ui.InputWindow;
 
 /**
  * Created by vinay on 11/4/15.

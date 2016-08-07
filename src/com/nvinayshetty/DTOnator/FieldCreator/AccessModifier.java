@@ -15,7 +15,7 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nvinayshetty.DTOnator.FieldCreator;
+package com.nvinayshetty.DTOnator.FieldCreator;
 
 /**
  * Created by vinay on 7/6/15.

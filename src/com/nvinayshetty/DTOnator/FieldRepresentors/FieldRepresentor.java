@@ -15,15 +15,15 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nvinayshetty.DTOnator.FieldRepresentors;
+package com.nvinayshetty.DTOnator.FieldRepresentors;
 
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.openapi.project.Project;
-import nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
-import nvinayshetty.DTOnator.FieldCreator.AccessModifier;
-import nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
-import nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
+import com.nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
+import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
+import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
+import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
 
 import javax.swing.*;
 

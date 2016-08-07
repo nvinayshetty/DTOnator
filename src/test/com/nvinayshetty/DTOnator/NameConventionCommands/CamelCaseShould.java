@@ -17,7 +17,6 @@
 
 package com.nvinayshetty.DTOnator.NameConventionCommands;
 
-import nvinayshetty.DTOnator.NameConventionCommands.CamelCase;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

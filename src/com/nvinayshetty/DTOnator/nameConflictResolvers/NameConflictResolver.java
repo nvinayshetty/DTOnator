@@ -15,7 +15,7 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nvinayshetty.DTOnator.nameConflictResolvers;
+package com.nvinayshetty.DTOnator.nameConflictResolvers;
 
 import java.util.HashSet;
 import java.util.Iterator;

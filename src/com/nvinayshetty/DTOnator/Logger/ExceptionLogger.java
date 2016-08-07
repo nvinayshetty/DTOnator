@@ -15,7 +15,7 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nvinayshetty.DTOnator.Logger;
+package com.nvinayshetty.DTOnator.Logger;
 
 import javax.swing.*;
 

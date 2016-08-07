@@ -15,7 +15,7 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nvinayshetty.DTOnator.FeedValidator;
+package com.nvinayshetty.DTOnator.FeedValidator;
 
 import java.util.HashSet;
 

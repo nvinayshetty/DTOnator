@@ -15,12 +15,12 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nvinayshetty.DTOnator.DtoCreationOptions;
+package com.nvinayshetty.DTOnator.DtoCreationOptions;
 
-import nvinayshetty.DTOnator.ClassCreator.ClassCreatorStrategy;
-import nvinayshetty.DTOnator.FieldCreator.AccessModifier;
-import nvinayshetty.DTOnator.FieldCreator.FieldCreationStrategy;
-import nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
+import com.nvinayshetty.DTOnator.ClassCreator.ClassCreatorStrategy;
+import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
+import com.nvinayshetty.DTOnator.FieldCreator.FieldCreationStrategy;
+import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
 
 import java.util.EnumSet;
 import java.util.HashSet;

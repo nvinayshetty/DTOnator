@@ -15,10 +15,11 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nvinayshetty.DTOnator.NameConventionCommands;
+package com.nvinayshetty.DTOnator.NameConventionCommands;
 
-import nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
-import nvinayshetty.DTOnator.Utility.DtoHelper;
+
+import com.nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
+import com.nvinayshetty.DTOnator.Utility.DtoHelper;
 
 /**
  * Created by vinay on 12/7/15.

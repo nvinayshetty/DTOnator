@@ -15,7 +15,7 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nvinayshetty.DTOnator.ActionListener;
+package com.nvinayshetty.DTOnator.ActionListener;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;

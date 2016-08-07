@@ -15,19 +15,19 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nvinayshetty.DTOnator.DtoCreationOptions;
+package com.nvinayshetty.DTOnator.DtoCreationOptions;
 
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiFile;
-import nvinayshetty.DTOnator.ClassCreator.ClassCreationFactory;
-import nvinayshetty.DTOnator.ClassCreator.ClassType;
-import nvinayshetty.DTOnator.FeedParser.JsonDtoGenerator;
-import nvinayshetty.DTOnator.FieldCreator.AccessModifier;
-import nvinayshetty.DTOnator.FieldCreator.FieldCreationFactory;
-import nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
-import nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
+import com.nvinayshetty.DTOnator.ClassCreator.ClassCreationFactory;
+import com.nvinayshetty.DTOnator.ClassCreator.ClassType;
+import com.nvinayshetty.DTOnator.FeedParser.JsonDtoGenerator;
+import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
+import com.nvinayshetty.DTOnator.FieldCreator.FieldCreationFactory;
+import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
+import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
 import org.json.JSONObject;
 
 import java.util.EnumSet;

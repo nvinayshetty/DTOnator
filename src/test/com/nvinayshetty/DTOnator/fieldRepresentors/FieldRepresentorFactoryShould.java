@@ -17,7 +17,7 @@
 
 package test.com.nvinayshetty.DTOnator.fieldRepresentors;
 
-import nvinayshetty.DTOnator.FieldRepresentors.*;
+import com.nvinayshetty.DTOnator.FieldRepresentors.*;
 import org.junit.Before;
 import org.junit.Test;
 

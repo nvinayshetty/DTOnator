@@ -17,11 +17,12 @@
 
 package test.com.nvinayshetty.DTOnator.FieldCreator;
 
-import nvinayshetty.DTOnator.DtoCreationOptions.FieldType;
-import nvinayshetty.DTOnator.FieldCreator.FieldCreationFactory;
-import nvinayshetty.DTOnator.FieldCreator.FieldCreationStrategy;
-import nvinayshetty.DTOnator.FieldCreator.GsonFieldCreator;
-import nvinayshetty.DTOnator.FieldCreator.SimpleFieldCreator;
+
+import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldType;
+import com.nvinayshetty.DTOnator.FieldCreator.FieldCreationFactory;
+import com.nvinayshetty.DTOnator.FieldCreator.FieldCreationStrategy;
+import com.nvinayshetty.DTOnator.FieldCreator.GsonFieldCreator;
+import com.nvinayshetty.DTOnator.FieldCreator.SimpleFieldCreator;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;

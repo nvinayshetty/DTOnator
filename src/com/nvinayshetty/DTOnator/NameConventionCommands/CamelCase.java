@@ -15,9 +15,9 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nvinayshetty.DTOnator.NameConventionCommands;
+package com.nvinayshetty.DTOnator.NameConventionCommands;
 
-import nvinayshetty.DTOnator.Utility.DtoHelper;
+import com.nvinayshetty.DTOnator.Utility.DtoHelper;
 import org.apache.commons.lang.WordUtils;
 
 /**

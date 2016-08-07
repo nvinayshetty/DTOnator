@@ -17,8 +17,9 @@
 
 package test.com.nvinayshetty.DTOnator.fieldRepresentors;
 
-import nvinayshetty.DTOnator.FieldCreator.AccessModifier;
-import nvinayshetty.DTOnator.FieldRepresentors.JsonArrayRepresentor;
+
+import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
+import com.nvinayshetty.DTOnator.FieldRepresentors.JsonArrayRepresentor;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;

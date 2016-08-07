@@ -17,7 +17,7 @@
 
 package test.com.nvinayshetty.DTOnator.nameConflictResolvers;
 
-import nvinayshetty.DTOnator.nameConflictResolvers.PrefixingConflictResolverCommand;
+import com.nvinayshetty.DTOnator.nameConflictResolvers.PrefixingConflictResolverCommand;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;

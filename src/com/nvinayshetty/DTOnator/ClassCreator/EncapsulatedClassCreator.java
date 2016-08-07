@@ -15,14 +15,14 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nvinayshetty.DTOnator.ClassCreator;
+package com.nvinayshetty.DTOnator.ClassCreator;
 
 import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElementFactory;
 import com.intellij.psi.PsiField;
-import nvinayshetty.DTOnator.DtoCreationOptions.FieldEncapsulationOptions;
-import nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
+import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldEncapsulationOptions;
+import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
 
 import java.util.EnumSet;
 

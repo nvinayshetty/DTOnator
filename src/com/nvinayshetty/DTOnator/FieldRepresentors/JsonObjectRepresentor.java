@@ -15,11 +15,12 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nvinayshetty.DTOnator.FieldRepresentors;
+package com.nvinayshetty.DTOnator.FieldRepresentors;
 
-import nvinayshetty.DTOnator.FieldCreator.AccessModifier;
-import nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
-import nvinayshetty.DTOnator.Utility.DtoHelper;
+
+import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
+import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
+import com.nvinayshetty.DTOnator.Utility.DtoHelper;
 
 /**
  * Created by vinay on 12/7/15.
