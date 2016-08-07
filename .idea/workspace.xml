@@ -1,103 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="283d42db-bd28-4878-8334-6c056286dea1" name="Default" comment="Added builder for DtoCreator">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/json/Cookie.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/json/CookieList.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/json/HTTP.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/json/HTTPTokener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/json/JSON-java-master.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/json/JSONArray.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/json/JSONException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/json/JSONML.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/json/JSONObject.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/json/JSONString.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/json/JSONStringer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/json/JSONTokener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/json/JSONWriter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/json/Property.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/json/README" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/json/XML.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/json/XMLTokener.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/DtoGeneratorTest/GenerateTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/FeedValidator/KeyworldClassifierShould.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/FieldCreator/FieldCreationFactoryShould.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/NameConventionCommands/CamelCaseShould.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/NameConventionCommands/NamePrefixerShould.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/Utility/DtoHelperTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/fieldRepresentors/DoubleFieldRepresentorShould.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/fieldRepresentors/FieldRepresentorFactoryShould.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/fieldRepresentors/FieldRepresentorShould.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/fieldRepresentors/IntegerFieldRepresentorShould.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/fieldRepresentors/JsonArrayRepresentorShould.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/fieldRepresentors/JsonObjectRepresentorShould.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/fieldRepresentors/StringFieldRepresentorShould.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/nameConflictResolvers/PrefexingConflictResolverCommandShould.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/FeedValidator/testData/AfterGeneratingClassFromSimpleJsonObject.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/AbstractLayout.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/AbstractLayout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/DimensionInfo.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/DimensionInfo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/GridConstraints.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/GridConstraints.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/GridLayoutManager.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/GridLayoutManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/HorizontalInfo.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/HorizontalInfo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/LayoutState.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/LayoutState.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/Spacer.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/Spacer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/SupportCode.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/SupportCode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/Util.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/Util.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/VerticalInfo.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/VerticalInfo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$1.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$2.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$3.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$4.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$5.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$Actions.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$Actions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/UserActionListener.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/UserActionListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/ClassCreationFactory$1.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/ClassCreationFactory$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/ClassCreationFactory.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/ClassCreationFactory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/ClassType.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/ClassType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/EncapsulatedClassCreator.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/EncapsulatedClassCreator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/PublicClassCreator.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/PublicClassCreator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/StaticClassCreator.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/StaticClassCreator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/DtoGenerationFactory$1.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/DtoGenerationFactory$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/DtoGenerationFactory.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/DtoGenerationFactory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/FeedType.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/FeedType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/FieldEncapsulationOptions.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/FieldEncapsulationOptions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/FieldType.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/FieldType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedParser/JsonDtoGenerator$1.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedParser/JsonDtoGenerator$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedParser/JsonDtoGenerator$JsonDtoBuilder.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedParser/JsonDtoGenerator$JsonDtoBuilder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedParser/JsonDtoGenerator.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedParser/JsonDtoGenerator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedValidator/InputFeedValidationFactory$1.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedValidator/InputFeedValidationFactory$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedValidator/InputFeedValidationFactory.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedValidator/InputFeedValidationFactory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/AccessModifier.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/AccessModifier.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/FieldCreationFactory$1.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/FieldCreationFactory$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/FieldCreationFactory.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/FieldCreationFactory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/GsonFieldCreator.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/GsonFieldCreator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/SimpleFieldCreator.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/SimpleFieldCreator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/BooleanFieldRepresentor.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/BooleanFieldRepresentor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/DoubleFieldRepresentor.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/DoubleFieldRepresentor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/FieldRepresentor$1.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/FieldRepresentor$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/FieldRepresentor$2.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/FieldRepresentor$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/FieldRepresentor.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/FieldRepresentor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/IntegerFieldRepresentor.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/IntegerFieldRepresentor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/JsonArrayRepresentor.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/JsonArrayRepresentor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/JsonObjectRepresentor.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/JsonObjectRepresentor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/StringFieldRepresentor.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/StringFieldRepresentor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/NameConventionCommands/CamelCase.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/NameConventionCommands/CamelCase.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/NameConventionCommands/NamePrefixer.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/NameConventionCommands/NamePrefixer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$1.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$2.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$3.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$4.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$5.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$6.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/fieldRepresentors/BooleanFieldRepresentorShould.class" afterPath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/fieldRepresentors/BooleanFieldRepresentorShould.class" />
+    <list default="true" id="283d42db-bd28-4878-8334-6c056286dea1" name="Default" comment="basic cleanup">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/DTOnator.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/DTOnator.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/LICENSE.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/META-INF/plugin.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/Screenshot/UI.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/Screenshot/camelCase.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/Screenshot/convention.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/Screenshot/dto_from_json.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/Screenshot/generate.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/Screenshot/getterSetter.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/Screenshot/output.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/Screenshot/separate_file.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/Screenshot/single_file.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/AbstractLayout.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/DimensionInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/GridConstraints.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/GridLayoutManager.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/HorizontalInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/LayoutState.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/Spacer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/SupportCode.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/Util.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/intellij/uiDesigner/core/VerticalInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$5.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener$Actions.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/ContextMenuMouseListener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ActionListener/UserActionListener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/ClassCreationFactory$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/ClassCreationFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/ClassCreatorStrategy.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/ClassType.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/EncapsulatedClassCreator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/PublicClassCreator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/ClassCreator/StaticClassCreator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/DtoCreationOptionsFacade.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/DtoGenerationFactory$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/DtoGenerationFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/FeedType.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/FieldEncapsulationOptions.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/DtoCreationOptions/FieldType.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedParser/JsonDtoGenerator$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedParser/JsonDtoGenerator$JsonDtoBuilder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedParser/JsonDtoGenerator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedValidator/FeedValidator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedValidator/InputFeedValidationFactory$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedValidator/InputFeedValidationFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedValidator/JsonFeedValidator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FeedValidator/KeywordClassifier.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/AccessModifier.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/FieldCreationFactory$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/FieldCreationFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/FieldCreationStrategy.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/GsonFieldCreator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldCreator/SimpleFieldCreator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/BooleanFieldRepresentor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/DoubleFieldRepresentor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/FieldRepresenterFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/FieldRepresentor$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/FieldRepresentor$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/FieldRepresentor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/IntegerFieldRepresentor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/JsonArrayRepresentor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/JsonObjectRepresentor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/FieldRepresentors/StringFieldRepresentor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Logger/ExceptionLogger.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/NameConventionCommands/CamelCase.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/NameConventionCommands/FieldNameParser.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/NameConventionCommands/NameParserCommand.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/NameConventionCommands/NamePrefixer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$5.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow$6.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Ui/InputWindow.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/Utility/DtoHelper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/nameConflictResolvers/NameConflictResolver.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/nameConflictResolvers/NameConflictResolverCommand.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/com/nvinayshetty/DTOnator/nameConflictResolvers/PrefixingConflictResolverCommand.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/dtonator.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/dtonator.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/module_dtonator.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/src/test/com/nvinayshetty/DTOnator/testData/simpleJsonObject.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/fieldRepresentors/BooleanFieldRepresentorShould.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/testData/Response.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DTOnator/test/com/nvinayshetty/DTOnator/testData/simpleJsonObject.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org/json/CDL.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org/json/Cookie.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org/json/CookieList.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org/json/HTTP.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org/json/HTTPTokener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org/json/JSON-java-master.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org/json/JSONArray.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org/json/JSONException.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org/json/JSONML.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org/json/JSONObject$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org/json/JSONObject$Null.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org/json/JSONObject.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org/json/JSONString.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org/json/JSONStringer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org/json/JSONTokener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org/json/JSONWriter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org/json/Property.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org/json/README" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org/json/XML.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/org/org/json/XMLTokener.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/META-INF/plugin.xml" afterPath="$PROJECT_DIR$/out/production/DTOnator/META-INF/plugin.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/dtonator.xml" afterPath="$PROJECT_DIR$/out/production/DTOnator/dtonator.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DTOnator/module_dtonator.xml" afterPath="$PROJECT_DIR$/out/production/DTOnator/module_dtonator.xml" />
     </list>
     <ignored path="DTOnator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -353,20 +372,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DTOnator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DTOnator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Screenshot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -379,7 +384,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="JUnit.test.com.nvinayshetty.DTOnator in DTOnator">
+  <component name="RunManager" selected="Plugin.Plugin">
     <configuration default="false" name="test.com.nvinayshetty.DTOnator in DTOnator" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -941,11 +946,21 @@
       <option name="project" value="LOCAL" />
       <updated>1470593760779</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="basic cleanup">
+      <created>1470594642061</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1470594642061</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TestHistory">
     <history-entry file="test_com_nvinayshetty_DTOnator_in_DTOnator - 2016.08.07 at 23h 55m 32s.xml">
+      <configuration name="test.com.nvinayshetty.DTOnator in DTOnator" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="test_com_nvinayshetty_DTOnator_in_DTOnator - 2016.08.08 at 00h 01m 16s.xml">
       <configuration name="test.com.nvinayshetty.DTOnator in DTOnator" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -1040,6 +1055,10 @@
     <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
       <collection />
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="basic cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="basic cleanup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
