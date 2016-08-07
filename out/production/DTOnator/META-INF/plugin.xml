@@ -18,8 +18,8 @@
 <idea-plugin version="2">
     <id>com.nvinayshetty.DTOnator</id>
     <name>DTO generator</name>
-    <version>V0.45</version>
-    <vendor email="nvinayshetty@gmail.com" url="http://winnowcraft.wordpress.com">N Vinay shetty</vendor>
+    <version>V0.48</version>
+    <vendor email="nvinayshetty@gmail.com">N Vinay shetty</vendor>
 
     <description><![CDATA[
       Data Transfer Object(DTO) generator that generates Java classes from the given feed.<br>
@@ -45,31 +45,17 @@
     </change-notes>
 
     <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
-    <idea-version since-build="131"/>
+    <idea-version since-build="107.118"/>
 
     <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
          on how to target different products -->
      <!--uncomment to enable plugin in all products-->
     <depends>com.intellij.modules.lang</depends>
-    <depends>com.intellij.modules.java</depends>
-
-    <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
-    </extensions>
-
-    <application-components>
-        <!-- Add your application components here -->
-    </application-components>
-
-    <project-components>
-        <!-- Add your project components here -->
-    </project-components>
 
     <actions>
         <!-- Add your actions here -->
         <action id="ActionListener" class="com.nvinayshetty.DTOnator.ActionListener.UserActionListener"
-                text="DTO from JSON"
-                description="generates Data Transfer Object(DTO) from given JSON feed">
+                text="DTO from JSON">
             <add-to-group group-id="GenerateGroup" anchor="first"/>
         </action>
     </actions>
