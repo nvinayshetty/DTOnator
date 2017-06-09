@@ -39,6 +39,7 @@ import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
 import com.nvinayshetty.DTOnator.Utility.DtoHelper;
 import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
 import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -50,7 +51,6 @@ import java.util.Iterator;
  * Created by vinay on 19/4/15.
  */
 public class JsonDtoGenerator extends WriteCommandAction.Simple {
-
 
     private static JsonDtoBuilder jsonDtoBuilder;
     final CamelCase camelCase = new CamelCase();
@@ -136,7 +136,7 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
                 ((JsonObjectRepresentor) fieldRepresentor).setNameParser(nameParser);
             }
             if (fieldRepresentor instanceof JsonArrayRepresentor) {
-                Object jsonArrayObject = json.getJSONArray(key).get(0);
+                Object jsonArrayObject = getObjectWithMostNumberOfKeys(json, key);
                 String simpleName = jsonArrayObject.getClass().getSimpleName();
                 if (jsonArrayObject instanceof JSONObject)
                     simpleName = key;
@@ -152,6 +152,19 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
         return fieldRepresentation + "\n";
     }
 
+    private Object getObjectWithMostNumberOfKeys(JSONObject json, String key) {
+        JSONArray jsonArray = json.getJSONArray(key);
+        JSONObject objectWithMaxKeys= (JSONObject) jsonArray.get(0);
+        int length = jsonArray.length();
+        for(int i=0;i<length;i++){
+            JSONObject objectAtIndexPosition = (JSONObject) jsonArray.get(i);
+            if(objectAtIndexPosition.keySet().size()>objectWithMaxKeys.keySet().size())
+                objectWithMaxKeys=objectAtIndexPosition;
+
+        }
+        return objectWithMaxKeys;
+    }
+
     private void generateClassForObject(JSONObject json, String key, FieldRepresentor fieldRepresentor) throws JSONException {
 
         if (fieldRepresentor instanceof JsonObjectRepresentor) {
@@ -160,7 +173,7 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
                 key = camelCase.parseFieldName(key);
             addClass(key, jsonObject);
         } else if (fieldRepresentor instanceof JsonArrayRepresentor) {
-            Object jsonArrayObject = json.getJSONArray(key).get(0);
+            Object jsonArrayObject = getObjectWithMostNumberOfKeys(json, key);
             if (jsonArrayObject instanceof JSONObject) {
                 if (nameParserCommands.contains(camelCase))
                     key = camelCase.parseFieldName(key);
