@@ -206,12 +206,12 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
             return this;
         }
 
-        public JsonDtoBuilder setFeildNameParser(HashSet<NameParserCommand> feildNameParser) {
+        public JsonDtoBuilder setFieldNameParser(HashSet<NameParserCommand> feildNameParser) {
             this.feildNameParser = feildNameParser;
             return this;
         }
 
-        public JsonDtoBuilder setNameConflictResolverr(HashSet<NameConflictResolverCommand> nameConflictResolverCommands) {
+        public JsonDtoBuilder setNameConflictResolver(HashSet<NameConflictResolverCommand> nameConflictResolverCommands) {
             this.nameConflictResolverCommands = nameConflictResolverCommands;
             return this;
         }

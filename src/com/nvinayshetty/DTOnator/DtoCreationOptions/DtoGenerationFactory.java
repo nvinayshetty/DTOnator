@@ -51,8 +51,8 @@ public class DtoGenerationFactory {
                                        .setClassUnderCaret(psiClass)
                                        .setDtoCreationOptionsFacade(dtoCreationOptionsFacade)
                                        .setJson(validFeed)
-                                       .setFeildNameParser(fieldNameParser)
-                                       .setNameConflictResolverr(nameConflictResolverCommands)
+                                       .setFieldNameParser(fieldNameParser)
+                                       .setNameConflictResolver(nameConflictResolverCommands)
                                        .createJsonDtoGenerator();
         }
         return null;
