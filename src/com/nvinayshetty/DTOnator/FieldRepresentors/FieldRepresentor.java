@@ -17,6 +17,7 @@
 
 package com.nvinayshetty.DTOnator.FieldRepresentors;
 
+import com.google.gson.annotations.Expose;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.openapi.project.Project;
@@ -24,6 +25,7 @@ import com.nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
 import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
 import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
 import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 
@@ -53,6 +55,15 @@ public abstract class FieldRepresentor {
 
     public final String gsonFieldRepresentationTemplate(AccessModifier AccessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
         return getGsonAnnotationFor(key) + fieldCreationTemplate(AccessModifier, key, parser, nameConflictResolver, keywordClassifier);
+    }
+
+    public final String gsonFieldWithExposeAnnotationTemplate(AccessModifier AccessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
+        return getExposeAnnotation() +"\n"+getGsonAnnotationFor(key) + fieldCreationTemplate(AccessModifier, key, parser, nameConflictResolver, keywordClassifier);
+    }
+
+    @NotNull
+    private String getExposeAnnotation() {
+        return "@com.google.gson.annotations.Expose";
     }
 
     protected abstract String getFieldRepresentationFor(AccessModifier AccessModifier, String key);

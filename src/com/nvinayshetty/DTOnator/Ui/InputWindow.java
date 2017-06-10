@@ -61,6 +61,7 @@ public class InputWindow extends JFrame {
     private JRadioButton gsonRadioButton;
     private JRadioButton provideSetter;
     private JRadioButton provideGetter;
+    private JRadioButton exposeRadioButton;
 
     private ButtonGroup classTypeButtonGroup;
     private ButtonGroup feedTypeButtonGroup;
@@ -104,6 +105,7 @@ public class InputWindow extends JFrame {
         setEncapsulationOptionsVisible(false);
         gsonRadioButton.setSelected(true);
         creteSingleFile.setSelected(true);
+        exposeRadioButton.setVisible(true);
         OnCOnflictPrefixFieldNameRadioButton.setSelected(true);
         onConflictprefixString.setText("m");
     }
@@ -140,6 +142,22 @@ public class InputWindow extends JFrame {
                 } else {
                     setEncapsulationOptionsVisible(false);
                 }
+            }
+        });
+        gsonRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(gsonRadioButton.isSelected()){
+                    exposeRadioButton.setVisible(true);
+                }else
+                    exposeRadioButton.setVisible(false);
+            }
+        });
+        pojoRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(pojoRadioButton.isSelected())
+                    exposeRadioButton.setVisible(false);
             }
         });
     }
@@ -207,6 +225,8 @@ public class InputWindow extends JFrame {
     private FieldType getFieldTYpe() {
         if (pojoRadioButton.isSelected())
             return FieldType.POJO;
+        if(exposeRadioButton.isSelected())
+            return FieldType.GSON_EXPOSE;
         else
             return FieldType.GSON;
     }

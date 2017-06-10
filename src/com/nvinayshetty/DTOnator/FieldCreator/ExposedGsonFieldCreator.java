@@ -17,24 +17,17 @@
 
 package com.nvinayshetty.DTOnator.FieldCreator;
 
-
-import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldType;
+import com.nvinayshetty.DTOnator.FieldRepresentors.FieldRepresentor;
+import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
+import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
 
 /**
- * Created by vinay on 7/6/15.
+ * Created by vinayaprasadn on 10/6/17.
  */
-public class FieldCreationFactory {
-    public static FieldCreationStrategy getFieldCreatorFor(FieldType fieldType) {
-        switch (fieldType) {
-            case GSON:
-                return new GsonFieldCreator();
-            case POJO:
-                return new SimpleFieldCreator();
-            case GSON_EXPOSE:
-                return new ExposedGsonFieldCreator();
+public class ExposedGsonFieldCreator implements FieldCreationStrategy {
+    @Override
+    public String getFieldFor(FieldRepresentor type, AccessModifier accessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
+        return type.gsonFieldWithExposeAnnotationTemplate(accessModifier, key, parser, nameConflictResolver);
 
-
-        }
-        return null;
     }
 }
