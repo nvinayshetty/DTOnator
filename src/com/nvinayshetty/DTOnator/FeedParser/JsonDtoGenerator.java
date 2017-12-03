@@ -42,6 +42,7 @@ import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverComma
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -54,19 +55,18 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
 
     private static JsonDtoBuilder jsonDtoBuilder;
     final CamelCase camelCase = new CamelCase();
-    FieldRepresentor fieldRepresentor;
     FieldCreationStrategy fieldCreationStrategy;
     AccessModifier accessModifier;
     FieldNameParser nameParser;
     NameConflictResolver nameConflictResolver;
     private PsiClass classUnderCaret;
-    private JSONObject json;
+    private String json;
     private PsiElementFactory psiFactory;
     private DtoCreationOptionsFacade dtoCreationOptionsFacade;
     private HashSet<NameParserCommand> nameParserCommands;
     private HashSet<NameConflictResolverCommand> nameConflictResolverCommandses;
 
-    private JsonDtoGenerator(JsonDtoBuilder builder) {
+    JsonDtoGenerator(JsonDtoBuilder builder) {
         super(builder.classUnderCaret.getProject(), builder.classUnderCaret.getContainingFile());
         psiFactory = JavaPsiFacade.getElementFactory(builder.classUnderCaret.getProject());
         json = builder.json;
@@ -90,7 +90,7 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
         addFieldsToTheClassUnderCaret(json);
     }
 
-    private void addFieldsToTheClassUnderCaret(JSONObject json) {
+    private void addFieldsToTheClassUnderCaret(String json) {
         PsiClass psiClass = generateDto(json, classUnderCaret);
         JavaCodeStyleManager styleManager = JavaCodeStyleManager.getInstance(psiClass.getProject());
         styleManager.optimizeImports(psiClass.getContainingFile());
@@ -105,17 +105,29 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
             className = DtoHelper.firstetterToUpperCase(className);
         }
         PsiClass aClass = psiFactory.createClass(className);
-        generateDto(json, aClass);
+        generateDto(json.toString(), aClass);
         dtoCreationOptionsFacade.getClassAdderStrategy().addClass(aClass);
     }
 
-    private PsiClass generateDto(JSONObject json, PsiClass aClass) {
-        Iterator<?> keysIterator = json.keys();
-        while (keysIterator.hasNext()) {
-            String key = (String) keysIterator.next();
-            String filedStr = getClassFields(json, key);
-            PsiField fieldFromText = psiFactory.createFieldFromText(filedStr, aClass);
-            aClass.add(fieldFromText);
+    private PsiClass generateDto(String input, PsiClass aClass) {
+        JSONTokener jsonTokener = new JSONTokener(input);
+        Object object = jsonTokener.nextValue();
+        if (object instanceof JSONObject) {
+            JSONObject json = (JSONObject) object;
+            Iterator<String> keysIterator = json.keys();
+            while (keysIterator.hasNext()) {
+                String key = keysIterator.next();
+                String filedStr = getFieldsForJson(json, key);
+                PsiField fieldFromText = psiFactory.createFieldFromText(filedStr, aClass);
+                aClass.add(fieldFromText);
+                Object jsonObject = json.get(key);
+                if (jsonObject instanceof JSONObject) {
+                    generateClassForObject((JSONObject) jsonObject, key);
+                }
+            }
+        }
+        if (object instanceof JSONArray) {
+
         }
         if (dtoCreationOptionsFacade.getEncapsulationOptionses().contains(FieldEncapsulationOptions.PROVIDE_PRIVATE_FIELD)) {
             aClass = new EncapsulatedClassCreator(dtoCreationOptionsFacade.getEncapsulationOptionses(), nameParser).getClassWithEncapsulatedFileds(aClass);
@@ -124,103 +136,102 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
     }
 
 
-    private String getClassFields(JSONObject json, String key) {
+    private String getFieldsForJson(JSONObject json, String key) {
         String fieldRepresentation = "";
-        try {
-            Object object = json.get(key);
-            String dataType = object.getClass().getSimpleName();
-
-            fieldRepresentor = new FieldRepresenterFactory().convert(dataType);
-            fieldRepresentor.setProject(classUnderCaret.getProject());
-            if (fieldRepresentor instanceof JsonObjectRepresentor) {
-                ((JsonObjectRepresentor) fieldRepresentor).setNameParser(nameParser);
-            }
-            if (fieldRepresentor instanceof JsonArrayRepresentor) {
-                Object jsonArrayObject = getObjectWithMostNumberOfKeys(json, key);
-                String simpleName = jsonArrayObject.getClass().getSimpleName();
-                if (jsonArrayObject instanceof JSONObject)
-                    simpleName = key;
-                if (nameParserCommands.contains(camelCase))
-                    simpleName = camelCase.parseFieldName(simpleName);
-                ((JsonArrayRepresentor) fieldRepresentor).setDataType(simpleName);
-            }
-            fieldRepresentation = fieldCreationStrategy.getFieldFor(fieldRepresentor, accessModifier, key, nameParser, nameConflictResolver);
-            generateClassForObject(json, key, fieldRepresentor);
-        } catch (JSONException e) {
-            e.printStackTrace();
+        Object object = json.get(key);
+        String dataType = object.getClass().getSimpleName();
+        FieldRepresentor fieldRepresentor = new FieldRepresenterFactory().convert(dataType);
+        fieldRepresentor.setProject(classUnderCaret.getProject());
+        if (fieldRepresentor instanceof JsonObjectRepresentor) {
+            ((JsonObjectRepresentor) fieldRepresentor).setNameParser(nameParser);
         }
+        if (fieldRepresentor instanceof JsonArrayRepresentor) {
+            String dataTypeForList = key;
+
+            JSONArray object1 = (JSONArray) object;
+            int depth = getDepth(object1);
+            if (isPrimitiveList(object1, depth)) {
+                dataTypeForList = getPrimitiveName(depth, object1);
+            } else {
+                //Todo:if depth>0
+                JSONObject objectWithMostNumberOfKeys = getObjectWithMostNumberOfKeys(object1);
+                generateClassForObject(objectWithMostNumberOfKeys, key);
+
+            }
+            ((JsonArrayRepresentor) fieldRepresentor).setDepth(depth);
+            ((JsonArrayRepresentor) fieldRepresentor).setDataType(dataTypeForList);
+        }
+        fieldRepresentation = fieldCreationStrategy.getFieldFor(fieldRepresentor, accessModifier, key, nameParser, nameConflictResolver);
         return fieldRepresentation + "\n";
     }
 
-    private Object getObjectWithMostNumberOfKeys(JSONObject json, String key) {
-        JSONArray jsonArray = json.getJSONArray(key);
-        JSONObject objectWithMaxKeys= (JSONObject) jsonArray.get(0);
-        int length = jsonArray.length();
-        for(int i=0;i<length;i++){
-            JSONObject objectAtIndexPosition = (JSONObject) jsonArray.get(i);
-            if(objectAtIndexPosition.keySet().size()>objectWithMaxKeys.keySet().size())
-                objectWithMaxKeys=objectAtIndexPosition;
 
+    private String getPrimitiveName(int depth, JSONArray jsonArray) {
+        Object object = jsonArray.get(0);
+        for (int i = 1; i < depth; i++) {
+            JSONArray jArray = (JSONArray) object;
+            object = jArray.get(0);
         }
-        return objectWithMaxKeys;
+        if (object != null)
+            return object.getClass().getSimpleName();
+        else return "String";
     }
 
-    private void generateClassForObject(JSONObject json, String key, FieldRepresentor fieldRepresentor) throws JSONException {
 
-        if (fieldRepresentor instanceof JsonObjectRepresentor) {
-            JSONObject jsonObject = json.getJSONObject(key);
-            if (nameParserCommands.contains(camelCase))
-                key = camelCase.parseFieldName(key);
-            addClass(key, jsonObject);
-        } else if (fieldRepresentor instanceof JsonArrayRepresentor) {
-            Object jsonArrayObject = getObjectWithMostNumberOfKeys(json, key);
-            if (jsonArrayObject instanceof JSONObject) {
-                if (nameParserCommands.contains(camelCase))
-                    key = camelCase.parseFieldName(key);
-                addClass(key, (JSONObject) jsonArrayObject);
+    private JSONObject getObjectWithMostNumberOfKeys(JSONArray jsonArray) {
+       /* if (jsonArray.length() == 0)
+            return new JSONObject("{}");*/
+        Object object = jsonArray.get(0);
+        if (object instanceof JSONObject) {
+            JSONObject objectWithMaxKeys = (JSONObject) object;
+            int length = jsonArray.length();
+            for (int i = 0; i < length; i++) {
+                JSONObject objectAtIndexPosition = (JSONObject) jsonArray.get(i);
+                if (objectAtIndexPosition.keySet().size() > objectWithMaxKeys.keySet().size())
+                    objectWithMaxKeys = objectAtIndexPosition;
+
             }
-
-        }
-    }
-
-
-    public static class JsonDtoBuilder {
-        private JSONObject json;
-        private PsiClass classUnderCaret;
-        private DtoCreationOptionsFacade dtoCreationOptionsFacade;
-        private HashSet<NameConflictResolverCommand> nameConflictResolverCommands;
-        private HashSet<NameParserCommand> feildNameParser;
-
-        public JsonDtoBuilder setJson(JSONObject json) {
-            this.json = json;
-            return this;
-        }
-
-        public JsonDtoBuilder setClassUnderCaret(PsiClass classUnderCaret) {
-            this.classUnderCaret = classUnderCaret;
-            return this;
-        }
-
-        public JsonDtoBuilder setDtoCreationOptionsFacade(DtoCreationOptionsFacade dtoCreationOptionsFacade) {
-            this.dtoCreationOptionsFacade = dtoCreationOptionsFacade;
-            return this;
-        }
-
-        public JsonDtoBuilder setFieldNameParser(HashSet<NameParserCommand> feildNameParser) {
-            this.feildNameParser = feildNameParser;
-            return this;
-        }
-
-        public JsonDtoBuilder setNameConflictResolver(HashSet<NameConflictResolverCommand> nameConflictResolverCommands) {
-            this.nameConflictResolverCommands = nameConflictResolverCommands;
-            return this;
-        }
-
-        public JsonDtoGenerator createJsonDtoGenerator() {
-            return new JsonDtoGenerator(this);
+            return objectWithMaxKeys;
+        } else {
+            JSONArray jArray = (JSONArray) object;
+            return getObjectWithMostNumberOfKeys(jArray);
         }
 
     }
 
+    private int getDepth(JSONArray jsonArray) {
+        int depth = 0;
+        if (jsonArray.length() == 0)
+            return 0;
+        while (true) {
+            Object object = jsonArray.get(0);
+            depth++;
+            if (object instanceof JSONArray) {
+                JSONArray jArray = (JSONArray) object;
+                return depth + getDepth(jArray);
+            } else {
+                return depth;
+            }
+        }
+    }
 
+    private void generateClassForObject(JSONObject jsonObject, String key) throws JSONException {
+        if (nameParserCommands.contains(camelCase))
+            key = camelCase.parseFieldName(key);
+        addClass(key, jsonObject);
+
+    }
+
+    public boolean isPrimitiveList(JSONArray jsonArray, int depth) {
+        //Todo:what if empty array
+        Object object = jsonArray.get(0);
+        for (int i = 1; i < depth; i++) {
+            JSONArray jsonObject = (JSONArray) object;
+            object = jsonObject.get(0);
+        }
+        if (object != null && !(object instanceof JSONObject) && !(object instanceof JSONArray))
+            return true;
+
+        return false;
+    }
 }

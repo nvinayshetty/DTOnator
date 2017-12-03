@@ -35,7 +35,6 @@ import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
 import com.nvinayshetty.DTOnator.NameConventionCommands.NamePrefixer;
 import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
 import com.nvinayshetty.DTOnator.nameConflictResolvers.PrefixingConflictResolverCommand;
-import org.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -147,16 +146,16 @@ public class InputWindow extends JFrame {
         gsonRadioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(gsonRadioButton.isSelected()){
+                if (gsonRadioButton.isSelected()) {
                     exposeRadioButton.setVisible(true);
-                }else
+                } else
                     exposeRadioButton.setVisible(false);
             }
         });
         pojoRadioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(pojoRadioButton.isSelected())
+                if (pojoRadioButton.isSelected())
                     exposeRadioButton.setVisible(false);
             }
         });
@@ -205,9 +204,8 @@ public class InputWindow extends JFrame {
             ClassType classType = getClassType();
             EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions = getFieldEncapsulationOptions();
             PsiFile containingFile = mClass.getContainingFile();
-            Object validFeed = validator.getValidFeed();
-            JSONObject jsonObject = (JSONObject) validFeed;
-            WriteCommandAction writeAction = DtoGenerationFactory.getDtoGeneratorFor(getFeedType(), classType, getFieldTYpe(), fieldEncapsulationOptions, project, containingFile, jsonObject, mClass, nameConflictResolverCommands, fieldNameParser);
+            String validFeed = validator.getValidFeed();
+            WriteCommandAction writeAction = DtoGenerationFactory.getDtoGeneratorFor(getFeedType(), classType, getFieldTYpe(), fieldEncapsulationOptions, project, containingFile, validFeed, mClass, nameConflictResolverCommands, fieldNameParser);
             writeAction.execute();
         }
     }
@@ -225,7 +223,7 @@ public class InputWindow extends JFrame {
     private FieldType getFieldTYpe() {
         if (pojoRadioButton.isSelected())
             return FieldType.POJO;
-        if(exposeRadioButton.isSelected())
+        if (exposeRadioButton.isSelected())
             return FieldType.GSON_EXPOSE;
         else
             return FieldType.GSON;

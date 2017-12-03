@@ -17,10 +17,10 @@
 
 package com.nvinayshetty.DTOnator.FeedValidator;
 
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import com.nvinayshetty.DTOnator.Logger.ExceptionLogger;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import javax.swing.*;
 
@@ -28,44 +28,42 @@ import javax.swing.*;
  * Created by vinay on 30/5/15.
  */
 public class JsonFeedValidator implements FeedValidator {
-    JSONObject json = null;
+    private String input;
+
 
     @Override
     public boolean isValidFeed(String inputFeed, JScrollPane exceptionLoggerPane, JLabel exceptionLabel) {
-        JSONException exception = null;
-        boolean isVallid = true;
         try {
-            json = new JSONObject(inputFeed);
-        } catch (JSONException ex) {
-            exception = ex;
-            isVallid = false;
-            try {
-                JSONArray jsonArray = new JSONArray(inputFeed);
-                json = (JSONObject) jsonArray.get(0);
-                isVallid = true;
-                exception = null;
-            } catch (JSONException ex1) {
-                exception = ex;
-                isVallid = false;
-            }
-            if (exception != null)
-                showAlert(exceptionLoggerPane, exceptionLabel, exception);
+            this.input = inputFeed;
+            JsonParser parser = new JsonParser();
+            parser.parse(inputFeed);
+            return true;
+        } catch (JsonSyntaxException jse) {
+            System.out.println("Not a valid Json String:" + jse.getMessage());
+            showAlert(exceptionLoggerPane, exceptionLabel, jse);
+            return false;
         }
-        return isVallid;
+
     }
 
-    private void showAlert(JScrollPane exceptionLoggerPane, JLabel exceptionLabel, JSONException ex1) {
+
+    public boolean containesEmptyJsonList(String jsonString){
+        JSONTokener jsonTokener = new JSONTokener(input);
+        Object object = jsonTokener.nextValue();
+        return false;
+    }
+    private void showAlert(JScrollPane exceptionLoggerPane, JLabel exceptionLabel, JsonSyntaxException ex) {
         exceptionLoggerPane.setVisible(true);
         exceptionLabel.setVisible(true);
-        new ExceptionLogger(exceptionLabel).Log(ex1);
+        new ExceptionLogger(exceptionLabel).Log(ex);
         exceptionLoggerPane.invalidate();
         exceptionLoggerPane.validate();
         exceptionLoggerPane.repaint();
     }
 
     @Override
-    public Object getValidFeed() {
-        return json;
+    public String getValidFeed() {
+        return input;
     }
 
 

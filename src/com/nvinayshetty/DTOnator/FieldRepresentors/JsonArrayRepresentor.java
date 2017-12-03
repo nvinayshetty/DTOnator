@@ -26,6 +26,7 @@ import com.nvinayshetty.DTOnator.Utility.DtoHelper;
  */
 public class JsonArrayRepresentor extends FieldRepresentor {
     private String dataType;
+    private int depth;
 
     protected static String getGsonAnnotationFor(String key) {
         return GSON_ANNOTATION_PREFIX + key + ANNOTATION_SUFFIX;
@@ -37,12 +38,29 @@ public class JsonArrayRepresentor extends FieldRepresentor {
 
     @Override
     public String getFieldRepresentationFor(AccessModifier accessModifier, String key) {
-        return accessModifier.getModifier() + "java.util.List<" + DtoHelper.firstetterToUpperCase(dataType) + ">" + suffix(key);
 
+        return accessModifier.getModifier() + "java.util.List<" + getSimpleNameForList(dataType) + ">" + suffix(key);
+
+    }
+
+    private String getSimpleNameForList(String simpleName) {
+
+        String name = "";
+        for (int i = 1; i < depth; i++) {
+            name += "java.util.List<";
+        }
+        name += DtoHelper.firstetterToUpperCase(simpleName);
+        for (int i = 1; i < depth; i++) {
+            name += ">";
+        }
+        return name;
     }
 
     public String getGsonFieldRepresentationFor(AccessModifier AccessModifier, String key) {
         return getGsonAnnotationFor(key) + getFieldRepresentationFor(AccessModifier, key);
     }
 
+    public void setDepth(int depth) {
+        this.depth = depth;
+    }
 }

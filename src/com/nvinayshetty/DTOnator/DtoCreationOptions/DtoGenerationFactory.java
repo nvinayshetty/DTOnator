@@ -37,7 +37,7 @@ import java.util.HashSet;
  * Created by vinay on 17/5/15.
  */
 public class DtoGenerationFactory {
-    public static WriteCommandAction getDtoGeneratorFor(FeedType type, ClassType classType, FieldType fieldType, EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions, Project project, PsiFile psiFile, JSONObject validFeed, PsiClass psiClass, HashSet<NameConflictResolverCommand> nameConflictResolverCommands, HashSet<NameParserCommand> fieldNameParser) {
+    public static WriteCommandAction getDtoGeneratorFor(FeedType type, ClassType classType, FieldType fieldType, EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions, Project project, PsiFile psiFile, String validFeed, PsiClass psiClass, HashSet<NameConflictResolverCommand> nameConflictResolverCommands, HashSet<NameParserCommand> fieldNameParser) {
         AccessModifier accessModifier = null;
         if (fieldEncapsulationOptions.contains(FieldEncapsulationOptions.PROVIDE_PRIVATE_FIELD))
             accessModifier = AccessModifier.PRIVATE;

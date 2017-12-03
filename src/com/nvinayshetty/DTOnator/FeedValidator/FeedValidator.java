@@ -26,5 +26,5 @@ public interface FeedValidator {
 
     boolean isValidFeed(String inputFeed, JScrollPane exceptionLoggerPane, JLabel label);
 
-    Object getValidFeed();
+    String getValidFeed();
 }

@@ -44,7 +44,7 @@ public class InputFeedValidationFactory implements FeedValidator {
     }
 
     @Override
-    public Object getValidFeed() {
+    public String getValidFeed() {
         return feedValidator.getValidFeed();
     }
 }

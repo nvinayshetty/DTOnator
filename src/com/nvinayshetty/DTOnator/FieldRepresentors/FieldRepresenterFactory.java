@@ -37,15 +37,13 @@ public class FieldRepresenterFactory {
         dataTypeToDataObjectRepresentor.put("Double", doubleFieldRepresentor);
         dataTypeToDataObjectRepresentor.put("JSONObject", jsonObjectRepresentor);
         dataTypeToDataObjectRepresentor.put("JSONArray", jsonArrayRepresentor);
+        dataTypeToDataObjectRepresentor.put("String", stringFieldRepresentor);
     }
 
     public FieldRepresentor convert(String type) {
         init();
-        if (dataTypeToDataObjectRepresentor.containsKey(type)) {
-            return dataTypeToDataObjectRepresentor.get(type);
-        } else {
-            return new StringFieldRepresentor();
-        }
+        return dataTypeToDataObjectRepresentor.get(type);
+
     }
 
 }
