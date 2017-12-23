@@ -55,16 +55,16 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
 
     private static JsonDtoBuilder jsonDtoBuilder;
     final CamelCase camelCase = new CamelCase();
-    FieldCreationStrategy fieldCreationStrategy;
-    AccessModifier accessModifier;
-    FieldNameParser nameParser;
-    NameConflictResolver nameConflictResolver;
+    final FieldCreationStrategy fieldCreationStrategy;
+    final AccessModifier accessModifier;
+    final FieldNameParser nameParser;
+    final NameConflictResolver nameConflictResolver;
     private PsiClass classUnderCaret;
     private String json;
     private PsiElementFactory psiFactory;
     private DtoCreationOptionsFacade dtoCreationOptionsFacade;
     private HashSet<NameParserCommand> nameParserCommands;
-    private HashSet<NameConflictResolverCommand> nameConflictResolverCommandses;
+    private HashSet<NameConflictResolverCommand> nameConflictResolverCommands;
 
     JsonDtoGenerator(JsonDtoBuilder builder) {
         super(builder.classUnderCaret.getProject(), builder.classUnderCaret.getContainingFile());
@@ -73,12 +73,11 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
         classUnderCaret = builder.classUnderCaret;
         dtoCreationOptionsFacade = builder.dtoCreationOptionsFacade;
         nameParserCommands = builder.feildNameParser;
-        nameConflictResolverCommandses = builder.nameConflictResolverCommands;
+        nameConflictResolverCommands = builder.nameConflictResolverCommands;
         fieldCreationStrategy = dtoCreationOptionsFacade.getFieldCreationStrategy();
         accessModifier = dtoCreationOptionsFacade.getAccessModifier();
         nameParser = new FieldNameParser(nameParserCommands);
-        nameConflictResolver = new NameConflictResolver(nameConflictResolverCommandses);
-
+        nameConflictResolver = new NameConflictResolver(nameConflictResolverCommands);
     }
 
     public static JsonDtoBuilder getJsonDtoBuilder() {
@@ -167,6 +166,8 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
 
 
     private String getPrimitiveName(int depth, JSONArray jsonArray) {
+        if (jsonArray.length() == 0)
+            return "String";
         Object object = jsonArray.get(0);
         for (int i = 1; i < depth; i++) {
             JSONArray jArray = (JSONArray) object;
@@ -223,15 +224,18 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
     }
 
     public boolean isPrimitiveList(JSONArray jsonArray, int depth) {
-        //Todo:what if empty array
-        Object object = jsonArray.get(0);
-        for (int i = 1; i < depth; i++) {
-            JSONArray jsonObject = (JSONArray) object;
-            object = jsonObject.get(0);
-        }
-        if (object != null && !(object instanceof JSONObject) && !(object instanceof JSONArray))
+        if (jsonArray.length() == 0)
             return true;
+        else {
+            Object object = jsonArray.get(0);
+            for (int i = 1; i < depth; i++) {
+                JSONArray jsonObject = (JSONArray) object;
+                object = jsonObject.get(0);
+            }
+            if (object != null && !(object instanceof JSONObject) && !(object instanceof JSONArray))
+                return true;
 
-        return false;
+            return false;
+        }
     }
 }
