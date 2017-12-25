@@ -24,12 +24,13 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.nvinayshetty.DTOnator.Ui.InputWindow;
+import org.jetbrains.kotlin.psi.KtClass;
 
 /**
  * Created by vinay on 11/4/15.
  */
 public class UserActionListener extends AnAction {
-
+    private KtClass ktClass;
     private PsiClass mClass;
 
     public UserActionListener() {

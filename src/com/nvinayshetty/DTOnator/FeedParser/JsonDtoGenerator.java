@@ -17,6 +17,8 @@
 
 package com.nvinayshetty.DTOnator.FeedParser;
 
+import com.intellij.notification.Notification;
+import com.intellij.notification.NotificationType;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiClass;
@@ -126,6 +128,27 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
             }
         }
         if (object instanceof JSONArray) {
+            final Notification processingNotification = new Notification("DtoGenerator", "DtoGenerator Can't Process JsonArray!", "A top level json array can't be processed as it doesn't have suitable keys to map to. Please consider entering an JsonObject ", NotificationType.ERROR);
+            processingNotification.notify(classUnderCaret.getProject());
+           /* String fieldRepresentation = "";
+            JSONArray jsonArray = (JSONArray) object;
+            String dataTypeForList = "";
+            if (jsonArray.length() != 0) {
+                int depth = getDepth(jsonArray);
+                String dataType = object.getClass().getSimpleName();
+                FieldRepresentor fieldRepresentor = new FieldRepresenterFactory().convert(dataType);
+                if (isPrimitiveList(jsonArray, depth)) {
+                    dataTypeForList = getPrimitiveName(depth, jsonArray);
+                } else {
+                    JSONObject objectWithMostNumberOfKeys = getObjectWithMostNumberOfKeys(jsonArray);
+                    generateClassForObject(objectWithMostNumberOfKeys, dataType);
+                }
+                ((JsonArrayRepresentor) fieldRepresentor).setDepth(depth);
+                ((JsonArrayRepresentor) fieldRepresentor).setDataType(dataTypeForList);
+                fieldRepresentation = fieldCreationStrategy.getFieldFor(fieldRepresentor, accessModifier, dataType, nameParser, nameConflictResolver) + "\n";
+                PsiField fieldFromText = psiFactory.createFieldFromText(fieldRepresentation, aClass);
+                aClass.add(fieldFromText);
+            }*/
 
         }
         if (dtoCreationOptionsFacade.getEncapsulationOptionses().contains(FieldEncapsulationOptions.PROVIDE_PRIVATE_FIELD)) {
@@ -152,7 +175,7 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
             if (isPrimitiveList(object1, depth)) {
                 dataTypeForList = getPrimitiveName(depth, object1);
             } else {
-                //Todo:if depth>0
+                //Todo:if depth==0  IT IS CURRNTLY CONSIDERED AS PRIMITIVE LIST
                 JSONObject objectWithMostNumberOfKeys = getObjectWithMostNumberOfKeys(object1);
                 generateClassForObject(objectWithMostNumberOfKeys, key);
 

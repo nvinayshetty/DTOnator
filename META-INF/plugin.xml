@@ -59,5 +59,7 @@
             <add-to-group group-id="GenerateGroup" anchor="first"/>
         </action>
     </actions>
-    <extensions defaultExtensionNs="com.intellij"><!-- Add your extensions here --></extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <fileTypeFactory implementation="com.intellij.json.JsonFileTypeFactory"/>
+    </extensions>
 </idea-plugin>
