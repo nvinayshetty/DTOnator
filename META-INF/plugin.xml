@@ -51,6 +51,7 @@
          on how to target different products -->
      <!--uncomment to enable plugin in all products-->
     <depends>com.intellij.modules.lang</depends>
+    <depends>org.jetbrains.kotlin</depends>
 
     <actions>
         <!-- Add your actions here -->
@@ -59,7 +60,4 @@
             <add-to-group group-id="GenerateGroup" anchor="first"/>
         </action>
     </actions>
-    <extensions defaultExtensionNs="com.intellij">
-        <fileTypeFactory implementation="com.intellij.json.JsonFileTypeFactory"/>
-    </extensions>
 </idea-plugin>

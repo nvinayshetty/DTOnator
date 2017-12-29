@@ -45,7 +45,6 @@ import java.util.LinkedHashSet;
 public class InputWindow extends JFrame {
     private PsiClass mClass;
     private Project project;
-    private PsiFile mFile;
 
     private JPanel contentPane;
     private JButton buttonCancel;
@@ -61,7 +60,6 @@ public class InputWindow extends JFrame {
     private JRadioButton provideSetter;
     private JRadioButton provideGetter;
     private JRadioButton exposeRadioButton;
-
     private ButtonGroup classTypeButtonGroup;
     private ButtonGroup feedTypeButtonGroup;
     private JScrollPane exceptionLoggerPane;
@@ -70,6 +68,7 @@ public class InputWindow extends JFrame {
     private JRadioButton OnCOnflictPrefixFieldNameRadioButton;
     private JTextField onConflictprefixString;
     private JTextField nameConventionPrefix;
+    private JRadioButton jacksonRadioButton;
     private HashSet<NameConflictResolverCommand> nameConflictResolverCommands;
     private HashSet<NameParserCommand> fieldNameParser = new LinkedHashSet<>();
 
@@ -77,7 +76,6 @@ public class InputWindow extends JFrame {
     public InputWindow(PsiClass mClass) {
         this.mClass = mClass;
         project = mClass.getProject();
-        mFile = mClass.getContainingFile();
         setContentPane(contentPane);
         inputFeedText.getRootPane().setSize(750, 400);
         setSize(1000, 600);
@@ -159,6 +157,7 @@ public class InputWindow extends JFrame {
                     exposeRadioButton.setVisible(false);
             }
         });
+
     }
 
     private void SetEncapsulationOptionsSelected(boolean condition) {
@@ -188,6 +187,7 @@ public class InputWindow extends JFrame {
         feedTypeButtonGroup = new ButtonGroup();
         feedTypeButtonGroup.add(pojoRadioButton);
         feedTypeButtonGroup.add(gsonRadioButton);
+        feedTypeButtonGroup.add(jacksonRadioButton);
     }
 
 
@@ -221,6 +221,8 @@ public class InputWindow extends JFrame {
     }
 
     private FieldType getFieldTYpe() {
+        if (jacksonRadioButton.isSelected())
+            return FieldType.JACKSON;
         if (pojoRadioButton.isSelected())
             return FieldType.POJO;
         if (exposeRadioButton.isSelected())

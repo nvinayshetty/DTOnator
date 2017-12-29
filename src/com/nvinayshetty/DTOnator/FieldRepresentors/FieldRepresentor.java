@@ -17,7 +17,6 @@
 
 package com.nvinayshetty.DTOnator.FieldRepresentors;
 
-import com.google.gson.annotations.Expose;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.openapi.project.Project;
@@ -33,6 +32,7 @@ import javax.swing.*;
  * Created by vinay on 6/6/15.
  */
 public abstract class FieldRepresentor {
+    public static final String JACKSON_ANNOTAION_PREFIX = "@com.fasterxml.jackson.annotation.JsonProperty(\"";
     protected static final String GSON_ANNOTATION_PREFIX = "@com.google.gson.annotations.SerializedName(\"";
     protected static final String ANNOTATION_SUFFIX = "\")\n";
     private static final String SPACE = " ";
@@ -40,12 +40,20 @@ public abstract class FieldRepresentor {
     private Project project;
     private KeywordClassifier keywordClassifier = new KeywordClassifier();
 
+    {
+
+    }
+
     protected static String suffix(String key) {
         return new StringBuilder().append(SPACE).append(key).append(CLASS_FIELD_SUFFIX).toString();
     }
 
     private static String getGsonAnnotationFor(String key) {
         return GSON_ANNOTATION_PREFIX + key + ANNOTATION_SUFFIX;
+    }
+
+    private static String getJacksonAnnotationFor(String key) {
+        return JACKSON_ANNOTAION_PREFIX + key + ANNOTATION_SUFFIX;
     }
 
     public final String fieldCreationTemplate(AccessModifier AccessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver, KeywordClassifier keywordClassifier) {
@@ -58,7 +66,11 @@ public abstract class FieldRepresentor {
     }
 
     public final String gsonFieldWithExposeAnnotationTemplate(AccessModifier AccessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
-        return getExposeAnnotation() +"\n"+getGsonAnnotationFor(key) + fieldCreationTemplate(AccessModifier, key, parser, nameConflictResolver, keywordClassifier);
+        return getExposeAnnotation() + "\n" + getGsonAnnotationFor(key) + fieldCreationTemplate(AccessModifier, key, parser, nameConflictResolver, keywordClassifier);
+    }
+
+    public final String jacksonFieldRepresentationTemplate(AccessModifier AccessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
+        return getJacksonAnnotationFor(key) + fieldCreationTemplate(AccessModifier, key, parser, nameConflictResolver, keywordClassifier);
     }
 
     @NotNull

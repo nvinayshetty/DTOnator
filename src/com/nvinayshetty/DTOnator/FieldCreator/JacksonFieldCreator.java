@@ -15,11 +15,15 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.nvinayshetty.DTOnator.DtoCreationOptions;
+package com.nvinayshetty.DTOnator.FieldCreator;
 
-/**
- * Created by vinay on 6/6/15.
- */
-public enum FieldType {
-    GSON, POJO,GSON_EXPOSE,JACKSON
+import com.nvinayshetty.DTOnator.FieldRepresentors.FieldRepresentor;
+import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
+import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
+
+public class JacksonFieldCreator implements FieldCreationStrategy {
+    @Override
+    public String getFieldFor(FieldRepresentor type, AccessModifier accessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
+        return type.jacksonFieldRepresentationTemplate(accessModifier, key, parser, nameConflictResolver);
+    }
 }

@@ -32,6 +32,8 @@ public class FieldCreationFactory {
                 return new SimpleFieldCreator();
             case GSON_EXPOSE:
                 return new ExposedGsonFieldCreator();
+            case JACKSON:
+                return new JacksonFieldCreator();
 
 
         }
