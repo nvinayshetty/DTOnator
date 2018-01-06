@@ -19,6 +19,7 @@ package com.nvinayshetty.DTOnator.FeedValidator;
 
 
 import com.nvinayshetty.DTOnator.DtoCreationOptions.FeedType;
+import org.json.JSONException;
 
 import javax.swing.*;
 
@@ -33,14 +34,17 @@ public class InputFeedValidationFactory implements FeedValidator {
             case JSON:
                 feedValidator = new JsonFeedValidator();
                 break;
-            case XML:
-                break;
         }
     }
 
     @Override
-    public boolean isValidFeed(String inputFeed, JScrollPane exceptionLoggerPane, JLabel exceptionLabel) {
-        return feedValidator.isValidFeed(inputFeed, exceptionLoggerPane, exceptionLabel);
+    public boolean isValidFeed(String inputFeed, JLabel exceptionLabel) {
+        return feedValidator.isValidFeed(inputFeed, exceptionLabel);
+    }
+
+    @Override
+    public JSONException getException() {
+        return feedValidator.getException();
     }
 
     @Override

@@ -21,6 +21,7 @@ package com.nvinayshetty.DTOnator.FieldRepresentors;
 import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
 import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
 import com.nvinayshetty.DTOnator.Utility.DtoHelper;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by vinay on 12/7/15.
@@ -30,10 +31,27 @@ public class JsonObjectRepresentor extends FieldRepresentor {
 
     @Override
     public String getFieldRepresentationFor(AccessModifier accessModifier, String key) {
+        String fieldName = getSimpleNameForObject(accessModifier, key);
+        return fieldName;
+
+    }
+
+    @NotNull
+    private String getSimpleNameForObject(AccessModifier accessModifier, String key) {
         String Object = key;
         if (nameParser != null)
             Object = nameParser.undo(key);
         return accessModifier.getModifier() + DtoHelper.firstetterToUpperCase(Object) + suffix(key);
+    }
+
+    @Override
+    protected String getKotlinValFieldRepresentationFor(AccessModifier accessModifier, String key) {
+        return "val " + key + ": " + DtoHelper.firstetterToUpperCase(key);
+    }
+
+    @Override
+    protected String getKotlinVarFieldRepresentationFor(AccessModifier accessModifier, String key) {
+        return "var " + key + ": " +DtoHelper.firstetterToUpperCase(key);
 
     }
 

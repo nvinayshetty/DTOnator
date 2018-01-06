@@ -20,6 +20,7 @@ package test.com.nvinayshetty.DTOnator.fieldRepresentors;
 
 import com.nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
 import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
+import com.nvinayshetty.DTOnator.FieldCreator.Language;
 import com.nvinayshetty.DTOnator.FieldRepresentors.*;
 import com.nvinayshetty.DTOnator.NameConventionCommands.CamelCase;
 import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
@@ -57,9 +58,9 @@ public class FieldRepresentorShould {
     public void setUp() throws Exception {
         validSimpleFieldName = "valid";
         ObjectName = "Valid";
-        nameNotInCamelCase="VALID_FIELD_NAME";
-        nameInCamelCase="validFieldName";
-        invalidIdentifier="invalid identifier";
+        nameNotInCamelCase = "VALID_FIELD_NAME";
+        nameInCamelCase = "validFieldName";
+        invalidIdentifier = "invalid identifier";
         nameParserCommands = new HashSet<>();
         nameConflictResolverCommands = new HashSet<>();
         keywordClassifier = new KeywordClassifier();
@@ -72,7 +73,7 @@ public class FieldRepresentorShould {
     @Test
     public void createBooleanFieldRepresentation() {
         fieldRepresentor = new BooleanFieldRepresentor();
-        String actualBooleanField = fieldRepresentor.fieldCreationTemplate(AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver, keywordClassifier);
+        String actualBooleanField = fieldRepresentor.fieldCreationTemplate(Language.JAVA, AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver, keywordClassifier);
         String expectedBooleanField = "public boolean " + validSimpleFieldName + ";";
         assertEquals(expectedBooleanField, actualBooleanField);
     }
@@ -80,7 +81,7 @@ public class FieldRepresentorShould {
     @Test
     public void createBooleanFieldRepresentationWithGsonAnnotations() {
         fieldRepresentor = new BooleanFieldRepresentor();
-        String actualBooleanField = fieldRepresentor.gsonFieldRepresentationTemplate(AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver);
+        String actualBooleanField = fieldRepresentor.gsonFieldRepresentationTemplate(Language.JAVA, AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver);
         String expectedFieldWithAnnotation = getGsonAnnotation(validSimpleFieldName) + "public boolean " + validSimpleFieldName + ";";
         assertEquals(expectedFieldWithAnnotation, actualBooleanField);
     }
@@ -89,7 +90,7 @@ public class FieldRepresentorShould {
     public void createBooleanFieldRepresentationInCamelCaseWithGsonAnnotations() {
         fieldRepresentor = new BooleanFieldRepresentor();
         nameParserCommands.add(new CamelCase());
-        String actualBooleanField = fieldRepresentor.gsonFieldRepresentationTemplate(AccessModifier.PUBLIC, nameNotInCamelCase, fieldNameParser, nameConflictResolver);
+        String actualBooleanField = fieldRepresentor.gsonFieldRepresentationTemplate(Language.JAVA, AccessModifier.PUBLIC, nameNotInCamelCase, fieldNameParser, nameConflictResolver);
         String expectedFieldWithAnnotation = getGsonAnnotation(nameNotInCamelCase) + "public boolean " + nameInCamelCase + ";";
         assertEquals(expectedFieldWithAnnotation, actualBooleanField);
     }
@@ -97,18 +98,18 @@ public class FieldRepresentorShould {
     @Test
     public void createBooleanFieldRepresentationShouldShowAnEroorNotification() {
         fieldRepresentor = new BooleanFieldRepresentor();
-        String actualBooleanField = fieldRepresentor.gsonFieldRepresentationTemplate(AccessModifier.PUBLIC, invalidIdentifier, fieldNameParser, nameConflictResolver);
-       // String expectedFieldWithAnnotation = getGsonAnnotation(invalidIdentifier) + "public boolean " + invalidIdentifier + ";";
+        String actualBooleanField = fieldRepresentor.gsonFieldRepresentationTemplate(Language.JAVA, AccessModifier.PUBLIC, invalidIdentifier, fieldNameParser, nameConflictResolver);
+        // String expectedFieldWithAnnotation = getGsonAnnotation(invalidIdentifier) + "public boolean " + invalidIdentifier + ";";
         //assertEquals(expectedFieldWithAnnotation, actualBooleanField);
     }
 
     @Test
     public void createBooleanFieldRepresentationInCamelCaseWithGsonAnnotationsShouldShowAnError() {
-        String invalidIdentifierAfterCamelCasing="Return";
-        String restoredFieldAfterCamelCasing="Return";
+        String invalidIdentifierAfterCamelCasing = "Return";
+        String restoredFieldAfterCamelCasing = "Return";
         fieldRepresentor = new BooleanFieldRepresentor();
         nameParserCommands.add(new CamelCase());
-        String actualBooleanField = fieldRepresentor.gsonFieldRepresentationTemplate(AccessModifier.PUBLIC, invalidIdentifierAfterCamelCasing, fieldNameParser, nameConflictResolver);
+        String actualBooleanField = fieldRepresentor.gsonFieldRepresentationTemplate(Language.JAVA, AccessModifier.PUBLIC, invalidIdentifierAfterCamelCasing, fieldNameParser, nameConflictResolver);
         String expectedFieldWithAnnotation = getGsonAnnotation(invalidIdentifierAfterCamelCasing) + "public boolean " + restoredFieldAfterCamelCasing + ";";
         assertEquals(expectedFieldWithAnnotation, actualBooleanField);
     }
@@ -121,7 +122,7 @@ public class FieldRepresentorShould {
     @Test
     public void createDoubleFieldRepresentation() {
         fieldRepresentor = new DoubleFieldRepresentor();
-        String actualDoubleField = fieldRepresentor.fieldCreationTemplate(AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver, keywordClassifier);
+        String actualDoubleField = fieldRepresentor.fieldCreationTemplate(Language.JAVA, AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver, keywordClassifier);
         String expectedDoubleField = "public double " + validSimpleFieldName + ";";
         assertEquals(expectedDoubleField, actualDoubleField);
     }
@@ -129,7 +130,7 @@ public class FieldRepresentorShould {
     @Test
     public void createDoubleFieldRepresentationWithGsonAnnotations() {
         fieldRepresentor = new DoubleFieldRepresentor();
-        String actualDoubleField = fieldRepresentor.gsonFieldRepresentationTemplate(AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver);
+        String actualDoubleField = fieldRepresentor.gsonFieldRepresentationTemplate(Language.JAVA, AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver);
         String expectedDoubleField = getGsonAnnotation(validSimpleFieldName) + "public double " + validSimpleFieldName + ";";
         assertEquals(expectedDoubleField, actualDoubleField);
     }
@@ -137,7 +138,7 @@ public class FieldRepresentorShould {
     @Test
     public void createIntegerFieldRepresentation() {
         fieldRepresentor = new IntegerFieldRepresentor();
-        String actualIntegerField = fieldRepresentor.fieldCreationTemplate(AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver, keywordClassifier);
+        String actualIntegerField = fieldRepresentor.fieldCreationTemplate(Language.JAVA, AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver, keywordClassifier);
         String expectedIntegerField = "public int " + validSimpleFieldName + ";";
         assertEquals(expectedIntegerField, actualIntegerField);
     }
@@ -145,7 +146,7 @@ public class FieldRepresentorShould {
     @Test
     public void createIntegerFieldRepresentationWithGsonAnnotation() {
         fieldRepresentor = new IntegerFieldRepresentor();
-        String actualIntegerField = fieldRepresentor.gsonFieldRepresentationTemplate(AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver);
+        String actualIntegerField = fieldRepresentor.gsonFieldRepresentationTemplate(Language.JAVA, AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver);
         String expectedIntegerField = getGsonAnnotation(validSimpleFieldName) + "public int " + validSimpleFieldName + ";";
         assertEquals(expectedIntegerField, actualIntegerField);
     }
@@ -153,7 +154,7 @@ public class FieldRepresentorShould {
     @Test
     public void createStringFieldRepresentation() {
         fieldRepresentor = new StringFieldRepresentor();
-        String actualStringField = fieldRepresentor.fieldCreationTemplate(AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver, keywordClassifier);
+        String actualStringField = fieldRepresentor.fieldCreationTemplate(Language.JAVA, AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver, keywordClassifier);
         String expectedStringField = "public String " + validSimpleFieldName + ";";
         assertEquals(expectedStringField, actualStringField);
     }
@@ -162,7 +163,7 @@ public class FieldRepresentorShould {
     @Test
     public void createStringFieldRepresentationWithGsonAnnotation() {
         fieldRepresentor = new StringFieldRepresentor();
-        String actualStringField = fieldRepresentor.gsonFieldRepresentationTemplate(AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver);
+        String actualStringField = fieldRepresentor.gsonFieldRepresentationTemplate(Language.JAVA, AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver);
         String expectedStringField = getGsonAnnotation(validSimpleFieldName) + "public String " + validSimpleFieldName + ";";
         assertEquals(expectedStringField, actualStringField);
     }
@@ -171,7 +172,7 @@ public class FieldRepresentorShould {
     @Test
     public void createJsonObjectFieldRepresentation() {
         fieldRepresentor = new JsonObjectRepresentor();
-        String actualJsonObjectField = fieldRepresentor.fieldCreationTemplate(AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver, keywordClassifier);
+        String actualJsonObjectField = fieldRepresentor.fieldCreationTemplate(Language.JAVA, AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver, keywordClassifier);
         String expectedJsonObjectField = "public " + ObjectName + " " + validSimpleFieldName + ";";
         assertEquals(expectedJsonObjectField, actualJsonObjectField);
     }
@@ -179,7 +180,7 @@ public class FieldRepresentorShould {
     @Test
     public void createJsonObjectFieldRepresentationWithGsonAnnotation() {
         fieldRepresentor = new JsonObjectRepresentor();
-        String actualJsonObjectField = fieldRepresentor.gsonFieldRepresentationTemplate(AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver);
+        String actualJsonObjectField = fieldRepresentor.gsonFieldRepresentationTemplate(Language.JAVA, AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver);
         String expectedJsonObjectField = getGsonAnnotation(validSimpleFieldName) + "public " + ObjectName + " " + validSimpleFieldName + ";";
         assertEquals(expectedJsonObjectField, actualJsonObjectField);
     }
@@ -189,7 +190,7 @@ public class FieldRepresentorShould {
         JsonArrayRepresentor jsonArrayRepresentor = new JsonArrayRepresentor();
         jsonArrayRepresentor.setDataType(ObjectName);
         fieldRepresentor = jsonArrayRepresentor;
-        String actualJsonArrayField = fieldRepresentor.fieldCreationTemplate(AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver, keywordClassifier);
+        String actualJsonArrayField = fieldRepresentor.fieldCreationTemplate(Language.JAVA, AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver, keywordClassifier);
         String expectedJsonArrayField = "public java.util.List<" + ObjectName + ">" + " " + validSimpleFieldName + ";";
         assertEquals(expectedJsonArrayField, actualJsonArrayField);
     }
@@ -199,7 +200,7 @@ public class FieldRepresentorShould {
         JsonArrayRepresentor jsonArrayRepresentor = new JsonArrayRepresentor();
         jsonArrayRepresentor.setDataType(ObjectName);
         fieldRepresentor = jsonArrayRepresentor;
-        String actualJsonArrayField = fieldRepresentor.gsonFieldRepresentationTemplate(AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver);
+        String actualJsonArrayField = fieldRepresentor.gsonFieldRepresentationTemplate(Language.JAVA, AccessModifier.PUBLIC, validSimpleFieldName, fieldNameParser, nameConflictResolver);
         String expectedJsonArrayField = getGsonAnnotation(validSimpleFieldName) + "public java.util.List<" + ObjectName + ">" + " " + validSimpleFieldName + ";";
         assertEquals(expectedJsonArrayField, actualJsonArrayField);
     }

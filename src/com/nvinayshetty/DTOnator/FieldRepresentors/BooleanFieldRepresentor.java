@@ -29,4 +29,14 @@ public class BooleanFieldRepresentor extends FieldRepresentor {
         return accessModifier.getModifier() + "boolean" + suffix(key);
     }
 
+    @Override
+    protected String getKotlinValFieldRepresentationFor(AccessModifier accessModifier, String key) {
+        return "val " + key + " :Boolean"+"\n";
+    }
+
+    @Override
+    protected String getKotlinVarFieldRepresentationFor(AccessModifier accessModifier, String key) {
+        return "var " + key + " :Boolean";
+    }
+
 }

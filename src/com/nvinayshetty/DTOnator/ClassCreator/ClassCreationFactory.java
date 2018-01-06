@@ -18,6 +18,7 @@
 package com.nvinayshetty.DTOnator.ClassCreator;
 
 import com.intellij.psi.PsiClass;
+import org.jetbrains.kotlin.psi.KtClass;
 
 /**
  * Created by vinay on 7/6/15.
@@ -29,6 +30,17 @@ public class ClassCreationFactory {
                 return new PublicClassCreator(psiClass.getContainingFile().getContainingDirectory());
             case SINGLE_FILE_WITH_INNER_CLASS:
                 return new StaticClassCreator(psiClass);
+        }
+        return null;
+    }
+
+
+    public static KotlinClassCreationStrategy getFileKotlinCreatorFor(ClassType classType, KtClass ktClass) {
+        switch (classType) {
+            case SINGLE_FILE_WITH_INNER_CLASS:
+                return new InnerKotlinClassCreator(ktClass);
+            case SEPARATE_FILE:
+                return new publicKotlinClassCreator(ktClass.getContainingKtFile().getContainingDirectory());
         }
         return null;
     }

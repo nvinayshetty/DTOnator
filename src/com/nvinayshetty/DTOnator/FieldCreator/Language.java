@@ -17,13 +17,6 @@
 
 package com.nvinayshetty.DTOnator.FieldCreator;
 
-import com.nvinayshetty.DTOnator.FieldRepresentors.FieldRepresentor;
-import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
-import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
-
-public class ExposedGsonFieldCreator implements FieldCreationStrategy {
-    @Override
-    public String getFieldFor(Language language, FieldRepresentor type, AccessModifier accessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
-        return type.gsonFieldWithExposeAnnotationTemplate(language, accessModifier, key, parser, nameConflictResolver);
-    }
+public enum Language {
+    JAVA, KOTLIN_VAL,KOTLIN_VAR
 }

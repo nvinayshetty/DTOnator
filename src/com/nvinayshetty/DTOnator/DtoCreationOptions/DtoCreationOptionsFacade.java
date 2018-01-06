@@ -18,6 +18,7 @@
 package com.nvinayshetty.DTOnator.DtoCreationOptions;
 
 import com.nvinayshetty.DTOnator.ClassCreator.ClassCreatorStrategy;
+import com.nvinayshetty.DTOnator.ClassCreator.KotlinClassCreationStrategy;
 import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
 import com.nvinayshetty.DTOnator.FieldCreator.FieldCreationStrategy;
 import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
@@ -31,6 +32,7 @@ import java.util.HashSet;
 public class DtoCreationOptionsFacade {
     private FieldCreationStrategy fieldCreationStrategy;
     private ClassCreatorStrategy classAdderStrategy;
+    private KotlinClassCreationStrategy kotlinClassCreationStrategy;
     private AccessModifier accessModifier;
     private EnumSet<FieldEncapsulationOptions> encapsulationOptionses;
 
@@ -41,15 +43,25 @@ public class DtoCreationOptionsFacade {
         this.encapsulationOptionses = encapsulationOptionses;
     }
 
+    public DtoCreationOptionsFacade(FieldCreationStrategy fieldCreationStrategy, KotlinClassCreationStrategy classAdderStrategy, AccessModifier accessModifier, HashSet<NameConflictResolverCommand> nameConflictResolverCommands, EnumSet<FieldEncapsulationOptions> encapsulationOptionses) {
+        this.fieldCreationStrategy = fieldCreationStrategy;
+        this.kotlinClassCreationStrategy = classAdderStrategy;
+        this.accessModifier = accessModifier;
+        this.encapsulationOptionses = encapsulationOptionses;
+    }
+
     public FieldCreationStrategy getFieldCreationStrategy() {
         return fieldCreationStrategy;
     }
 
 
-    public ClassCreatorStrategy getClassAdderStrategy() {
+    public ClassCreatorStrategy getClassCreationStrategy() {
         return classAdderStrategy;
     }
 
+    public KotlinClassCreationStrategy getKotlinClassCreationStrategy() {
+        return kotlinClassCreationStrategy;
+    }
 
     public AccessModifier getAccessModifier() {
         return accessModifier;

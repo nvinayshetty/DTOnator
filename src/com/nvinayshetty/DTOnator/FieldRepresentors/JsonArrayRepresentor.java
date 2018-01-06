@@ -43,6 +43,16 @@ public class JsonArrayRepresentor extends FieldRepresentor {
 
     }
 
+    @Override
+    protected String getKotlinValFieldRepresentationFor(AccessModifier accessModifier, String key) {
+        return "val " + key + " :List<"+getSimpleNameForList(dataType)+">";
+    }
+
+    @Override
+    protected String getKotlinVarFieldRepresentationFor(AccessModifier accessModifier, String key) {
+        return "var " + key + " :List<"+getSimpleNameForList(dataType)+">";
+    }
+
     private String getSimpleNameForList(String simpleName) {
 
         String name = "";

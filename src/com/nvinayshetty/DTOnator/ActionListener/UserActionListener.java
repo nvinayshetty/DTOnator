@@ -18,24 +18,38 @@
 package com.nvinayshetty.DTOnator.ActionListener;
 
 import com.intellij.openapi.actionSystem.*;
+import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.util.PsiTreeUtil;
-import com.nvinayshetty.DTOnator.Ui.InputWindow;
+import com.nvinayshetty.DTOnator.ClassCreator.ClassType;
+import com.nvinayshetty.DTOnator.DtoCreationOptions.DtoGenerationFactory;
+import com.nvinayshetty.DTOnator.DtoCreationOptions.FeedType;
+import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldEncapsulationOptions;
+import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldType;
+import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
+import com.nvinayshetty.DTOnator.Ui.JsonInputEditorPane;
+import com.nvinayshetty.DTOnator.Ui.TabbedInputWindow;
+import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.kotlin.asJava.elements.KtLightElement;
 import org.jetbrains.kotlin.idea.KotlinLanguage;
 import org.jetbrains.kotlin.idea.internal.Location;
 import org.jetbrains.kotlin.psi.KtClass;
 
+import java.util.EnumSet;
+import java.util.HashSet;
+
 /**
  * Created by vinay on 11/4/15.
  */
-public class UserActionListener extends AnAction {
+public class UserActionListener extends AnAction implements JsonInputEditorPane.GenerateClickListener {
     private KtClass ktClass;
     private PsiClass mClass;
+    private Editor editor;
+    private PsiFile psiFile;
 
     public UserActionListener() {
         super();
@@ -69,14 +83,19 @@ public class UserActionListener extends AnAction {
     public void actionPerformed(AnActionEvent event) {
         mClass = getPsiClassFromContext(event);
         ktClass = getKtClassFromContext(event);
-        InputWindow dialog;
-
-        if (ktClass != null) {
-            dialog = new InputWindow((PsiClass) ktClass);
+        TabbedInputWindow tabbedInputWindow = new TabbedInputWindow(event.getProject(), psiFile, this);
+        tabbedInputWindow.setVisible(true);
+       /* if (ktClass != null) {
+            psiFile = event.getData(LangDataKeys.PSI_FILE);
+            editor = event.getData(PlatformDataKeys.EDITOR);
+            final Location location = Location.fromEditor(editor, editor.getProject());
+            final PsiElement psiElement = psiFile.findElementAt(location.getStartOffset());
+            KotlinInputWindow kotlinInputWindow = new KotlinInputWindow(ktClass,psiElement);
+            kotlinInputWindow.show();
         } else {
-            dialog = new InputWindow(mClass);
-        }
-        dialog.setVisible(true);
+            InputWindow dialog = new InputWindow(mClass);
+            dialog.setVisible(true);
+        }*/
     }
 
     @Override
@@ -98,8 +117,8 @@ public class UserActionListener extends AnAction {
     }
 
     private PsiClass getPsiClassFromContext(AnActionEvent e) {
-        PsiFile psiFile = e.getData(LangDataKeys.PSI_FILE);
-        Editor editor = e.getData(PlatformDataKeys.EDITOR);
+        psiFile = e.getData(LangDataKeys.PSI_FILE);
+        editor = e.getData(PlatformDataKeys.EDITOR);
         if (psiFile == null || editor == null) {
             return null;
         }
@@ -130,4 +149,16 @@ public class UserActionListener extends AnAction {
     }
 
 
+    @Override
+    public void onGenerateButtonClick(FieldType fieldType, ClassType classType, EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions, String input) {
+        WriteCommandAction writeAction = null;
+        if (mClass != null) {
+            writeAction = DtoGenerationFactory.getDtoGeneratorFor(FeedType.JSON, classType, fieldType, fieldEncapsulationOptions, input, mClass, new HashSet<NameConflictResolverCommand>(), new HashSet<NameParserCommand>());
+        }
+        if (ktClass != null) {
+            writeAction = DtoGenerationFactory.getDtoGeneratorForKotlin(FeedType.JSON, classType, fieldType, fieldEncapsulationOptions, input, ktClass, new HashSet<NameConflictResolverCommand>(), new HashSet<NameParserCommand>());
+        }
+        if (writeAction != null)
+            writeAction.execute();
+    }
 }

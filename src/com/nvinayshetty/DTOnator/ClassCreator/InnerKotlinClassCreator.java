@@ -15,15 +15,24 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.nvinayshetty.DTOnator.FieldCreator;
+package com.nvinayshetty.DTOnator.ClassCreator;
 
-import com.nvinayshetty.DTOnator.FieldRepresentors.FieldRepresentor;
-import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
-import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
+import org.jetbrains.kotlin.psi.KtClass;
 
-public class ExposedGsonFieldCreator implements FieldCreationStrategy {
+public class InnerKotlinClassCreator extends KotlinClassCreationStrategy {
+
+    private KtClass classUnderCaret;
+
+    public InnerKotlinClassCreator(KtClass psiClass) {
+        this.classUnderCaret = psiClass;
+    }
+
     @Override
-    public String getFieldFor(Language language, FieldRepresentor type, AccessModifier accessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
-        return type.gsonFieldWithExposeAnnotationTemplate(language, accessModifier, key, parser, nameConflictResolver);
+    public void addClass(KtClass aClass) {
+       /* aClass.getModifierList().setModifierProperty(PsiModifier.STATIC, true);
+        aClass.getModifierList().setModifierProperty(PsiModifier.PUBLIC, true);*/
+        organizeCodeStyle(aClass);
+        classUnderCaret.getContainingKtFile().add(aClass);
+
     }
 }

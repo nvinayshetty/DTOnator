@@ -23,7 +23,7 @@ import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
 
 public class JacksonFieldCreator implements FieldCreationStrategy {
     @Override
-    public String getFieldFor(FieldRepresentor type, AccessModifier accessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
-        return type.jacksonFieldRepresentationTemplate(accessModifier, key, parser, nameConflictResolver);
+    public String getFieldFor(Language language, FieldRepresentor type, AccessModifier accessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
+        return type.jacksonFieldRepresentationTemplate(language,accessModifier, key, parser, nameConflictResolver);
     }
 }

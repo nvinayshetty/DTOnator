@@ -21,7 +21,7 @@ import com.intellij.psi.PsiClass;
 import com.nvinayshetty.DTOnator.DtoCreationOptions.DtoCreationOptionsFacade;
 import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
 import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
-import org.json.JSONObject;
+import org.jetbrains.kotlin.psi.KtClass;
 
 import java.util.HashSet;
 
@@ -29,6 +29,7 @@ public class JsonDtoBuilder {
 
     String json;
     PsiClass classUnderCaret;
+    KtClass ktClass;
     DtoCreationOptionsFacade dtoCreationOptionsFacade;
     HashSet<NameConflictResolverCommand> nameConflictResolverCommands;
     HashSet<NameParserCommand> feildNameParser;
@@ -40,6 +41,12 @@ public class JsonDtoBuilder {
 
     public JsonDtoBuilder setClassUnderCaret(PsiClass classUnderCaret) {
         this.classUnderCaret = classUnderCaret;
+        return this;
+    }
+
+
+    public JsonDtoBuilder setClassUnderCaret(KtClass classUnderCaret) {
+        this.ktClass = classUnderCaret;
         return this;
     }
 
@@ -60,6 +67,10 @@ public class JsonDtoBuilder {
 
     public JsonDtoGenerator createJsonDtoGenerator() {
         return new JsonDtoGenerator(this);
+    }
+
+    public KotlinJsonDtoGenerator createKotlinDtoGenerator() {
+        return new KotlinJsonDtoGenerator(this);
     }
 
 }

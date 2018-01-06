@@ -29,6 +29,16 @@ public class DoubleFieldRepresentor extends FieldRepresentor {
         return accessModifier.getModifier() + "double" + suffix(key);
 
     }
+
+    @Override
+    protected String getKotlinValFieldRepresentationFor(AccessModifier accessModifier, String key) {
+        return "val " + key + " :Double";
+    }
+
+    @Override
+    protected String getKotlinVarFieldRepresentationFor(AccessModifier accessModifier, String key) {
+        return "val " + key + " :Double";
+    }
 }
 
 

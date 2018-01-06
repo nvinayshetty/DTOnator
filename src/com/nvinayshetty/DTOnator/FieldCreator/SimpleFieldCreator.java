@@ -28,8 +28,8 @@ import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
  */
 public class SimpleFieldCreator implements FieldCreationStrategy {
     @Override
-    public String getFieldFor(FieldRepresentor fieldRepresentor, AccessModifier accessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
-        return fieldRepresentor.fieldCreationTemplate(accessModifier, key, parser, nameConflictResolver, new KeywordClassifier());
+    public String getFieldFor(Language language, FieldRepresentor fieldRepresentor, AccessModifier accessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
+        return fieldRepresentor.fieldCreationTemplate(language,accessModifier, key, parser, nameConflictResolver, new KeywordClassifier());
     }
 
 
