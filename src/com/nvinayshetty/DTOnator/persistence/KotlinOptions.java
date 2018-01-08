@@ -15,8 +15,8 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.nvinayshetty.DTOnator.FieldCreator;
+package com.nvinayshetty.DTOnator.persistence;
 
-public enum Language {
-    JAVA, KOTLIN_VAL,KOTLIN_VAR
+public enum KotlinOptions {
+    VAL, VAR
 }

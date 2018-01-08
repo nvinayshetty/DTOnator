@@ -22,7 +22,7 @@ import com.intellij.notification.NotificationType;
 import com.intellij.openapi.project.Project;
 import com.nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
 import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
-import com.nvinayshetty.DTOnator.FieldCreator.Language;
+import com.nvinayshetty.DTOnator.FieldCreator.LanguageType;
 import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
 import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
 import org.jetbrains.annotations.NotNull;
@@ -54,9 +54,9 @@ public abstract class FieldRepresentor {
         return JACKSON_ANNOTAION_PREFIX + key + ANNOTATION_SUFFIX;
     }
 
-    public final String fieldCreationTemplate(Language language, AccessModifier accessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver, KeywordClassifier keywordClassifier) {
+    public final String fieldCreationTemplate(LanguageType languageType, AccessModifier accessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver, KeywordClassifier keywordClassifier) {
         String parsedFieldName = parse(key, parser, nameConflictResolver, keywordClassifier);
-        switch (language) {
+        switch (languageType) {
             case JAVA:
                 return getFieldRepresentationFor(accessModifier, parsedFieldName);
             case KOTLIN_VAL:
@@ -69,16 +69,16 @@ public abstract class FieldRepresentor {
 
     }
 
-    public final String gsonFieldRepresentationTemplate(Language language, AccessModifier AccessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
-        return getGsonAnnotationFor(key) + fieldCreationTemplate(language, AccessModifier, key, parser, nameConflictResolver, keywordClassifier);
+    public final String gsonFieldRepresentationTemplate(LanguageType languageType, AccessModifier AccessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
+        return getGsonAnnotationFor(key) + fieldCreationTemplate(languageType, AccessModifier, key, parser, nameConflictResolver, keywordClassifier);
     }
 
-    public final String gsonFieldWithExposeAnnotationTemplate(Language language, AccessModifier AccessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
-        return getExposeAnnotation() + "\n" + getGsonAnnotationFor(key) + fieldCreationTemplate(language, AccessModifier, key, parser, nameConflictResolver, keywordClassifier);
+    public final String gsonFieldWithExposeAnnotationTemplate(LanguageType languageType, AccessModifier AccessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
+        return getExposeAnnotation() + "\n" + getGsonAnnotationFor(key) + fieldCreationTemplate(languageType, AccessModifier, key, parser, nameConflictResolver, keywordClassifier);
     }
 
-    public final String jacksonFieldRepresentationTemplate(Language language, AccessModifier AccessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
-        return getJacksonAnnotationFor(key) + fieldCreationTemplate(language, AccessModifier, key, parser, nameConflictResolver, keywordClassifier);
+    public final String jacksonFieldRepresentationTemplate(LanguageType languageType, AccessModifier AccessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
+        return getJacksonAnnotationFor(key) + fieldCreationTemplate(languageType, AccessModifier, key, parser, nameConflictResolver, keywordClassifier);
     }
 
 

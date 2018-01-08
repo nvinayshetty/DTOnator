@@ -26,6 +26,6 @@ import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
  * Created by vinay on 31/5/15.
  */
 public interface FieldCreationStrategy {
-    String getFieldFor(Language language, FieldRepresentor type, AccessModifier accessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver);
+    String getFieldFor(LanguageType languageType, FieldRepresentor type, AccessModifier accessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver);
 
 }

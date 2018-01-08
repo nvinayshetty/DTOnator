@@ -52,7 +52,9 @@
      <!--uncomment to enable plugin in all products-->
     <depends>com.intellij.modules.lang</depends>
     <depends>org.jetbrains.kotlin</depends>
-
+    <extensions defaultExtensionNs="com.intellij">
+        <projectService serviceInterface="com.nvinayshetty.DTOnator.persistence.DtonatorPreferences" serviceImplementation="com.nvinayshetty.DTOnator.persistence.DtonatorPreferences"/>
+    </extensions>
     <actions>
         <!-- Add your actions here -->
         <action id="ActionListener" class="com.nvinayshetty.DTOnator.ActionListener.UserActionListener"

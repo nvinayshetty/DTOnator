@@ -29,6 +29,7 @@ import com.nvinayshetty.DTOnator.DtoCreationOptions.DtoGenerationFactory;
 import com.nvinayshetty.DTOnator.DtoCreationOptions.FeedType;
 import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldEncapsulationOptions;
 import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldType;
+import com.nvinayshetty.DTOnator.FieldCreator.LanguageType;
 import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
 import com.nvinayshetty.DTOnator.Ui.JsonInputEditorPane;
 import com.nvinayshetty.DTOnator.Ui.TabbedInputWindow;
@@ -83,7 +84,7 @@ public class UserActionListener extends AnAction implements JsonInputEditorPane.
     public void actionPerformed(AnActionEvent event) {
         mClass = getPsiClassFromContext(event);
         ktClass = getKtClassFromContext(event);
-        TabbedInputWindow tabbedInputWindow = new TabbedInputWindow(event.getProject(), psiFile, this);
+        TabbedInputWindow tabbedInputWindow = new TabbedInputWindow(event.getProject(), psiFile, this, (ktClass!=null)? LanguageType.KOTLIN: LanguageType.JAVA);
         tabbedInputWindow.setVisible(true);
        /* if (ktClass != null) {
             psiFile = event.getData(LangDataKeys.PSI_FILE);
@@ -150,13 +151,13 @@ public class UserActionListener extends AnAction implements JsonInputEditorPane.
 
 
     @Override
-    public void onGenerateButtonClick(FieldType fieldType, ClassType classType, EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions, String input) {
+    public void onGenerateButtonClick(FieldType fieldType, ClassType classType, EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions, String input, HashSet<NameParserCommand> nameParserCommands,LanguageType languageType) {
         WriteCommandAction writeAction = null;
         if (mClass != null) {
-            writeAction = DtoGenerationFactory.getDtoGeneratorFor(FeedType.JSON, classType, fieldType, fieldEncapsulationOptions, input, mClass, new HashSet<NameConflictResolverCommand>(), new HashSet<NameParserCommand>());
+            writeAction = DtoGenerationFactory.getDtoGeneratorFor(FeedType.JSON, classType, fieldType, fieldEncapsulationOptions, input, mClass, new HashSet<NameConflictResolverCommand>(), nameParserCommands);
         }
         if (ktClass != null) {
-            writeAction = DtoGenerationFactory.getDtoGeneratorForKotlin(FeedType.JSON, classType, fieldType, fieldEncapsulationOptions, input, ktClass, new HashSet<NameConflictResolverCommand>(), new HashSet<NameParserCommand>());
+            writeAction = DtoGenerationFactory.getDtoGeneratorForKotlin(FeedType.JSON, classType, fieldType, fieldEncapsulationOptions, input, ktClass, new HashSet<NameConflictResolverCommand>(),nameParserCommands, languageType);
         }
         if (writeAction != null)
             writeAction.execute();

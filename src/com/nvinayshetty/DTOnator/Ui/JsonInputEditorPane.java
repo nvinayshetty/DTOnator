@@ -30,15 +30,20 @@ import com.intellij.openapi.editor.EditorFactory;
 import com.intellij.openapi.editor.highlighter.EditorHighlighter;
 import com.intellij.openapi.editor.highlighter.EditorHighlighterFactory;
 import com.intellij.openapi.editor.impl.EditorImpl;
+import com.intellij.openapi.fileEditor.FileEditor;
+import com.intellij.openapi.fileEditor.impl.text.TextEditorProvider;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiFileFactory;
 import com.nvinayshetty.DTOnator.ClassCreator.ClassType;
 import com.nvinayshetty.DTOnator.DtoCreationOptions.FeedType;
 import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldEncapsulationOptions;
 import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldType;
 import com.nvinayshetty.DTOnator.FeedValidator.InputFeedValidationFactory;
+import com.nvinayshetty.DTOnator.FieldCreator.LanguageType;
 import com.nvinayshetty.DTOnator.Logger.ExceptionLogger;
+import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,6 +54,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.EnumSet;
+import java.util.HashSet;
 
 public class JsonInputEditorPane extends JPanel {
     private JPanel buttonsPanel;
@@ -185,7 +191,12 @@ public class JsonInputEditorPane extends JPanel {
         Language language = Language.findLanguageByID(JsonLanguage.INSTANCE.getID());
         FileType fileType = language != null ? language.getAssociatedFileType() : null;
         Document myDocument = EditorFactory.getInstance().createDocument("");
+
+
         editor = (EditorImpl) EditorFactory.getInstance().createEditor(myDocument);
+
+        final PsiFile psiFile = PsiFileFactory.getInstance(project).createFileFromText(language, "");
+        FileEditor fileEditor = TextEditorProvider.getInstance().createEditor(project, psiFile.getVirtualFile());
         editor.getSettings().setLineNumbersShown(true);
         editor.getSettings().setBlinkCaret(true);
         editor.getSettings().setFoldingOutlineShown(true);
@@ -197,8 +208,8 @@ public class JsonInputEditorPane extends JPanel {
             editorHighlighter.createIterator(5);
             editor.setHighlighter(editorHighlighter);
         }
-        editor.getComponent().setPreferredSize(new Dimension(920, 200));
-        add(editor.getComponent(), BorderLayout.CENTER);
+        fileEditor.getComponent().setPreferredSize(new Dimension(920, 200));
+        add(fileEditor.getComponent(), BorderLayout.CENTER);
     }
 
     private void showAlert(JSONException ex) {
@@ -206,12 +217,22 @@ public class JsonInputEditorPane extends JPanel {
         new ExceptionLogger(exceptionLabel).Log(ex);
     }
 
+    public void showAlert(String msg) {
+        exceptionLabel.setVisible(true);
+        exceptionLabel.setText(msg);
+        exceptionLabel.getRootPane().invalidate();
+        exceptionLabel.getRootPane().validate();
+        exceptionLabel.getRootPane().repaint();
+    }
+
+
     public interface GenerateClickListener {
-        void onGenerateButtonClick(FieldType fieldType, ClassType classType, EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions, String input);
+        void onGenerateButtonClick(FieldType fieldType, ClassType classType, EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions, String input, HashSet<NameParserCommand> nameParserCommands, LanguageType language);
     }
 
     public interface SettingListener {
         void onGenerateClickWithValidFeed(String input);
+
     }
 
 }

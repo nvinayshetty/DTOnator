@@ -15,15 +15,8 @@
  *         along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.nvinayshetty.DTOnator.FieldCreator;
+package com.nvinayshetty.DTOnator.persistence;
 
-import com.nvinayshetty.DTOnator.FieldRepresentors.FieldRepresentor;
-import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
-import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
-
-public class ExposedGsonFieldCreator implements FieldCreationStrategy {
-    @Override
-    public String getFieldFor(LanguageType languageType, FieldRepresentor type, AccessModifier accessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
-        return type.gsonFieldWithExposeAnnotationTemplate(languageType, accessModifier, key, parser, nameConflictResolver);
-    }
+public enum Naming {
+    PREFEIX,CAMEL_CASE
 }

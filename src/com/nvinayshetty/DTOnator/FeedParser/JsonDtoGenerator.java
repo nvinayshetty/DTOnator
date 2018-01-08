@@ -31,7 +31,7 @@ import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldEncapsulationOptions;
 import com.nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
 import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
 import com.nvinayshetty.DTOnator.FieldCreator.FieldCreationStrategy;
-import com.nvinayshetty.DTOnator.FieldCreator.Language;
+import com.nvinayshetty.DTOnator.FieldCreator.LanguageType;
 import com.nvinayshetty.DTOnator.FieldRepresentors.FieldRepresenterFactory;
 import com.nvinayshetty.DTOnator.FieldRepresentors.FieldRepresentor;
 import com.nvinayshetty.DTOnator.FieldRepresentors.JsonArrayRepresentor;
@@ -184,7 +184,7 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
             ((JsonArrayRepresentor) fieldRepresentor).setDepth(depth);
             ((JsonArrayRepresentor) fieldRepresentor).setDataType(dataTypeForList);
         }
-        fieldRepresentation = fieldCreationStrategy.getFieldFor(Language.JAVA, fieldRepresentor, accessModifier, key, nameParser, nameConflictResolver);
+        fieldRepresentation = fieldCreationStrategy.getFieldFor(LanguageType.JAVA, fieldRepresentor, accessModifier, key, nameParser, nameConflictResolver);
         return fieldRepresentation + "\n";
     }
 

@@ -41,10 +41,11 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementFactory;
 import com.intellij.psi.codeStyle.JavaCodeStyleManager;
 import com.nvinayshetty.DTOnator.DtoCreationOptions.DtoCreationOptionsFacade;
+import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldEncapsulationOptions;
 import com.nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
 import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
 import com.nvinayshetty.DTOnator.FieldCreator.FieldCreationStrategy;
-import com.nvinayshetty.DTOnator.FieldCreator.Language;
+import com.nvinayshetty.DTOnator.FieldCreator.LanguageType;
 import com.nvinayshetty.DTOnator.FieldRepresentors.FieldRepresenterFactory;
 import com.nvinayshetty.DTOnator.FieldRepresentors.FieldRepresentor;
 import com.nvinayshetty.DTOnator.FieldRepresentors.JsonArrayRepresentor;
@@ -167,9 +168,9 @@ public class KotlinJsonDtoGenerator extends WriteCommandAction.Simple {
             processingNotification.notify(classUnderCaret.getProject());
 
         }
-        /*if (dtoCreationOptionsFacade.getEncapsulationOptionses().contains(FieldEncapsulationOptions.PROVIDE_PRIVATE_FIELD)) {
-            aClass = new EncapsulatedClassCreator(dtoCreationOptionsFacade.getEncapsulationOptionses(), nameParser).getClassWithEncapsulatedFileds(aClass);
-        }*/
+        if (dtoCreationOptionsFacade.getEncapsulationOptionses().contains(FieldEncapsulationOptions.PROVIDE_PRIVATE_FIELD)) {
+          //  aClass = new EncapsulatedClassCreator(dtoCreationOptionsFacade.getEncapsulationOptionses(), nameParser).getClassWithEncapsulatedFileds(aClass);
+        }
         return aClass;
     }
 
@@ -199,7 +200,7 @@ public class KotlinJsonDtoGenerator extends WriteCommandAction.Simple {
             ((JsonArrayRepresentor) fieldRepresentor).setDepth(depth);
             ((JsonArrayRepresentor) fieldRepresentor).setDataType(dataTypeForList);
         }
-        fieldRepresentation = fieldCreationStrategy.getFieldFor(Language.KOTLIN_VAL,fieldRepresentor, accessModifier, key, nameParser, nameConflictResolver);
+        fieldRepresentation = fieldCreationStrategy.getFieldFor(jsonDtoBuilder.languageType,fieldRepresentor, accessModifier, key, nameParser, nameConflictResolver);
         return fieldRepresentation + "\n";
     }
 
@@ -219,8 +220,8 @@ public class KotlinJsonDtoGenerator extends WriteCommandAction.Simple {
 
 
     private JSONObject getObjectWithMostNumberOfKeys(JSONArray jsonArray) {
-       /* if (jsonArray.length() == 0)
-            return new JSONObject("{}");*/
+        if (jsonArray.length() == 0)
+            return new JSONObject("{}");
         Object object = jsonArray.get(0);
         if (object instanceof JSONObject) {
             JSONObject objectWithMaxKeys = (JSONObject) object;
@@ -256,8 +257,8 @@ public class KotlinJsonDtoGenerator extends WriteCommandAction.Simple {
     }
 
     private void generateClassForObject(JSONObject jsonObject, String key) throws JSONException {
-       /* if (nameParserCommands.contains(camelCase))
-            key = camelCase.parseFieldName(key);*/
+        if (nameParserCommands.contains(camelCase))
+            key = camelCase.parseFieldName(key);
         addClass(key, jsonObject);
 
     }

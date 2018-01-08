@@ -19,13 +19,13 @@ package com.nvinayshetty.DTOnator.DtoCreationOptions;
 
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiElement;
 import com.nvinayshetty.DTOnator.ClassCreator.ClassCreationFactory;
 import com.nvinayshetty.DTOnator.ClassCreator.ClassType;
 import com.nvinayshetty.DTOnator.FeedParser.JsonDtoGenerator;
 import com.nvinayshetty.DTOnator.FeedParser.KotlinJsonDtoGenerator;
 import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
 import com.nvinayshetty.DTOnator.FieldCreator.FieldCreationFactory;
+import com.nvinayshetty.DTOnator.FieldCreator.LanguageType;
 import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
 import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
 import org.jetbrains.kotlin.psi.KtClass;
@@ -59,7 +59,7 @@ public class DtoGenerationFactory {
         return null;
     }
 
-    public static WriteCommandAction getDtoGeneratorForKotlin(FeedType type, ClassType classType, FieldType fieldType, EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions, String validFeed, KtClass ktClass, HashSet<NameConflictResolverCommand> nameConflictResolverCommands, HashSet<NameParserCommand> fieldNameParser) {
+    public static WriteCommandAction getDtoGeneratorForKotlin(FeedType type, ClassType classType, FieldType fieldType, EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions, String validFeed, KtClass ktClass, HashSet<NameConflictResolverCommand> nameConflictResolverCommands, HashSet<NameParserCommand> fieldNameParser, LanguageType languageType) {
         AccessModifier accessModifier = null;
         if (fieldEncapsulationOptions.contains(FieldEncapsulationOptions.PROVIDE_PRIVATE_FIELD))
             accessModifier = AccessModifier.PRIVATE;
@@ -73,6 +73,7 @@ public class DtoGenerationFactory {
                         .setClassUnderCaret(ktClass)
                         .setDtoCreationOptionsFacade(dtoCreationOptionsFacade)
                         .setJson(validFeed)
+                        .SetLanguage(languageType)
                         .setFieldNameParser(fieldNameParser)
                         .setNameConflictResolver(nameConflictResolverCommands)
                         .createKotlinDtoGenerator();
