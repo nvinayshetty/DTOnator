@@ -18,6 +18,6 @@ This is the repository which gave me the idea of bringing a dto generator to an 
 ![DTO in Single class](https://github.com/nvinayshetty/DTOnator/blob/master/Screenshot/output.gif
  "DTOnator")
  
-![DTO in multiple classes](https://github.com/nvinayshetty/DTOnator/blob/master/Screenshot/output2.gif
+![DTO in multiple classes](https://github.com/nvinayshetty/DTOnator/blob/master/Screenshot/java.gif
  "DTOnator")
 
