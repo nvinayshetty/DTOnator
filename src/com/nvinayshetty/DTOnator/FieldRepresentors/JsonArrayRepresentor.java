@@ -19,7 +19,10 @@ package com.nvinayshetty.DTOnator.FieldRepresentors;
 
 
 import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
+import com.nvinayshetty.DTOnator.NameConventionCommands.ClassName.ClassNameOptions;
 import com.nvinayshetty.DTOnator.Utility.DtoHelper;
+
+import javax.annotation.Nonnull;
 
 /**
  * Created by vinay on 12/7/15.
@@ -27,6 +30,7 @@ import com.nvinayshetty.DTOnator.Utility.DtoHelper;
 public class JsonArrayRepresentor extends FieldRepresentor {
     private String dataType;
     private int depth;
+    private ClassNameOptions classNameOptions;
 
     protected static String getGsonAnnotationFor(String key) {
         return GSON_ANNOTATION_PREFIX + key + ANNOTATION_SUFFIX;
@@ -38,19 +42,23 @@ public class JsonArrayRepresentor extends FieldRepresentor {
 
     @Override
     public String getFieldRepresentationFor(AccessModifier accessModifier, String key) {
-
         return accessModifier.getModifier() + "java.util.List<" + getSimpleNameForList(dataType) + ">" + suffix(key);
-
     }
 
     @Override
     protected String getKotlinValFieldRepresentationFor(AccessModifier accessModifier, String key) {
-        return "val " + key + " :List<"+getSimpleNameForList(dataType)+">";
+        String clasNameOption = (classNameOptions != null) ? classNameOptions.getName() : "";
+        return "val " + key +clasNameOption+ " :List<" + getSimpleNameForList(dataType) + ">";
     }
 
     @Override
     protected String getKotlinVarFieldRepresentationFor(AccessModifier accessModifier, String key) {
-        return "var " + key + " :List<"+getSimpleNameForList(dataType)+">";
+        String clasNameOption = (classNameOptions != null) ? classNameOptions.getName() : "";
+        return "var " + key+clasNameOption + " :List<" + getSimpleNameForList(dataType) + ">";
+    }
+
+    public void setClassNameOption(ClassNameOptions classNameOptions) {
+        this.classNameOptions = classNameOptions;
     }
 
     private String getSimpleNameForList(String simpleName) {
@@ -59,7 +67,8 @@ public class JsonArrayRepresentor extends FieldRepresentor {
         for (int i = 1; i < depth; i++) {
             name += "java.util.List<";
         }
-        name += DtoHelper.firstetterToUpperCase(simpleName);
+        String clasNameOption = (classNameOptions != null) ? classNameOptions.getName() : "";
+        name += DtoHelper.firstetterToUpperCase(simpleName)+clasNameOption;
         for (int i = 1; i < depth; i++) {
             name += ">";
         }

@@ -41,11 +41,10 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementFactory;
 import com.intellij.psi.codeStyle.JavaCodeStyleManager;
 import com.nvinayshetty.DTOnator.DtoCreationOptions.DtoCreationOptionsFacade;
-import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldEncapsulationOptions;
 import com.nvinayshetty.DTOnator.FeedValidator.KeywordClassifier;
 import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
+import com.nvinayshetty.DTOnator.FieldCreator.ExposedGsonFieldCreator;
 import com.nvinayshetty.DTOnator.FieldCreator.FieldCreationStrategy;
-import com.nvinayshetty.DTOnator.FieldCreator.LanguageType;
 import com.nvinayshetty.DTOnator.FieldRepresentors.FieldRepresenterFactory;
 import com.nvinayshetty.DTOnator.FieldRepresentors.FieldRepresentor;
 import com.nvinayshetty.DTOnator.FieldRepresentors.JsonArrayRepresentor;
@@ -56,9 +55,11 @@ import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
 import com.nvinayshetty.DTOnator.Utility.DtoHelper;
 import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
 import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
+import org.jetbrains.kotlin.name.FqName;
 import org.jetbrains.kotlin.psi.KtClass;
-import org.jetbrains.kotlin.psi.KtParameter;
+import org.jetbrains.kotlin.psi.KtImportDirective;
 import org.jetbrains.kotlin.psi.KtPsiFactory;
+import org.jetbrains.kotlin.resolve.ImportPath;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -113,13 +114,32 @@ public class KotlinJsonDtoGenerator extends WriteCommandAction.Simple {
     }
 
     private void addFieldsToTheClassUnderCaret(String json) {
+        if(!fieldCreationStrategy.getImportDirective().isEmpty()) {
+            FqName fqName = new FqName(fieldCreationStrategy.getImportDirective());
+            ImportPath importPath = new ImportPath(fqName, false);
+            KtImportDirective importDirective = ktPsiFactory.createImportDirective(importPath);
+            classUnderCaret.getContainingKtFile().getImportList().add(importDirective);
+            if (fieldCreationStrategy instanceof ExposedGsonFieldCreator) {
+                //Todo: make interface to return list of directives
+                FqName serialized = new FqName("com.google.gson.annotations.SerializedName");
+                ImportPath serializedPath = new ImportPath(serialized, false);
+                KtImportDirective serializedDirective = ktPsiFactory.createImportDirective(serializedPath);
+                classUnderCaret.getContainingKtFile().getImportList().add(serializedDirective);
+
+            }
+        }
+
         KtClass psiClass = generateDto(json, classUnderCaret);
+
+
+
+
         JavaCodeStyleManager styleManager = JavaCodeStyleManager.getInstance(psiClass.getProject());
         styleManager.optimizeImports(psiClass.getContainingFile());
         styleManager.shortenClassReferences(psiClass.getContainingFile());
     }
 
-    private void addClass(String name, JSONObject json) {
+    private void addClass(String name, JSONObject json, FieldCreationStrategy fieldCreationStrategy) {
         String className = DtoHelper.firstetterToUpperCase(name);
         final KeywordClassifier keywordClassifier = new KeywordClassifier();
         if (!keywordClassifier.isValidJavaIdentifier(className)) {
@@ -130,7 +150,7 @@ public class KotlinJsonDtoGenerator extends WriteCommandAction.Simple {
         KtClass aClass = ktPsiFactory.createClass("data class " + className + "()");
         // aClass.addModifier(KtModifierKeywordToken.keywordModifier("data"));
         generateDto(json.toString(), aClass);
-        dtoCreationOptionsFacade.getKotlinClassCreationStrategy().addClass(aClass);
+        dtoCreationOptionsFacade.getKotlinClassCreationStrategy().addClass(aClass,fieldCreationStrategy);
     }
 
     private KtClass generateDto(String input, KtClass aClass) {
@@ -144,21 +164,17 @@ public class KotlinJsonDtoGenerator extends WriteCommandAction.Simple {
                 String filedStr = getFieldsForJson(json, key);
 
                 PsiElement fieldFromTest = ktPsiFactory.createProperty(filedStr);
-                KtParameter parameter = ktPsiFactory.createParameter(filedStr);
-                //   PsiElement comma = ktPsiFactory.createComma();
                 if (aClass.getPrimaryConstructor() != null && aClass.getPrimaryConstructor().getValueParameterList() != null) {
                     PsiElement anchor = aClass.getPrimaryConstructor().getValueParameterList().getRightParenthesis();
                     if (anchor != null && anchor.getParent() != null) {
                         aClass.getPrimaryConstructor().getValueParameterList().addBefore(fieldFromTest, anchor);
                         if (keysIterator.hasNext())
                             aClass.getPrimaryConstructor().getValueParameterList().addBefore(ktPsiFactory.createComma(), anchor);
-                       /* aClass.addBefore(fieldFromText, anchor);
-                        if (keysIterator.hasNext())
-                            aClass.addBefore(comma, anchor);*/
                     }
                     Object jsonObject = json.get(key);
                     if (jsonObject instanceof JSONObject) {
-                        generateClassForObject((JSONObject) jsonObject, key);
+
+                        generateClassForObject((JSONObject) jsonObject, key, fieldCreationStrategy);
                     }
                 }
             }
@@ -168,9 +184,7 @@ public class KotlinJsonDtoGenerator extends WriteCommandAction.Simple {
             processingNotification.notify(classUnderCaret.getProject());
 
         }
-        if (dtoCreationOptionsFacade.getEncapsulationOptionses().contains(FieldEncapsulationOptions.PROVIDE_PRIVATE_FIELD)) {
-          //  aClass = new EncapsulatedClassCreator(dtoCreationOptionsFacade.getEncapsulationOptionses(), nameParser).getClassWithEncapsulatedFileds(aClass);
-        }
+
         return aClass;
     }
 
@@ -183,6 +197,7 @@ public class KotlinJsonDtoGenerator extends WriteCommandAction.Simple {
         fieldRepresentor.setProject(classUnderCaret.getProject());
         if (fieldRepresentor instanceof JsonObjectRepresentor) {
             ((JsonObjectRepresentor) fieldRepresentor).setNameParser(nameParser);
+            ((JsonObjectRepresentor) fieldRepresentor).setClassNameOption(jsonDtoBuilder.classNameOptions);
         }
         if (fieldRepresentor instanceof JsonArrayRepresentor) {
             String dataTypeForList = key;
@@ -193,14 +208,15 @@ public class KotlinJsonDtoGenerator extends WriteCommandAction.Simple {
                 dataTypeForList = getPrimitiveName(depth, object1);
             } else {
                 //Todo:if depth==0  IT IS CURRNTLY CONSIDERED AS PRIMITIVE LIST
+                ((JsonArrayRepresentor) fieldRepresentor).setClassNameOption(jsonDtoBuilder.classNameOptions);
                 JSONObject objectWithMostNumberOfKeys = getObjectWithMostNumberOfKeys(object1);
-                generateClassForObject(objectWithMostNumberOfKeys, key);
+                generateClassForObject(objectWithMostNumberOfKeys, key,fieldCreationStrategy);
 
             }
             ((JsonArrayRepresentor) fieldRepresentor).setDepth(depth);
             ((JsonArrayRepresentor) fieldRepresentor).setDataType(dataTypeForList);
         }
-        fieldRepresentation = fieldCreationStrategy.getFieldFor(jsonDtoBuilder.languageType,fieldRepresentor, accessModifier, key, nameParser, nameConflictResolver);
+        fieldRepresentation = fieldCreationStrategy.getFieldFor(jsonDtoBuilder.languageType, fieldRepresentor, accessModifier, key, nameParser, nameConflictResolver);
         return fieldRepresentation + "\n";
     }
 
@@ -256,10 +272,12 @@ public class KotlinJsonDtoGenerator extends WriteCommandAction.Simple {
         }
     }
 
-    private void generateClassForObject(JSONObject jsonObject, String key) throws JSONException {
+    private void generateClassForObject(JSONObject jsonObject, String key, FieldCreationStrategy fieldCreationStrategy) throws JSONException {
         if (nameParserCommands.contains(camelCase))
             key = camelCase.parseFieldName(key);
-        addClass(key, jsonObject);
+        if (jsonDtoBuilder.classNameOptions != null)
+            key = key + jsonDtoBuilder.classNameOptions.getName();
+        addClass(key, jsonObject,fieldCreationStrategy);
 
     }
 

@@ -39,4 +39,5 @@ public class StringFieldRepresentor extends FieldRepresentor {
         return "val " + key + " :String";
     }
 
+
 }

@@ -32,4 +32,9 @@ public class GsonFieldCreator implements FieldCreationStrategy {
         return type.gsonFieldRepresentationTemplate(languageType, modifier, key, parser, nameConflictResolver);
     }
 
+    @Override
+    public String getImportDirective() {
+        return "com.google.gson.annotations.SerializedName";
+    }
+
 }

@@ -30,11 +30,11 @@ import com.nvinayshetty.DTOnator.DtoCreationOptions.FeedType;
 import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldEncapsulationOptions;
 import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldType;
 import com.nvinayshetty.DTOnator.FieldCreator.LanguageType;
+import com.nvinayshetty.DTOnator.NameConventionCommands.ClassName.ClassNameOptions;
 import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
 import com.nvinayshetty.DTOnator.Ui.JsonInputEditorPane;
 import com.nvinayshetty.DTOnator.Ui.TabbedInputWindow;
 import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.kotlin.asJava.elements.KtLightElement;
 import org.jetbrains.kotlin.idea.KotlinLanguage;
 import org.jetbrains.kotlin.idea.internal.Location;
@@ -56,7 +56,10 @@ public class UserActionListener extends AnAction implements JsonInputEditorPane.
         super();
     }
 
-    public static KtClass getKtClassForElement(@NotNull PsiElement psiElement) {
+    public static KtClass getKtClassForElement(PsiElement psiElement) {
+        if (psiElement == null) {
+            return null;
+        }
         if (psiElement instanceof KtLightElement) {
             PsiElement origin = ((KtLightElement) psiElement).getKotlinOrigin();
             if (origin != null) {
@@ -84,7 +87,7 @@ public class UserActionListener extends AnAction implements JsonInputEditorPane.
     public void actionPerformed(AnActionEvent event) {
         mClass = getPsiClassFromContext(event);
         ktClass = getKtClassFromContext(event);
-        TabbedInputWindow tabbedInputWindow = new TabbedInputWindow(event.getProject(), psiFile, this, (ktClass!=null)? LanguageType.KOTLIN: LanguageType.JAVA);
+        TabbedInputWindow tabbedInputWindow = new TabbedInputWindow(event.getProject(), psiFile, this, (ktClass != null) ? LanguageType.KOTLIN : LanguageType.JAVA);
         tabbedInputWindow.setVisible(true);
        /* if (ktClass != null) {
             psiFile = event.getData(LangDataKeys.PSI_FILE);
@@ -151,13 +154,13 @@ public class UserActionListener extends AnAction implements JsonInputEditorPane.
 
 
     @Override
-    public void onGenerateButtonClick(FieldType fieldType, ClassType classType, EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions, String input, HashSet<NameParserCommand> nameParserCommands,LanguageType languageType) {
+    public void onGenerateButtonClick(FieldType fieldType, ClassType classType, EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions, String input, HashSet<NameParserCommand> nameParserCommands, LanguageType languageType, String customFieldName, boolean abstractClassWithAnnotation, ClassNameOptions classNameOptions) {
         WriteCommandAction writeAction = null;
         if (mClass != null) {
-            writeAction = DtoGenerationFactory.getDtoGeneratorFor(FeedType.JSON, classType, fieldType, fieldEncapsulationOptions, input, mClass, new HashSet<NameConflictResolverCommand>(), nameParserCommands);
+            writeAction = DtoGenerationFactory.getDtoGeneratorFor(FeedType.JSON, classType, fieldType, fieldEncapsulationOptions, input, mClass, new HashSet<NameConflictResolverCommand>(), nameParserCommands, customFieldName, abstractClassWithAnnotation, classNameOptions);
         }
         if (ktClass != null) {
-            writeAction = DtoGenerationFactory.getDtoGeneratorForKotlin(FeedType.JSON, classType, fieldType, fieldEncapsulationOptions, input, ktClass, new HashSet<NameConflictResolverCommand>(),nameParserCommands, languageType);
+            writeAction = DtoGenerationFactory.getDtoGeneratorForKotlin(FeedType.JSON, classType, fieldType, fieldEncapsulationOptions, input, ktClass, new HashSet<NameConflictResolverCommand>(), nameParserCommands, languageType, customFieldName, abstractClassWithAnnotation, classNameOptions);
         }
         if (writeAction != null)
             writeAction.execute();

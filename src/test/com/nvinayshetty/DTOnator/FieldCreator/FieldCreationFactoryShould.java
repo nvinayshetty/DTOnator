@@ -33,10 +33,10 @@ import static org.junit.Assert.assertTrue;
 public class FieldCreationFactoryShould {
     @Test
     public void shouldCretaGsonFieldWhenUserInputIsGson(){
-        FieldCreationStrategy fieldCreationStrategy= FieldCreationFactory.getFieldCreatorFor(FieldType.GSON);
+        FieldCreationStrategy fieldCreationStrategy= FieldCreationFactory.getFieldCreatorFor(FieldType.GSON,"");
         assertTrue(fieldCreationStrategy instanceof GsonFieldCreator);
 
-        FieldCreationStrategy SimpleFieldCreationStrategy= FieldCreationFactory.getFieldCreatorFor(FieldType.POJO);
+        FieldCreationStrategy SimpleFieldCreationStrategy= FieldCreationFactory.getFieldCreatorFor(FieldType.POJO,"");
         assertTrue(SimpleFieldCreationStrategy instanceof SimpleFieldCreator);
     }
 }

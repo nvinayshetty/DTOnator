@@ -39,4 +39,5 @@ public class BooleanFieldRepresentor extends FieldRepresentor {
         return "var " + key + " :Boolean";
     }
 
+
 }

@@ -17,13 +17,9 @@
 
 package com.nvinayshetty.DTOnator.FeedParser;
 
-import com.intellij.notification.Notification;
-import com.intellij.notification.NotificationType;
 import com.intellij.openapi.command.WriteCommandAction;
-import com.intellij.psi.JavaPsiFacade;
-import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiElementFactory;
-import com.intellij.psi.PsiField;
+import com.intellij.psi.*;
+import com.intellij.psi.codeStyle.CodeStyleManager;
 import com.intellij.psi.codeStyle.JavaCodeStyleManager;
 import com.nvinayshetty.DTOnator.ClassCreator.EncapsulatedClassCreator;
 import com.nvinayshetty.DTOnator.DtoCreationOptions.DtoCreationOptionsFacade;
@@ -72,6 +68,7 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
     JsonDtoGenerator(JsonDtoBuilder builder) {
         super(builder.classUnderCaret.getProject(), builder.classUnderCaret.getContainingFile());
         psiFactory = JavaPsiFacade.getElementFactory(builder.classUnderCaret.getProject());
+
         json = builder.json;
         classUnderCaret = builder.classUnderCaret;
         dtoCreationOptionsFacade = builder.dtoCreationOptionsFacade;
@@ -94,9 +91,22 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
 
     private void addFieldsToTheClassUnderCaret(String json) {
         PsiClass psiClass = generateDto(json, classUnderCaret);
+        if (jsonDtoBuilder.isAbstractClassWithAnnotation) {
+            //Correct way
+
+            PsiModifierList modifierList = classUnderCaret.getModifierList();
+            modifierList.addAnnotation("com.google.auto.value.AutoValue");
+
+
+        }
+        classUnderCaret.getModifierList().setModifierProperty(PsiModifier.ABSTRACT, true);
         JavaCodeStyleManager styleManager = JavaCodeStyleManager.getInstance(psiClass.getProject());
         styleManager.optimizeImports(psiClass.getContainingFile());
         styleManager.shortenClassReferences(psiClass.getContainingFile());
+        //tODO:REMOVE REDUNDAT INPORTD DTYLE MANAGES
+        CodeStyleManager codeStyleManager = CodeStyleManager.getInstance(classUnderCaret.getProject());
+        codeStyleManager.reformat(classUnderCaret);
+
     }
 
     private void addClass(String name, JSONObject json) {
@@ -106,7 +116,16 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
             className = nameConflictResolver.resolveNamingConflict(name);
             className = DtoHelper.firstetterToUpperCase(className);
         }
+
         PsiClass aClass = psiFactory.createClass(className);
+        if (jsonDtoBuilder.isAbstractClassWithAnnotation) {
+
+            PsiModifierList modifierList = aClass.getModifierList();
+            modifierList.addAnnotation("com.google.auto.value.AutoValue");
+
+            aClass.getModifierList().setModifierProperty(PsiModifier.ABSTRACT, true);
+
+        }
         generateDto(json.toString(), aClass);
         dtoCreationOptionsFacade.getClassCreationStrategy().addClass(aClass);
     }
@@ -119,9 +138,16 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
             Iterator<String> keysIterator = json.keys();
             while (keysIterator.hasNext()) {
                 String key = keysIterator.next();
+
                 String filedStr = getFieldsForJson(json, key);
-                PsiField fieldFromText = psiFactory.createFieldFromText(filedStr, aClass);
-                aClass.add(fieldFromText);
+                if (jsonDtoBuilder.isAbstractClassWithAnnotation) {
+                    PsiMethod fieldFromText = psiFactory.createMethodFromText(filedStr, aClass);
+                    fieldFromText.getModifierList().setModifierProperty(PsiModifier.ABSTRACT, true);
+                    aClass.add(fieldFromText);
+                } else {
+                    PsiField fieldFromText = psiFactory.createFieldFromText(filedStr, aClass);
+                    aClass.addAfter(fieldFromText, aClass.getLBrace().getNextSibling());
+                }
                 Object jsonObject = json.get(key);
                 if (jsonObject instanceof JSONObject) {
                     generateClassForObject((JSONObject) jsonObject, key);
@@ -129,9 +155,7 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
             }
         }
         if (object instanceof JSONArray) {
-            final Notification processingNotification = new Notification("DtoGenerator", "DtoGenerator Can't Process JsonArray!", "A top level json array can't be processed as it doesn't have suitable keys to map to. Please consider entering an JsonObject ", NotificationType.ERROR);
-            processingNotification.notify(classUnderCaret.getProject());
-           /* String fieldRepresentation = "";
+            String fieldRepresentation = "";
             JSONArray jsonArray = (JSONArray) object;
             String dataTypeForList = "";
             if (jsonArray.length() != 0) {
@@ -142,14 +166,16 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
                     dataTypeForList = getPrimitiveName(depth, jsonArray);
                 } else {
                     JSONObject objectWithMostNumberOfKeys = getObjectWithMostNumberOfKeys(jsonArray);
-                    generateClassForObject(objectWithMostNumberOfKeys, dataType);
+
+                    String json = objectWithMostNumberOfKeys.toString();
+                    addFieldsToTheClassUnderCaret(json);
                 }
                 ((JsonArrayRepresentor) fieldRepresentor).setDepth(depth);
                 ((JsonArrayRepresentor) fieldRepresentor).setDataType(dataTypeForList);
-                fieldRepresentation = fieldCreationStrategy.getFieldFor(fieldRepresentor, accessModifier, dataType, nameParser, nameConflictResolver) + "\n";
+                fieldRepresentation = fieldCreationStrategy.getFieldFor(LanguageType.JAVA, fieldRepresentor, accessModifier, dataType, nameParser, nameConflictResolver) + "\n";
                 PsiField fieldFromText = psiFactory.createFieldFromText(fieldRepresentation, aClass);
                 aClass.add(fieldFromText);
-            }*/
+            }
 
         }
         if (dtoCreationOptionsFacade.getEncapsulationOptionses().contains(FieldEncapsulationOptions.PROVIDE_PRIVATE_FIELD)) {
@@ -166,6 +192,7 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
         FieldRepresentor fieldRepresentor = new FieldRepresenterFactory().convert(dataType);
         fieldRepresentor.setProject(classUnderCaret.getProject());
         if (fieldRepresentor instanceof JsonObjectRepresentor) {
+            ((JsonObjectRepresentor) fieldRepresentor).setClassNameOption(jsonDtoBuilder.classNameOptions);
             ((JsonObjectRepresentor) fieldRepresentor).setNameParser(nameParser);
         }
         if (fieldRepresentor instanceof JsonArrayRepresentor) {
@@ -176,11 +203,14 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
             if (isPrimitiveList(object1, depth)) {
                 dataTypeForList = getPrimitiveName(depth, object1);
             } else {
+                ((JsonArrayRepresentor) fieldRepresentor).setClassNameOption(jsonDtoBuilder.classNameOptions);
                 //Todo:if depth==0  IT IS CURRNTLY CONSIDERED AS PRIMITIVE LIST
+
                 JSONObject objectWithMostNumberOfKeys = getObjectWithMostNumberOfKeys(object1);
                 generateClassForObject(objectWithMostNumberOfKeys, key);
 
             }
+
             ((JsonArrayRepresentor) fieldRepresentor).setDepth(depth);
             ((JsonArrayRepresentor) fieldRepresentor).setDataType(dataTypeForList);
         }
@@ -243,6 +273,8 @@ public class JsonDtoGenerator extends WriteCommandAction.Simple {
     private void generateClassForObject(JSONObject jsonObject, String key) throws JSONException {
         if (nameParserCommands.contains(camelCase))
             key = camelCase.parseFieldName(key);
+        if (jsonDtoBuilder.classNameOptions != null)
+            key = key + jsonDtoBuilder.classNameOptions.getName();
         addClass(key, jsonObject);
 
     }

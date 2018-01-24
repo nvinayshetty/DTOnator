@@ -32,6 +32,11 @@ public class SimpleFieldCreator implements FieldCreationStrategy {
         return fieldRepresentor.fieldCreationTemplate(languageType,accessModifier, key, parser, nameConflictResolver, new KeywordClassifier());
     }
 
+    @Override
+    public String getImportDirective() {
+        return "";
+    }
+
 
 }
 

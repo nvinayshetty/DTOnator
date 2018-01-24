@@ -20,10 +20,14 @@ package com.nvinayshetty.DTOnator.ClassCreator;
 import com.intellij.psi.JavaDirectoryService;
 import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiFile;
+import com.nvinayshetty.DTOnator.FieldCreator.ExposedGsonFieldCreator;
+import com.nvinayshetty.DTOnator.FieldCreator.FieldCreationStrategy;
 import org.jetbrains.kotlin.name.FqName;
 import org.jetbrains.kotlin.psi.KtClass;
+import org.jetbrains.kotlin.psi.KtImportDirective;
 import org.jetbrains.kotlin.psi.KtPackageDirective;
 import org.jetbrains.kotlin.psi.KtPsiFactory;
+import org.jetbrains.kotlin.resolve.ImportPath;
 
 public class publicKotlinClassCreator extends KotlinClassCreationStrategy {
     PsiDirectory pkgOfClassUnderCaret;
@@ -34,18 +38,32 @@ public class publicKotlinClassCreator extends KotlinClassCreationStrategy {
     }
 
     @Override
-    public void addClass(KtClass psiClass) {
+    public void addClass(KtClass psiClass, FieldCreationStrategy fieldCreationStrategy) {
         String name = psiClass.getName() + ".kt";
         KtPsiFactory ktPsiFactory = new KtPsiFactory(psiClass.getProject());
+
         String qualifiedName = JavaDirectoryService.getInstance().getPackage(pkgOfClassUnderCaret).getQualifiedName();
-
         KtPackageDirective packageDirective = ktPsiFactory.createPackageDirective(new FqName(qualifiedName));
-
-        // KtFile file = ktPsiFactory.createFile(name);
-        //≈
         PsiFile file = pkgOfClassUnderCaret.createFile(name);
-        file.add(packageDirective);
-        file.add(psiClass);
 
+        file.add(packageDirective);
+
+      if(!fieldCreationStrategy.getImportDirective().isEmpty()) {
+          FqName fqName = new FqName(fieldCreationStrategy.getImportDirective());
+          ImportPath importPath = new ImportPath(fqName, false);
+          KtImportDirective importDirective = ktPsiFactory.createImportDirective(importPath);
+          psiClass.getContainingKtFile().getImportList().add(importDirective);
+          if (fieldCreationStrategy instanceof ExposedGsonFieldCreator) {
+              //Todo: make interface to return list of directives
+              FqName serialized = new FqName("com.google.gson.annotations.SerializedName");
+              ImportPath serializedPath = new ImportPath(serialized, false);
+              KtImportDirective serializedDirective = ktPsiFactory.createImportDirective(serializedPath);
+              psiClass.getContainingKtFile().getImportList().add(serializedDirective);
+
+          }
+          file.add(ktPsiFactory.createNewLine(2));
+      }
+        file.add(psiClass);
+        organizeCodeStyle(psiClass);
     }
 }

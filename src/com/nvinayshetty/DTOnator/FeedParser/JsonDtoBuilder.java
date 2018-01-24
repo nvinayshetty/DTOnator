@@ -20,6 +20,7 @@ package com.nvinayshetty.DTOnator.FeedParser;
 import com.intellij.psi.PsiClass;
 import com.nvinayshetty.DTOnator.DtoCreationOptions.DtoCreationOptionsFacade;
 import com.nvinayshetty.DTOnator.FieldCreator.LanguageType;
+import com.nvinayshetty.DTOnator.NameConventionCommands.ClassName.ClassNameOptions;
 import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
 import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
 import org.jetbrains.kotlin.psi.KtClass;
@@ -35,6 +36,8 @@ public class JsonDtoBuilder {
     HashSet<NameConflictResolverCommand> nameConflictResolverCommands;
     HashSet<NameParserCommand> feildNameParser;
     LanguageType languageType;
+    ClassNameOptions classNameOptions;
+    boolean isAbstractClassWithAnnotation;
 
     public JsonDtoBuilder setJson(String json) {
         this.json = json;
@@ -70,6 +73,16 @@ public class JsonDtoBuilder {
 
     public JsonDtoBuilder SetLanguage(LanguageType languageType) {
         this.languageType = languageType;
+        return this;
+    }
+
+    public JsonDtoBuilder isAbstractClassWithAnnotation(boolean isAbstractClassWithAnnotation) {
+        this.isAbstractClassWithAnnotation = isAbstractClassWithAnnotation;
+        return this;
+    }
+
+    public JsonDtoBuilder setClassNameOptions(ClassNameOptions classNameOptions) {
+        this.classNameOptions = classNameOptions;
         return this;
     }
 

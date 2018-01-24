@@ -26,4 +26,9 @@ public class ExposedGsonFieldCreator implements FieldCreationStrategy {
     public String getFieldFor(LanguageType languageType, FieldRepresentor type, AccessModifier accessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
         return type.gsonFieldWithExposeAnnotationTemplate(languageType, accessModifier, key, parser, nameConflictResolver);
     }
+
+    @Override
+    public String getImportDirective() {
+        return "com.google.gson.annotations.Expose";
+    }
 }

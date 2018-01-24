@@ -18,16 +18,21 @@
 package com.nvinayshetty.DTOnator.ClassCreator;
 
 import com.intellij.psi.codeStyle.JavaCodeStyleManager;
+import com.nvinayshetty.DTOnator.FieldCreator.FieldCreationStrategy;
+import org.jetbrains.kotlin.codegen.KotlinCodegenFacade;
+import org.jetbrains.kotlin.idea.KotlinLanguage;
+import org.jetbrains.kotlin.idea.core.formatter.KotlinCodeStyleSettings;
 import org.jetbrains.kotlin.psi.KtClass;
 
 public abstract class KotlinClassCreationStrategy {
 
 
-    public abstract void addClass(KtClass psiClass);
+    public abstract void addClass(KtClass psiClass, FieldCreationStrategy fieldCreationStrategy);
 
     public void organizeCodeStyle(KtClass aClass) {
         JavaCodeStyleManager styleManager = JavaCodeStyleManager.getInstance(aClass.getProject());
-        styleManager.optimizeImports(aClass.getContainingFile());
-        styleManager.shortenClassReferences(aClass);
+        styleManager.optimizeImports(aClass.getContainingKtFile());
+        styleManager.shortenClassReferences(aClass.getContainingKtFile());
+
     }
 }

@@ -205,8 +205,8 @@ public class InputWindow extends JFrame {
             EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions = getFieldEncapsulationOptions();
             PsiFile containingFile = mClass.getContainingFile();
             String validFeed = validator.getValidFeed();
-            WriteCommandAction writeAction = DtoGenerationFactory.getDtoGeneratorFor(getFeedType(), classType, getFieldTYpe(), fieldEncapsulationOptions,validFeed, mClass, nameConflictResolverCommands, fieldNameParser);
-            writeAction.execute();
+          //  WriteCommandAction writeAction = DtoGenerationFactory.getDtoGeneratorFor(getFeedType(), classType, getFieldTYpe(), fieldEncapsulationOptions,validFeed, mClass, nameConflictResolverCommands, fieldNameParser, customFieldName);
+            //writeAction.execute();
         }
     }
 

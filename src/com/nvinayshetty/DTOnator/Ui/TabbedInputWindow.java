@@ -25,6 +25,7 @@ import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldEncapsulationOptions;
 import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldType;
 import com.nvinayshetty.DTOnator.FieldCreator.LanguageType;
 import com.nvinayshetty.DTOnator.NameConventionCommands.CamelCase;
+import com.nvinayshetty.DTOnator.NameConventionCommands.ClassName.ClassNameOptions;
 import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
 import com.nvinayshetty.DTOnator.NameConventionCommands.NamePrefixer;
 import com.nvinayshetty.DTOnator.persistence.DtonatorPreferences;
@@ -33,6 +34,7 @@ import com.nvinayshetty.DTOnator.persistence.Naming;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashSet;
@@ -50,14 +52,17 @@ public class TabbedInputWindow extends JFrame implements JsonInputEditorPane.Set
         this.project = project;
         tabbedPane = new JBTabbedPane();
         setSize(800, 700);
-        jsonEditorPane = new JsonInputEditorPane(project, psiFile, this);
+        jsonEditorPane = new JsonInputEditorPane(project, this);
         tabbedPane.add("DTO Generator", jsonEditorPane);
         settingsTab = new SettingsTab(project);
         tabbedPane.add("Settings", settingsTab);
         setContentPane(tabbedPane);
+
         if (languageType == LanguageType.KOTLIN) {
+            settingsTab.setLanguageOfClassUnderCaret(languageType);
             settingsTab.enableKotlinOptions();
             settingsTab.hideEncapsulationOptions();
+            settingsTab.hideAutoValue();
         } else {
             settingsTab.hideKotlinOptions();
             settingsTab.enableEncapsulationOptions();
@@ -70,6 +75,22 @@ public class TabbedInputWindow extends JFrame implements JsonInputEditorPane.Set
                 }
             }
         });
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                onCancel();
+            }
+        });
+        tabbedPane.registerKeyboardAction(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onCancel();
+            }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+
+    }
+
+    private void onCancel() {
+        dispose();
     }
 
 
@@ -78,10 +99,19 @@ public class TabbedInputWindow extends JFrame implements JsonInputEditorPane.Set
         FieldType fieldType = settingsTab.getFieldType();
         ClassType classType = settingsTab.getClassType();
         LanguageType language = settingsTab.getLanguage();
+        String customFiledPattern = settingsTab.getCustomFieldPattern();
+        ClassNameOptions classNameOptions = settingsTab.getClassNameOptions();
+        boolean abstractClassWithAnnotation = settingsTab.isAbstractClassWithAnnotation();
         HashSet<NameParserCommand> fieldNameParserCommands = settingsTab.getFieldNameParserCommands();
-        DtonatorPreferences instance = DtonatorPreferences.getInstance(project);
-        EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions = settingsTab.getFieldEncapsulationOptions();
+        DtonatorPreferences preferences = DtonatorPreferences.getInstance(project);
 
+        EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions = settingsTab.getFieldEncapsulationOptions();
+        if (fieldType == FieldType.AUTO_VALUE) {
+            fieldEncapsulationOptions.clear();
+        }
+        if (language!=null&&language!=LanguageType.JAVA&&fieldType == FieldType.AUTO_VALUE ) {
+            fieldType = null;
+        }
         if (classType == null) {
             settingsTab.showSettingAlert("Please select How to organize classes");
             tabbedPane.setSelectedIndex(1);
@@ -92,25 +122,28 @@ public class TabbedInputWindow extends JFrame implements JsonInputEditorPane.Set
             tabbedPane.setSelectedIndex(1);
             return;
         }
-        instance.setFieldType(fieldType);
-        instance.setClassType(classType);
+        preferences.setFieldType(fieldType);
+        preferences.setClassType(classType);
+        preferences.setClassNameOptions(classNameOptions);
+        preferences.setCustomAnnotationPattern(customFiledPattern);
+        preferences.setPreixingName(settingsTab.getNameConventionPrefixText());
+        preferences.setLanguageType(language);
         List<FieldEncapsulationOptions> options = new ArrayList<>();
         for (FieldEncapsulationOptions fieldEncapsulationOption : fieldEncapsulationOptions) {
             options.add(fieldEncapsulationOption);
         }
-        instance.setEncapsulete(options);
+        preferences.setEncapsulete(options);
+        List<Naming> namings = new ArrayList<>();
         for (NameParserCommand nameParserCommand : fieldNameParserCommands) {
-            List<Naming> namings = new ArrayList<>();
             if (nameParserCommand instanceof CamelCase) {
                 namings.add(Naming.CAMEL_CASE);
             }
             if (nameParserCommand instanceof NamePrefixer) {
                 namings.add(Naming.PREFEIX);
             }
-            instance.setNaming(namings);
-
         }
-        generateClickListener.onGenerateButtonClick(fieldType, classType, fieldEncapsulationOptions, input, fieldNameParserCommands, language);
+        preferences.setNaming(namings);
+        generateClickListener.onGenerateButtonClick(fieldType, classType, fieldEncapsulationOptions, input, fieldNameParserCommands, language, customFiledPattern, abstractClassWithAnnotation, classNameOptions);
         dispose();
     }
 

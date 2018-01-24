@@ -26,6 +26,8 @@ import com.intellij.util.xmlb.XmlSerializerUtil;
 import com.nvinayshetty.DTOnator.ClassCreator.ClassType;
 import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldEncapsulationOptions;
 import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldType;
+import com.nvinayshetty.DTOnator.FieldCreator.LanguageType;
+import com.nvinayshetty.DTOnator.NameConventionCommands.ClassName.ClassNameOptions;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.EnumSet;
@@ -44,6 +46,9 @@ public class DtonatorPreferences implements PersistentStateComponent<DtonatorPre
     private List<FieldEncapsulationOptions> encapsulete;
     private List<Naming> naming;
     private String preixingName="";
+    private ClassNameOptions classNameOptions;
+    private String customAnnotationPattern;
+    private LanguageType languageType;
 
     public String getPreixingName() {
         return preixingName;
@@ -107,5 +112,29 @@ public class DtonatorPreferences implements PersistentStateComponent<DtonatorPre
 
     public void setNaming(List<Naming> naming) {
         this.naming = naming;
+    }
+
+    public ClassNameOptions getClassNameOptions() {
+        return classNameOptions;
+    }
+
+    public void setClassNameOptions(ClassNameOptions classNameOptions) {
+        this.classNameOptions = classNameOptions;
+    }
+
+    public String getCustomAnnotationPattern() {
+        return customAnnotationPattern;
+    }
+
+    public void setCustomAnnotationPattern(String customAnnotationPattern) {
+        this.customAnnotationPattern = customAnnotationPattern;
+    }
+
+    public void setLanguageType(LanguageType languageType) {
+        this.languageType = languageType;
+    }
+
+    public LanguageType getLanguageType() {
+        return languageType;
     }
 }

@@ -17,8 +17,13 @@
 
 package com.nvinayshetty.DTOnator.ClassCreator;
 
+import com.intellij.json.JsonLanguage;
+import com.intellij.json.formatter.JsonLanguageCodeStyleSettingsProvider;
 import com.intellij.psi.PsiClass;
+import com.intellij.psi.codeStyle.CodeStyleManager;
+import com.intellij.psi.codeStyle.CodeStyleSettingsManager;
 import com.intellij.psi.codeStyle.JavaCodeStyleManager;
+import org.jetbrains.kotlin.idea.util.ImportInsertHelper;
 
 /**
  * Created by vinay on 31/5/15.
@@ -31,5 +36,8 @@ public abstract class ClassCreatorStrategy {
         JavaCodeStyleManager styleManager = JavaCodeStyleManager.getInstance(aClass.getProject());
         styleManager.optimizeImports(aClass.getContainingFile());
         styleManager.shortenClassReferences(aClass);
+        CodeStyleManager codeStyleManager=CodeStyleManager.getInstance(aClass.getProject());
+        codeStyleManager.reformat(aClass);
+
     }
 }

@@ -39,6 +39,7 @@ public class DoubleFieldRepresentor extends FieldRepresentor {
     protected String getKotlinVarFieldRepresentationFor(AccessModifier accessModifier, String key) {
         return "val " + key + " :Double";
     }
+
 }
 
 

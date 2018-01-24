@@ -19,15 +19,19 @@ package com.nvinayshetty.DTOnator.FieldRepresentors;
 
 
 import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
+import com.nvinayshetty.DTOnator.NameConventionCommands.ClassName.ClassNameOptions;
 import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
 import com.nvinayshetty.DTOnator.Utility.DtoHelper;
 import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nonnull;
 
 /**
  * Created by vinay on 12/7/15.
  */
 public class JsonObjectRepresentor extends FieldRepresentor {
     FieldNameParser nameParser;
+    private ClassNameOptions classNameOptions;
 
     @Override
     public String getFieldRepresentationFor(AccessModifier accessModifier, String key) {
@@ -41,22 +45,36 @@ public class JsonObjectRepresentor extends FieldRepresentor {
         String Object = key;
         if (nameParser != null)
             Object = nameParser.undo(key);
-        return accessModifier.getModifier() + DtoHelper.firstetterToUpperCase(Object) + suffix(key);
+        String clasNameOption = (classNameOptions != null) ? classNameOptions.getName() : "";
+        return accessModifier.getModifier() + DtoHelper.firstetterToUpperCase(Object) + clasNameOption + suffix(key);
     }
 
     @Override
     protected String getKotlinValFieldRepresentationFor(AccessModifier accessModifier, String key) {
-        return "val " + key + ": " + DtoHelper.firstetterToUpperCase(key);
+        String Object = key;
+        if (nameParser != null)
+            key = nameParser.undo(key);
+        String clasNameOption = (classNameOptions != null) ? classNameOptions.getName() : "";
+        return "val " + Object + ": " + DtoHelper.firstetterToUpperCase(key)+clasNameOption;
     }
 
     @Override
     protected String getKotlinVarFieldRepresentationFor(AccessModifier accessModifier, String key) {
-        return "var " + key + ": " +DtoHelper.firstetterToUpperCase(key);
+        String Object = key;
+        if (nameParser != null)
+            key = nameParser.undo(key);
+        String clasNameOption = (classNameOptions != null) ? classNameOptions.getName() : "";
+        return "var " + Object + ": " + DtoHelper.firstetterToUpperCase(key)+clasNameOption;
 
     }
 
 
+
     public void setNameParser(FieldNameParser nameParser) {
         this.nameParser = nameParser;
+    }
+
+    public void setClassNameOption(ClassNameOptions classNameOptions) {
+        this.classNameOptions = classNameOptions;
     }
 }

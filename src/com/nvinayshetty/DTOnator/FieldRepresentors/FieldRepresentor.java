@@ -25,6 +25,7 @@ import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
 import com.nvinayshetty.DTOnator.FieldCreator.LanguageType;
 import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
 import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
+import com.sun.org.apache.bcel.internal.generic.SWITCH;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -34,7 +35,9 @@ import javax.swing.*;
  */
 public abstract class FieldRepresentor {
     public static final String JACKSON_ANNOTAION_PREFIX = "@com.fasterxml.jackson.annotation.JsonProperty(\"";
+    public static final String JACKSON_ANNOTAION_SHORT_PREFIX = "@JsonProperty(\"" ;
     protected static final String GSON_ANNOTATION_PREFIX = "@com.google.gson.annotations.SerializedName(\"";
+    protected static final String GSON_ANNOTATION_PREFIX_SHORT = "@SerializedName(\"";
     protected static final String ANNOTATION_SUFFIX = "\")\n";
     private static final String SPACE = " ";
     private static final String CLASS_FIELD_SUFFIX = ";";
@@ -46,12 +49,24 @@ public abstract class FieldRepresentor {
         return new StringBuilder().append(SPACE).append(key).append(CLASS_FIELD_SUFFIX).toString();
     }
 
-    private static String getGsonAnnotationFor(String key) {
-        return GSON_ANNOTATION_PREFIX + key + ANNOTATION_SUFFIX;
+    private static String getGsonAnnotationFor(String key, LanguageType languageType) {
+        switch (languageType){
+            case JAVA:
+                return GSON_ANNOTATION_PREFIX + key + ANNOTATION_SUFFIX;
+            default:
+                return GSON_ANNOTATION_PREFIX_SHORT + key + "\")\n";
+        }
+
     }
 
-    private static String getJacksonAnnotationFor(String key) {
-        return JACKSON_ANNOTAION_PREFIX + key + ANNOTATION_SUFFIX;
+    private static String getJacksonAnnotationFor(String key, LanguageType languageType) {
+        switch (languageType){
+            case JAVA:
+                return JACKSON_ANNOTAION_PREFIX + key + ANNOTATION_SUFFIX;
+            default:
+                return JACKSON_ANNOTAION_SHORT_PREFIX + key +  "\")\n";
+
+        }
     }
 
     public final String fieldCreationTemplate(LanguageType languageType, AccessModifier accessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver, KeywordClassifier keywordClassifier) {
@@ -70,21 +85,35 @@ public abstract class FieldRepresentor {
     }
 
     public final String gsonFieldRepresentationTemplate(LanguageType languageType, AccessModifier AccessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
-        return getGsonAnnotationFor(key) + fieldCreationTemplate(languageType, AccessModifier, key, parser, nameConflictResolver, keywordClassifier);
+
+        return getGsonAnnotationFor(key,languageType) + fieldCreationTemplate(languageType, AccessModifier, key, parser, nameConflictResolver, keywordClassifier);
     }
 
     public final String gsonFieldWithExposeAnnotationTemplate(LanguageType languageType, AccessModifier AccessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
-        return getExposeAnnotation() + "\n" + getGsonAnnotationFor(key) + fieldCreationTemplate(languageType, AccessModifier, key, parser, nameConflictResolver, keywordClassifier);
+        return getExposeAnnotation(languageType) + "\n" + getGsonAnnotationFor(key, languageType) + fieldCreationTemplate(languageType, AccessModifier, key, parser, nameConflictResolver, keywordClassifier);
     }
 
     public final String jacksonFieldRepresentationTemplate(LanguageType languageType, AccessModifier AccessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
-        return getJacksonAnnotationFor(key) + fieldCreationTemplate(languageType, AccessModifier, key, parser, nameConflictResolver, keywordClassifier);
+        return getJacksonAnnotationFor(key,languageType) + fieldCreationTemplate(languageType, AccessModifier, key, parser, nameConflictResolver, keywordClassifier);
+    }
+
+    public final String customFieldRepresentationTemplate(LanguageType languageType, AccessModifier AccessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver,String customFieldAnnotation) {
+        return getCustomFieldAnnotation(customFieldAnnotation+"\n",key) + fieldCreationTemplate(languageType, AccessModifier, key, parser, nameConflictResolver, keywordClassifier);
+    }
+
+    private String getCustomFieldAnnotation(String customFieldAnnotation, String key) {
+       return String.format(customFieldAnnotation,key);
     }
 
 
     @NotNull
-    private String getExposeAnnotation() {
-        return "@com.google.gson.annotations.Expose";
+    private String getExposeAnnotation(LanguageType languageType) {
+        switch (languageType){
+            case JAVA:
+                return "@com.google.gson.annotations.Expose";
+             default:return "@Expose";
+        }
+
     }
 
     protected abstract String getFieldRepresentationFor(AccessModifier accessModifier, String key);
@@ -92,6 +121,7 @@ public abstract class FieldRepresentor {
     protected abstract String getKotlinValFieldRepresentationFor(AccessModifier accessModifier, String key);
 
     protected abstract String getKotlinVarFieldRepresentationFor(AccessModifier accessModifier, String key);
+
 
 
     private String parse(final String key, FieldNameParser parser, NameConflictResolver nameConflictResolver, KeywordClassifier keywordClassifier) {
@@ -134,4 +164,8 @@ public abstract class FieldRepresentor {
     }
 
 
+    public String getAutoVlaueField(LanguageType languageType, AccessModifier accessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
+      //Todo: move to each data type
+       return getGsonAnnotationFor(key,languageType)+fieldCreationTemplate(languageType, accessModifier, key, parser, nameConflictResolver, keywordClassifier).replace(CLASS_FIELD_SUFFIX,"()")+";";
+    }
 }

@@ -17,22 +17,14 @@
 
 package com.nvinayshetty.DTOnator.Ui;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import com.intellij.json.JsonLanguage;
 import com.intellij.lang.Language;
 import com.intellij.openapi.application.Result;
 import com.intellij.openapi.command.WriteCommandAction;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.EditorFactory;
-import com.intellij.openapi.editor.highlighter.EditorHighlighter;
-import com.intellij.openapi.editor.highlighter.EditorHighlighterFactory;
-import com.intellij.openapi.editor.impl.EditorImpl;
 import com.intellij.openapi.fileEditor.FileEditor;
+import com.intellij.openapi.fileEditor.TextEditor;
 import com.intellij.openapi.fileEditor.impl.text.TextEditorProvider;
-import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiFileFactory;
@@ -43,6 +35,7 @@ import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldType;
 import com.nvinayshetty.DTOnator.FeedValidator.InputFeedValidationFactory;
 import com.nvinayshetty.DTOnator.FieldCreator.LanguageType;
 import com.nvinayshetty.DTOnator.Logger.ExceptionLogger;
+import com.nvinayshetty.DTOnator.NameConventionCommands.ClassName.ClassNameOptions;
 import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
@@ -63,12 +56,13 @@ public class JsonInputEditorPane extends JPanel {
     private JButton format;
     private JButton generate;
     private InputFeedValidationFactory validator;
-    private EditorImpl editor;
     private Project project;
     private SettingListener settingListener;
+    private PsiFile psiFile;
+    private FileEditor fileEditor;
 
 
-    public JsonInputEditorPane(Project project, PsiFile psiFile, SettingListener settingListener) {
+    public JsonInputEditorPane(Project project, SettingListener settingListener) {
         this.project = project;
         this.settingListener = settingListener;
         setLayout(new BorderLayout());
@@ -124,11 +118,16 @@ public class JsonInputEditorPane extends JPanel {
 
     private void formatInput(String inputText) {
         JSONTokener jsonTokener = new JSONTokener(inputText);
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
         JsonParser jsonParser = new JsonParser();
         Object object = jsonTokener.nextValue();
         if (object instanceof JSONObject) {
+
             JsonObject json = jsonParser.parse(inputText).getAsJsonObject();
+            String prettyJson = gson.toJson(json);
+            updateInputText(prettyJson);
+        }else{
+            JsonArray json = jsonParser.parse(inputText).getAsJsonArray();
             String prettyJson = gson.toJson(json);
             updateInputText(prettyJson);
         }
@@ -173,14 +172,15 @@ public class JsonInputEditorPane extends JPanel {
     }
 
     private String getInputText() {
-        return editor.getDocument().getText().trim();
+        return psiFile.getText().trim();
     }
 
     private void updateInputText(final String prettyJson) {
         new WriteCommandAction(project) {
             @Override
             protected void run(@NotNull Result result) throws Throwable {
-                editor.getDocument().setText(prettyJson);
+                TextEditor textComponent = (TextEditor) fileEditor;
+                textComponent.getEditor().getDocument().setText(prettyJson);
             }
         }.execute();
 
@@ -189,25 +189,8 @@ public class JsonInputEditorPane extends JPanel {
 
     private void createEditor(Project project) {
         Language language = Language.findLanguageByID(JsonLanguage.INSTANCE.getID());
-        FileType fileType = language != null ? language.getAssociatedFileType() : null;
-        Document myDocument = EditorFactory.getInstance().createDocument("");
-
-
-        editor = (EditorImpl) EditorFactory.getInstance().createEditor(myDocument);
-
-        final PsiFile psiFile = PsiFileFactory.getInstance(project).createFileFromText(language, "");
-        FileEditor fileEditor = TextEditorProvider.getInstance().createEditor(project, psiFile.getVirtualFile());
-        editor.getSettings().setLineNumbersShown(true);
-        editor.getSettings().setBlinkCaret(true);
-        editor.getSettings().setFoldingOutlineShown(true);
-        editor.getFoldingModel().setFoldingEnabled(true);
-        editor.getSettings().setAutoCodeFoldingEnabled(true);
-        if (fileType != null) {
-            EditorHighlighterFactory editorHighlighterFactory = EditorHighlighterFactory.getInstance();
-            EditorHighlighter editorHighlighter = editorHighlighterFactory.createEditorHighlighter(project, fileType);
-            editorHighlighter.createIterator(5);
-            editor.setHighlighter(editorHighlighter);
-        }
+        psiFile = PsiFileFactory.getInstance(project).createFileFromText(language, "");
+        fileEditor = TextEditorProvider.getInstance().createEditor(project, psiFile.getVirtualFile());
         fileEditor.getComponent().setPreferredSize(new Dimension(920, 200));
         add(fileEditor.getComponent(), BorderLayout.CENTER);
     }
@@ -227,7 +210,7 @@ public class JsonInputEditorPane extends JPanel {
 
 
     public interface GenerateClickListener {
-        void onGenerateButtonClick(FieldType fieldType, ClassType classType, EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions, String input, HashSet<NameParserCommand> nameParserCommands, LanguageType language);
+        void onGenerateButtonClick(FieldType fieldType, ClassType classType, EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions, String input, HashSet<NameParserCommand> nameParserCommands, LanguageType language, String customFieldName, boolean abstractClassWithAnnotation, ClassNameOptions classNameOptions);
     }
 
     public interface SettingListener {

@@ -23,6 +23,7 @@ import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldEncapsulationOptions;
 import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldType;
 import com.nvinayshetty.DTOnator.FieldCreator.LanguageType;
 import com.nvinayshetty.DTOnator.NameConventionCommands.CamelCase;
+import com.nvinayshetty.DTOnator.NameConventionCommands.ClassName.ClassNameOptions;
 import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
 import com.nvinayshetty.DTOnator.NameConventionCommands.NamePrefixer;
 import com.nvinayshetty.DTOnator.persistence.DtonatorPreferences;
@@ -62,10 +63,17 @@ public class SettingsTab extends JPanel {
     private JLabel settingsExceptionLabel;
     private JPanel kotlinPanel;
     private JPanel encapsulatePane;
+    private JTextField customTextField;
+    private JRadioButton autoValueRadioButton;
+    private JPanel non;
+    private JCheckBox entityCheckBox;
+    private JCheckBox beanCheckBox;
+    private ButtonGroup kotlinButtonGroup = new ButtonGroup();
     private ButtonGroup fileTypeButtonGroup = new ButtonGroup();
     private ButtonGroup typeRadioButtonGroup = new ButtonGroup();
     private HashSet<NameParserCommand> fieldNameParser = new LinkedHashSet<>();
     private Project project;
+    private LanguageType languageOfClassUnderCaret;
 
     public SettingsTab(Project project) {
         this.project = project;
@@ -93,16 +101,29 @@ public class SettingsTab extends JPanel {
                 switch (instance.getState().getFieldType()) {
                     case JACKSON:
                         jacksonRadioButton.setSelected(true);
+                        exposeCheckBox.setSelected(false);
                         break;
                     case GSON:
                         gsonRadioButton.setSelected(true);
+                        exposeCheckBox.setSelected(false);
                         break;
                     case POJO:
                         plainClassRadioButton.setSelected(true);
+                        exposeCheckBox.setSelected(false);
                         break;
                     case GSON_EXPOSE:
                         gsonRadioButton.setSelected(true);
                         exposeCheckBox.setSelected(true);
+                        break;
+                    case CUSTOM:
+                        customRadioButton.setSelected(true);
+                        exposeCheckBox.setSelected(false);
+                        customTextField.setVisible(true);
+                        break;
+                    case AUTO_VALUE:
+                        autoValueRadioButton.setSelected(true);
+                        exposeCheckBox.setSelected(false);
+                        disableEncapsulate();
                         break;
                 }
             }
@@ -118,6 +139,8 @@ public class SettingsTab extends JPanel {
             }
             if (instance.getState().getEncapsulete() != null) {
                 makeFieldsPrivateRadioButton.setSelected(true);
+                provideGetterCheckBox.setVisible(true);
+                provideSetterCheckBox.setVisible(true);
                 for (FieldEncapsulationOptions fieldEncapsulationOptions : instance.getState().getEncapsulete())
                     switch (fieldEncapsulationOptions) {
                         case PROVIDE_GETTER:
@@ -146,6 +169,32 @@ public class SettingsTab extends JPanel {
                     }
                 }
             }
+            if (instance.getState().getClassNameOptions() != null) {
+                switch (instance.getState().getClassNameOptions()) {
+                    case Bean:
+                        entityCheckBox.setSelected(false);
+                        beanCheckBox.setSelected(true);
+                    case Entity:
+                        beanCheckBox.setSelected(false);
+                        entityCheckBox.setSelected(true);
+
+                }
+            }
+            String customAnnotationPattern = instance.getState().getCustomAnnotationPattern();
+            if (customAnnotationPattern != null && !customAnnotationPattern.isEmpty()) {
+                customTextField.setText(customAnnotationPattern);
+            }
+            if (instance.getState().getLanguageType() != null) {
+                switch (instance.getState().getLanguageType()) {
+                    case KOTLIN_VAL:
+                        valRadioButton.setSelected(true);
+                        break;
+                    case KOTLIN_VAR:
+                        varRadioButton.setSelected(true);
+                        break;
+                }
+
+            }
         }
 
     }
@@ -155,7 +204,9 @@ public class SettingsTab extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (gsonRadioButton.isSelected()) {
+                    enableEncapsulate();
                     exposeCheckBox.setVisible(true);
+                    customTextField.setVisible(false);
                 } else {
                     exposeCheckBox.setVisible(false);
                 }
@@ -165,7 +216,9 @@ public class SettingsTab extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (jacksonRadioButton.isSelected()) {
+                    enableEncapsulate();
                     exposeCheckBox.setVisible(false);
+                    customTextField.setVisible(false);
                 }
             }
         });
@@ -173,7 +226,9 @@ public class SettingsTab extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (plainClassRadioButton.isSelected()) {
+                    enableEncapsulate();
                     exposeCheckBox.setVisible(false);
+                    customTextField.setVisible(false);
                 }
             }
         });
@@ -181,22 +236,48 @@ public class SettingsTab extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (makeFieldsPrivateRadioButton.isSelected()) {
+                    enableEncapsulate();
                     provideGetterCheckBox.setVisible(true);
                     provideSetterCheckBox.setVisible(true);
+                    customTextField.setVisible(false);
                 } else {
                     provideGetterCheckBox.setVisible(false);
                     provideSetterCheckBox.setVisible(false);
                 }
             }
         });
+        customRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (customRadioButton.isSelected()) {
+                    enableEncapsulate();
+                    customTextField.setVisible(true);
+                    exposeCheckBox.setVisible(false);
+                } else {
+                    customTextField.setVisible(false);
+                }
+            }
+        });
+        autoValueRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (autoValueRadioButton.isSelected()) {
+                    exposeCheckBox.setVisible(false);
+                    customTextField.setVisible(false);
+                    disableEncapsulate();
+                }
+            }
+        });
         ifYouLikeThisEditorPane.setEditable(false);
         ifYouLikeThisEditorPane.setOpaque(false);
         ifYouLikeThisEditorPane.setContentType("text/html");
-        ifYouLikeThisEditorPane.setText("<html> <body> <p> If you like this tool, And you want to support our efforts or you just want to say thanks,<br>please do so by adding more  ★ to our repository <a href=\"https://github.com/nvinayshetty/DTOnator\" target=\"_blank\">@Github</a></p>  <p>You can also do so  <a href=\"https://plugins.jetbrains.com/plugin/7834-dto-generator\" target=\"_blank\">@Jetbrains</a> with your ★ and reviews<p/>" +
-
-                "<p> This is a free software distributed under <a href=https://github.com/nvinayshetty/DTOnator/blob/master/LICENSE.md>GNU General Public License v2.0</a></p>" +
-                "</body>" +
-                "</html>");
+        ifYouLikeThisEditorPane.setText("<html> \n" +
+                "<body>\n" +
+                "<p> If you like this tool, or you want to support our efforts <br>you can do so by adding more  ★ To Our Repository <a href=\\\"https://github.com/nvinayshetty/DTOnator\\\" target=\\\"_blank\\\">@Github</a>.</p>  \n" +
+                "<p>You can also do that  <a href=\\\"https://plugins.jetbrains.com/plugin/7834-dto-generator\\\" target=\\\"_blank\\\">@Jetbrains</a> With Your ★ And Reviews</p>\n" +
+                "<p>This Is A Free Software Distributed Under <ahref=https://github.com/nvinayshetty/DTOnator/blob/master/LICENSE.md>GNU General Public License v2.0</a></p>\n" +
+                "</body>\n" +
+                "</html>\n");
         ifYouLikeThisEditorPane.addHyperlinkListener(new HyperlinkListener() {
             public void hyperlinkUpdate(HyperlinkEvent hle) {
                 if (HyperlinkEvent.EventType.ACTIVATED.equals(hle.getEventType())) {
@@ -209,18 +290,66 @@ public class SettingsTab extends JPanel {
                 }
             }
         });
+        entityCheckBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(entityCheckBox.isSelected()){
+                    beanCheckBox.setSelected(false);
+                }
+            }
+        });
+        beanCheckBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(beanCheckBox.isSelected()){
+                    entityCheckBox.setSelected(false);
+                }
+            }
+        });
 
+    }
+
+    public void hideAutoValue() {
+        autoValueRadioButton.setVisible(false);
+    }
+
+    private void disableEncapsulate() {
+        makeFieldsPrivateRadioButton.setSelected(false);
+        provideSetterCheckBox.setSelected(false);
+        provideGetterCheckBox.setSelected(false);
+        encapsulatePane.setEnabled(false);
+        makeFieldsPrivateRadioButton.setEnabled(false);
+        provideGetterCheckBox.setEnabled(false);
+        provideSetterCheckBox.setEnabled(false);
+    }
+
+    private void enableEncapsulate() {
+        encapsulatePane.setEnabled(true);
+        makeFieldsPrivateRadioButton.setEnabled(true);
+        provideGetterCheckBox.setEnabled(true);
+        provideSetterCheckBox.setEnabled(true);
     }
 
     private void initRadioGroups() {
         fileTypeButtonGroup.add(singleFile);
         fileTypeButtonGroup.add(separeteFileForEachRadioButton);
         typeRadioButtonGroup.add(gsonRadioButton);
+        typeRadioButtonGroup.add(customRadioButton);
         typeRadioButtonGroup.add(plainClassRadioButton);
+        typeRadioButtonGroup.add(autoValueRadioButton);
         typeRadioButtonGroup.add(jacksonRadioButton);
+        kotlinButtonGroup.add(valRadioButton);
+        kotlinButtonGroup.add(varRadioButton);
+
     }
 
     public FieldType getFieldType() {
+        if (autoValueRadioButton.isSelected()) {
+            return FieldType.AUTO_VALUE;
+        }
+        if (customRadioButton.isSelected() && !customTextField.getText().isEmpty()) {
+            return FieldType.CUSTOM;
+        }
         if (jacksonRadioButton.isSelected())
             return FieldType.JACKSON;
         if (plainClassRadioButton.isSelected())
@@ -228,6 +357,7 @@ public class SettingsTab extends JPanel {
         if (gsonRadioButton.isSelected() && exposeCheckBox.isSelected()) {
             return FieldType.GSON_EXPOSE;
         }
+
         if (gsonRadioButton.isSelected())
             return FieldType.GSON;
         return null;
@@ -262,10 +392,6 @@ public class SettingsTab extends JPanel {
     }
 
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
-
     public void hideSettingsAlert() {
         settingsExceptionLabel.setVisible(false);
         settingsExceptionLabel.setText("");
@@ -274,7 +400,7 @@ public class SettingsTab extends JPanel {
         settingsExceptionLabel.getRootPane().repaint();
     }
 
-    private String getNameConventionPrefixText() {
+    public String getNameConventionPrefixText() {
         return nameConventionPrefix.getText();
     }
 
@@ -316,9 +442,34 @@ public class SettingsTab extends JPanel {
     }
 
     public LanguageType getLanguage() {
-        if (valRadioButton.isSelected())
+        if (languageOfClassUnderCaret != LanguageType.KOTLIN)
+            return null;
+        if (valRadioButton.isSelected() && valRadioButton.isDisplayable())
             return LanguageType.KOTLIN_VAL;
-        else
+        else if (varRadioButton.isVisible() && valRadioButton.isDisplayable())
             return LanguageType.KOTLIN_VAR;
+        return null;
     }
+
+    public ClassNameOptions getClassNameOptions() {
+        if (beanCheckBox.isSelected())
+            return ClassNameOptions.Bean;
+        if (entityCheckBox.isSelected())
+            return ClassNameOptions.Entity;
+        return null;
+    }
+
+    public String getCustomFieldPattern() {
+        return customTextField.getText();
+    }
+
+    public boolean isAbstractClassWithAnnotation() {
+        return autoValueRadioButton.isSelected();
+    }
+
+    public void setLanguageOfClassUnderCaret(LanguageType languageOfClassUnderCaret) {
+        this.languageOfClassUnderCaret = languageOfClassUnderCaret;
+    }
+
+
 }

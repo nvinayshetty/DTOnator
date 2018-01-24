@@ -17,6 +17,7 @@
 
 package com.nvinayshetty.DTOnator.ClassCreator;
 
+import com.nvinayshetty.DTOnator.FieldCreator.FieldCreationStrategy;
 import org.jetbrains.kotlin.psi.KtClass;
 
 public class InnerKotlinClassCreator extends KotlinClassCreationStrategy {
@@ -28,11 +29,13 @@ public class InnerKotlinClassCreator extends KotlinClassCreationStrategy {
     }
 
     @Override
-    public void addClass(KtClass aClass) {
+    public void addClass(KtClass aClass, FieldCreationStrategy fieldCreationStrategy) {
        /* aClass.getModifierList().setModifierProperty(PsiModifier.STATIC, true);
         aClass.getModifierList().setModifierProperty(PsiModifier.PUBLIC, true);*/
-        organizeCodeStyle(aClass);
-        classUnderCaret.getContainingKtFile().add(aClass);
+
+         //organizeCodeStyle(aClass);
+        organizeCodeStyle(classUnderCaret);
+        classUnderCaret.getContainingKtFile().addAfter(aClass,classUnderCaret);
 
     }
 }
