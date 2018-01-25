@@ -23,8 +23,7 @@ import com.intellij.psi.PsiModifier;
 /**
  * Created by vinay on 31/5/15.
  */
-public class
-        StaticClassCreator extends ClassCreatorStrategy {
+public class StaticClassCreator extends ClassCreatorStrategy {
     private PsiClass classUnderCaret;
 
     public StaticClassCreator(PsiClass psiClass) {
@@ -35,8 +34,21 @@ public class
     public void addClass(PsiClass aClass) {
         aClass.getModifierList().setModifierProperty(PsiModifier.STATIC, true);
         aClass.getModifierList().setModifierProperty(PsiModifier.PUBLIC, true);
-        organizeCodeStyle(aClass);
-        classUnderCaret.add(aClass);
+        int length = classUnderCaret.getFields().length - 1;
+        length = (length == -1) ? -1 : length;
+
+        if (length != -1) {
+            classUnderCaret.addAfter(aClass, classUnderCaret.getFields()[length]);
+        } else {
+            int methosLength = classUnderCaret.getMethods().length;
+            methosLength = (methosLength == -1) ? 0 : methosLength;
+            if(methosLength!=-1) {
+                classUnderCaret.addAfter(aClass, classUnderCaret.getMethods()[methosLength - 1]);
+            }else{
+                classUnderCaret.add(aClass);
+            }
+        }
+        organizeCodeStyle(classUnderCaret);
 
     }
 

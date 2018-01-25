@@ -17,6 +17,9 @@
 
 package com.nvinayshetty.DTOnator.FeedValidator;
 
+import com.google.gson.JsonSyntaxException;
+import org.json.JSONException;
+
 import javax.swing.*;
 
 /**
@@ -24,7 +27,9 @@ import javax.swing.*;
  */
 public interface FeedValidator {
 
-    boolean isValidFeed(String inputFeed, JScrollPane exceptionLoggerPane, JLabel label);
+    boolean isValidFeed(String inputFeed, JLabel label);
+
+    JSONException getException();
 
     String getValidFeed();
 }

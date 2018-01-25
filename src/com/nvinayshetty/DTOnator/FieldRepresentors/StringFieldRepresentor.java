@@ -29,4 +29,15 @@ public class StringFieldRepresentor extends FieldRepresentor {
         return accessModifier.getModifier() + "String" + suffix(key);
     }
 
+    @Override
+    protected String getKotlinValFieldRepresentationFor(AccessModifier accessModifier, String key) {
+        return "val " + key + " :String" + "\n";
+    }
+
+    @Override
+    protected String getKotlinVarFieldRepresentationFor(AccessModifier accessModifier, String key) {
+        return "val " + key + " :String";
+    }
+
+
 }

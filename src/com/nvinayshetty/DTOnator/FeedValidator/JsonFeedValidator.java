@@ -17,10 +17,9 @@
 
 package com.nvinayshetty.DTOnator.FeedValidator;
 
-import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
-import com.nvinayshetty.DTOnator.Logger.ExceptionLogger;
-import org.json.JSONTokener;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import javax.swing.*;
 
@@ -28,43 +27,49 @@ import javax.swing.*;
  * Created by vinay on 30/5/15.
  */
 public class JsonFeedValidator implements FeedValidator {
+    private JSONException exception;
     private String input;
 
-
     @Override
-    public boolean isValidFeed(String inputFeed, JScrollPane exceptionLoggerPane, JLabel exceptionLabel) {
-        try {
-            this.input = inputFeed;
-            JsonParser parser = new JsonParser();
-            parser.parse(inputFeed);
-            return true;
-        } catch (JsonSyntaxException jse) {
-            System.out.println("Not a valid Json String:" + jse.getMessage());
-            showAlert(exceptionLoggerPane, exceptionLabel, jse);
-            return false;
+    public boolean isValidFeed(String inputFeed, JLabel exceptionLabel) {
+        input=inputFeed;
+        if (inputFeed.startsWith("{")) {
+            try {
+                new JSONObject(inputFeed);
+            } catch (JSONException ex) {
+                this.exception = ex;
+                return false;
+            }
+        } else if (inputFeed.startsWith("[")) {
+            try {
+                new JSONArray(inputFeed);
+            } catch (JSONException exception) {
+                this.exception = exception;
+                return false;
+            }
+        } else {
+            try {
+                new JSONObject(inputFeed);
+            } catch (JSONException ex) {
+                try {
+                    new JSONArray(inputFeed);
+                } catch (JSONException exception) {
+                    this.exception = exception;
+                    return false;
+                }
+            }
         }
 
+        return true;
     }
 
-
-    public boolean containesEmptyJsonList(String jsonString){
-        JSONTokener jsonTokener = new JSONTokener(input);
-        Object object = jsonTokener.nextValue();
-        return false;
-    }
-    private void showAlert(JScrollPane exceptionLoggerPane, JLabel exceptionLabel, JsonSyntaxException ex) {
-        exceptionLoggerPane.setVisible(true);
-        exceptionLabel.setVisible(true);
-        new ExceptionLogger(exceptionLabel).Log(ex);
-        exceptionLoggerPane.invalidate();
-        exceptionLoggerPane.validate();
-        exceptionLoggerPane.repaint();
+    @Override
+    public JSONException getException() {
+        return exception;
     }
 
     @Override
     public String getValidFeed() {
         return input;
     }
-
-
 }

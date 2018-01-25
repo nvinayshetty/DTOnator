@@ -18,7 +18,7 @@
 <idea-plugin version="2">
     <id>com.nvinayshetty.DTOnator</id>
     <name>DTO generator</name>
-    <version>V0.48</version>
+    <version>V0.994</version>
     <vendor email="nvinayshetty@gmail.com">N Vinay shetty</vendor>
 
     <description><![CDATA[
@@ -27,19 +27,13 @@
     ]]></description>
 
     <change-notes><![CDATA[
-     <ul> V 1.0
-            <li>DTO generation support for GSON and Plain old Java Beans</li>
-            <li>Support to create static inner class or separate classes</li>
-            <li>Feild encapsulation support</li>
-
-        </ul>
-           <ul>V 2.0
-            <li>Create camel Cased fields from word separators</li>
-            <li>Prefix fields with your favourite characters</li>
-            <li>Generates class fields in the same order of the feed</li>
-            <li>Simple strategy to resolve naming conflicts</li>
-            <li>Notifications to clearly indicate problems and solutions</li>
-            <li>Consistent and bold UI across different look and feel standards</li>
+           <ul>V 0.99
+            <li>Introducing a powerful json editor </li>
+            <li>Format, validate and generate all in one place creating an unique integrated workflow</li>
+            <li>Works across java and kotlin in the same way</li>
+            <li>Remembers all your preferences</li>
+            <li>Support for many more annotations, including custom once </li>
+            <li>Advanced syntax highlighting and brace matching for json</li>
         </ul>
     ]]>
     </change-notes>
@@ -52,7 +46,9 @@
      <!--uncomment to enable plugin in all products-->
     <depends>com.intellij.modules.lang</depends>
     <depends>org.jetbrains.kotlin</depends>
-
+    <extensions defaultExtensionNs="com.intellij">
+        <projectService serviceInterface="com.nvinayshetty.DTOnator.persistence.DtonatorPreferences" serviceImplementation="com.nvinayshetty.DTOnator.persistence.DtonatorPreferences"/>
+    </extensions>
     <actions>
         <!-- Add your actions here -->
         <action id="ActionListener" class="com.nvinayshetty.DTOnator.ActionListener.UserActionListener"

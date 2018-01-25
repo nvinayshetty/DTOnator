@@ -19,9 +19,11 @@ package com.nvinayshetty.DTOnator.FeedParser;
 
 import com.intellij.psi.PsiClass;
 import com.nvinayshetty.DTOnator.DtoCreationOptions.DtoCreationOptionsFacade;
+import com.nvinayshetty.DTOnator.FieldCreator.LanguageType;
+import com.nvinayshetty.DTOnator.NameConventionCommands.ClassName.ClassNameOptions;
 import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
 import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
-import org.json.JSONObject;
+import org.jetbrains.kotlin.psi.KtClass;
 
 import java.util.HashSet;
 
@@ -29,9 +31,13 @@ public class JsonDtoBuilder {
 
     String json;
     PsiClass classUnderCaret;
+    KtClass ktClass;
     DtoCreationOptionsFacade dtoCreationOptionsFacade;
     HashSet<NameConflictResolverCommand> nameConflictResolverCommands;
     HashSet<NameParserCommand> feildNameParser;
+    LanguageType languageType;
+    ClassNameOptions classNameOptions;
+    boolean isAbstractClassWithAnnotation;
 
     public JsonDtoBuilder setJson(String json) {
         this.json = json;
@@ -40,6 +46,12 @@ public class JsonDtoBuilder {
 
     public JsonDtoBuilder setClassUnderCaret(PsiClass classUnderCaret) {
         this.classUnderCaret = classUnderCaret;
+        return this;
+    }
+
+
+    public JsonDtoBuilder setClassUnderCaret(KtClass classUnderCaret) {
+        this.ktClass = classUnderCaret;
         return this;
     }
 
@@ -58,8 +70,28 @@ public class JsonDtoBuilder {
         return this;
     }
 
+
+    public JsonDtoBuilder SetLanguage(LanguageType languageType) {
+        this.languageType = languageType;
+        return this;
+    }
+
+    public JsonDtoBuilder isAbstractClassWithAnnotation(boolean isAbstractClassWithAnnotation) {
+        this.isAbstractClassWithAnnotation = isAbstractClassWithAnnotation;
+        return this;
+    }
+
+    public JsonDtoBuilder setClassNameOptions(ClassNameOptions classNameOptions) {
+        this.classNameOptions = classNameOptions;
+        return this;
+    }
+
     public JsonDtoGenerator createJsonDtoGenerator() {
         return new JsonDtoGenerator(this);
+    }
+
+    public KotlinJsonDtoGenerator createKotlinDtoGenerator() {
+        return new KotlinJsonDtoGenerator(this);
     }
 
 }

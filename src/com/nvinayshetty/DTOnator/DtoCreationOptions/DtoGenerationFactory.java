@@ -18,17 +18,18 @@
 package com.nvinayshetty.DTOnator.DtoCreationOptions;
 
 import com.intellij.openapi.command.WriteCommandAction;
-import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiFile;
 import com.nvinayshetty.DTOnator.ClassCreator.ClassCreationFactory;
 import com.nvinayshetty.DTOnator.ClassCreator.ClassType;
 import com.nvinayshetty.DTOnator.FeedParser.JsonDtoGenerator;
+import com.nvinayshetty.DTOnator.FeedParser.KotlinJsonDtoGenerator;
 import com.nvinayshetty.DTOnator.FieldCreator.AccessModifier;
 import com.nvinayshetty.DTOnator.FieldCreator.FieldCreationFactory;
+import com.nvinayshetty.DTOnator.FieldCreator.LanguageType;
+import com.nvinayshetty.DTOnator.NameConventionCommands.ClassName.ClassNameOptions;
 import com.nvinayshetty.DTOnator.NameConventionCommands.NameParserCommand;
 import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolverCommand;
-import org.json.JSONObject;
+import org.jetbrains.kotlin.psi.KtClass;
 
 import java.util.EnumSet;
 import java.util.HashSet;
@@ -37,7 +38,7 @@ import java.util.HashSet;
  * Created by vinay on 17/5/15.
  */
 public class DtoGenerationFactory {
-    public static WriteCommandAction getDtoGeneratorFor(FeedType type, ClassType classType, FieldType fieldType, EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions, Project project, PsiFile psiFile, String validFeed, PsiClass psiClass, HashSet<NameConflictResolverCommand> nameConflictResolverCommands, HashSet<NameParserCommand> fieldNameParser) {
+    public static WriteCommandAction getDtoGeneratorFor(FeedType type, ClassType classType, FieldType fieldType, EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions, String validFeed, PsiClass psiClass, HashSet<NameConflictResolverCommand> nameConflictResolverCommands, HashSet<NameParserCommand> fieldNameParser, String cutomFiledPattern, boolean abstractClassWithAnnotation, ClassNameOptions classNameOptions) {
         AccessModifier accessModifier = null;
         if (fieldEncapsulationOptions.contains(FieldEncapsulationOptions.PROVIDE_PRIVATE_FIELD))
             accessModifier = AccessModifier.PRIVATE;
@@ -46,14 +47,42 @@ public class DtoGenerationFactory {
 
         switch (type) {
             case JSON:
-                DtoCreationOptionsFacade dtoCreationOptionsFacade = new DtoCreationOptionsFacade(FieldCreationFactory.getFieldCreatorFor(fieldType), ClassCreationFactory.getFileCreatorFor(classType, psiClass), accessModifier, nameConflictResolverCommands, fieldEncapsulationOptions);
+                DtoCreationOptionsFacade dtoCreationOptionsFacade = new DtoCreationOptionsFacade(FieldCreationFactory.getFieldCreatorFor(fieldType,cutomFiledPattern), ClassCreationFactory.getFileCreatorFor(classType, psiClass), accessModifier, nameConflictResolverCommands, fieldEncapsulationOptions);
                 return JsonDtoGenerator.getJsonDtoBuilder()
-                                       .setClassUnderCaret(psiClass)
-                                       .setDtoCreationOptionsFacade(dtoCreationOptionsFacade)
-                                       .setJson(validFeed)
-                                       .setFieldNameParser(fieldNameParser)
-                                       .setNameConflictResolver(nameConflictResolverCommands)
-                                       .createJsonDtoGenerator();
+                        .setClassUnderCaret(psiClass)
+                        .setDtoCreationOptionsFacade(dtoCreationOptionsFacade)
+                        .setJson(validFeed)
+                        .setClassNameOptions(classNameOptions)
+                        .setFieldNameParser(fieldNameParser)
+                        .setNameConflictResolver(nameConflictResolverCommands)
+                        .isAbstractClassWithAnnotation(abstractClassWithAnnotation)
+                        .createJsonDtoGenerator();
+
+        }
+        return null;
+    }
+
+    public static WriteCommandAction getDtoGeneratorForKotlin(FeedType type, ClassType classType, FieldType fieldType, EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions, String validFeed, KtClass ktClass, HashSet<NameConflictResolverCommand> nameConflictResolverCommands, HashSet<NameParserCommand> fieldNameParser, LanguageType languageType, String customFieldName, boolean abstractClassWithAnnotation, ClassNameOptions classNameOptions) {
+        AccessModifier accessModifier = null;
+        if (fieldEncapsulationOptions.contains(FieldEncapsulationOptions.PROVIDE_PRIVATE_FIELD))
+            accessModifier = AccessModifier.PRIVATE;
+        else
+            accessModifier = AccessModifier.PUBLIC;
+
+        switch (type) {
+            case JSON:
+                DtoCreationOptionsFacade dtoCreationOptionsFacade = new DtoCreationOptionsFacade(FieldCreationFactory.getFieldCreatorFor(fieldType,customFieldName), ClassCreationFactory.getFileKotlinCreatorFor(classType, ktClass), accessModifier, nameConflictResolverCommands, fieldEncapsulationOptions);
+                return KotlinJsonDtoGenerator.getJsonDtoBuilder()
+                        .setClassUnderCaret(ktClass)
+                        .setDtoCreationOptionsFacade(dtoCreationOptionsFacade)
+                        .setJson(validFeed)
+                        .setClassNameOptions(classNameOptions)
+                        .SetLanguage(languageType)
+                        .setFieldNameParser(fieldNameParser)
+                        .isAbstractClassWithAnnotation(abstractClassWithAnnotation)
+                        .setNameConflictResolver(nameConflictResolverCommands)
+                        .createKotlinDtoGenerator();
+
         }
         return null;
     }

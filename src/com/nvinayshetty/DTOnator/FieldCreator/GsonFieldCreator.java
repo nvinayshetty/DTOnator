@@ -28,9 +28,13 @@ import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
 public class GsonFieldCreator implements FieldCreationStrategy {
 
     @Override
-    public String getFieldFor(FieldRepresentor type, AccessModifier modifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
-        return type.gsonFieldRepresentationTemplate(modifier, key, parser, nameConflictResolver);
+    public String getFieldFor(LanguageType languageType, FieldRepresentor type, AccessModifier modifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
+        return type.gsonFieldRepresentationTemplate(languageType, modifier, key, parser, nameConflictResolver);
     }
 
+    @Override
+    public String getImportDirective() {
+        return "com.google.gson.annotations.SerializedName";
+    }
 
 }

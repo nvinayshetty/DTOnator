@@ -21,13 +21,14 @@ import com.nvinayshetty.DTOnator.FieldRepresentors.FieldRepresentor;
 import com.nvinayshetty.DTOnator.NameConventionCommands.FieldNameParser;
 import com.nvinayshetty.DTOnator.nameConflictResolvers.NameConflictResolver;
 
-/**
- * Created by vinayaprasadn on 10/6/17.
- */
 public class ExposedGsonFieldCreator implements FieldCreationStrategy {
     @Override
-    public String getFieldFor(FieldRepresentor type, AccessModifier accessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
-        return type.gsonFieldWithExposeAnnotationTemplate(accessModifier, key, parser, nameConflictResolver);
+    public String getFieldFor(LanguageType languageType, FieldRepresentor type, AccessModifier accessModifier, String key, FieldNameParser parser, NameConflictResolver nameConflictResolver) {
+        return type.gsonFieldWithExposeAnnotationTemplate(languageType, accessModifier, key, parser, nameConflictResolver);
+    }
 
+    @Override
+    public String getImportDirective() {
+        return "com.google.gson.annotations.Expose";
     }
 }

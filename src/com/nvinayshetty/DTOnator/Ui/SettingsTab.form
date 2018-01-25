@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.nvinayshetty.DTOnator.Ui.SettingsTab">
+  <grid id="27dc6" binding="filesPane" layout-manager="GridLayoutManager" row-count="8" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="800" height="700"/>
+    </constraints>
+    <properties>
+      <alignmentX value="1.0"/>
+      <minimumSize width="800" height="700"/>
+      <preferredSize width="800" height="700"/>
+    </properties>
+    <border type="etched"/>
+    <children>
+      <grid id="14daa" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="50"/>
+            <preferred-size width="-1" height="50"/>
+          </grid>
+        </constraints>
+        <properties>
+          <minimumSize width="700" height="50"/>
+          <preferredSize width="700" height="50"/>
+        </properties>
+        <border type="none" title="How To Organize Classes?"/>
+        <children>
+          <component id="bb712" class="javax.swing.JRadioButton" binding="singleFile">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Single File With Inner Class"/>
+              <verticalAlignment value="1"/>
+              <verticalTextPosition value="0"/>
+            </properties>
+          </component>
+          <component id="c574" class="javax.swing.JRadioButton" binding="separeteFileForEachRadioButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Separete File For Each Object"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="ec6c2" layout-manager="FormLayout">
+        <rowspec value="center:d:grow"/>
+        <rowspec value="top:3dlu:noGrow"/>
+        <rowspec value="center:d:grow"/>
+        <colspec value="fill:max(d;4px):noGrow"/>
+        <colspec value="left:4dlu:noGrow"/>
+        <colspec value="fill:max(d;4px):noGrow"/>
+        <colspec value="left:4dlu:noGrow"/>
+        <colspec value="fill:max(d;4px):noGrow"/>
+        <colspec value="left:4dlu:noGrow"/>
+        <colspec value="fill:max(d;4px):noGrow"/>
+        <colspec value="left:4dlu:noGrow"/>
+        <colspec value="fill:d:grow"/>
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="1" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="100"/>
+            <preferred-size width="-1" height="100"/>
+          </grid>
+        </constraints>
+        <properties>
+          <minimumSize width="700" height="80"/>
+          <preferredSize width="700" height="80"/>
+          <requestFocusEnabled value="true"/>
+        </properties>
+        <border type="none" title="Type"/>
+        <children>
+          <component id="3e44e" class="javax.swing.JRadioButton" binding="gsonRadioButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <forms/>
+            </constraints>
+            <properties>
+              <text value="Gson"/>
+            </properties>
+          </component>
+          <component id="b57f6" class="javax.swing.JRadioButton" binding="jacksonRadioButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <forms/>
+            </constraints>
+            <properties>
+              <text value="Jackson"/>
+            </properties>
+          </component>
+          <component id="f8a8a" class="javax.swing.JRadioButton" binding="plainClassRadioButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <forms/>
+            </constraints>
+            <properties>
+              <text value="Plain Class"/>
+            </properties>
+          </component>
+          <component id="e72d4" class="javax.swing.JCheckBox" binding="exposeCheckBox">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <forms/>
+            </constraints>
+            <properties>
+              <selected value="true"/>
+              <text value="@Expose"/>
+              <visible value="false"/>
+            </properties>
+          </component>
+          <component id="1ca8c" class="javax.swing.JTextField" binding="customTextField">
+            <constraints>
+              <grid row="2" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+              <forms defaultalign-horz="false"/>
+            </constraints>
+            <properties>
+              <maximumSize width="100" height="-1"/>
+              <text value="@annotationTextHere(&quot;%s&quot;)"/>
+              <toolTipText value="whatevertext(&quot;%s&quot;)"/>
+              <visible value="false"/>
+            </properties>
+          </component>
+          <component id="94252" class="javax.swing.JRadioButton" binding="customRadioButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <forms/>
+            </constraints>
+            <properties>
+              <maximumSize width="250" height="-1"/>
+              <preferredSize width="250" height="25"/>
+              <text value="Custom"/>
+            </properties>
+          </component>
+          <component id="1b622" class="javax.swing.JRadioButton" binding="autoValueRadioButton">
+            <constraints>
+              <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <forms/>
+            </constraints>
+            <properties>
+              <text value="AutoValue"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="d72ff" binding="encapsulatePane" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="true">
+            <minimum-size width="-1" height="120"/>
+            <preferred-size width="-1" height="120"/>
+          </grid>
+        </constraints>
+        <properties>
+          <alignmentX value="0.0"/>
+          <alignmentY value="0.0"/>
+          <autoscrolls value="false"/>
+          <minimumSize width="700" height="80"/>
+        </properties>
+        <border type="none" title="Encapsulation Option"/>
+        <children>
+          <component id="9c3c2" class="javax.swing.JRadioButton" binding="makeFieldsPrivateRadioButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Make Fields Private"/>
+            </properties>
+          </component>
+          <component id="398ee" class="javax.swing.JCheckBox" binding="provideGetterCheckBox" default-binding="true">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Provide Getter"/>
+              <visible value="false"/>
+            </properties>
+          </component>
+          <component id="9799d" class="javax.swing.JCheckBox" binding="provideSetterCheckBox" default-binding="true">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Provide Setter"/>
+              <visible value="false"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="62ef7" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="80"/>
+            <preferred-size width="-1" height="80"/>
+          </grid>
+        </constraints>
+        <properties>
+          <minimumSize width="262" height="120"/>
+          <requestFocusEnabled value="false"/>
+        </properties>
+        <border type="none" title="Naming"/>
+        <children>
+          <component id="a8099" class="javax.swing.JCheckBox" binding="useCamelCaseCheckBox" default-binding="true">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Use CamelCase"/>
+            </properties>
+          </component>
+          <component id="e36f2" class="javax.swing.JCheckBox" binding="prefixFieldWithCheckBox" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Prefix Field With"/>
+            </properties>
+          </component>
+          <component id="cbad0" class="javax.swing.JTextField" binding="nameConventionPrefix">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+                <maximum-size width="100" height="-1"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+        </children>
+      </grid>
+      <grid id="a84c0" binding="kotlinPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="50"/>
+            <preferred-size width="-1" height="50"/>
+          </grid>
+        </constraints>
+        <properties>
+          <visible value="false"/>
+        </properties>
+        <border type="none" title="Kotlin"/>
+        <children>
+          <component id="7290e" class="javax.swing.JRadioButton" binding="valRadioButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Val"/>
+            </properties>
+          </component>
+          <component id="d1811" class="javax.swing.JRadioButton" binding="varRadioButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Var"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="7888d" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="120"/>
+            <preferred-size width="-1" height="150"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none" title="About" title-justification="2"/>
+        <children>
+          <component id="36534" class="javax.swing.JEditorPane" binding="ifYouLikeThisEditorPane" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="32da3" class="javax.swing.JLabel" binding="settingsExceptionLabel">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Label"/>
+          <visible value="false"/>
+        </properties>
+      </component>
+      <grid id="df80d" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="80"/>
+            <preferred-size width="-1" height="80"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none" title="End Class names with"/>
+        <children>
+          <component id="ce401" class="javax.swing.JCheckBox" binding="entityCheckBox">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <label value="Entity"/>
+              <text value="Entity"/>
+            </properties>
+          </component>
+          <component id="319eb" class="javax.swing.JCheckBox" binding="beanCheckBox">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <label value="Bean"/>
+              <text value="Bean"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+  <buttonGroups>
+    <group name="fileOptonsRadioGroup">
+      <member id="b4101"/>
+      <member id="1ba6a"/>
+      <member id="bb712"/>
+    </group>
+    <group name="typeRadioGroup">
+      <member id="2e1f6"/>
+    </group>
+  </buttonGroups>
+</form>

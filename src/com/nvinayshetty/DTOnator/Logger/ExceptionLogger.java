@@ -32,13 +32,9 @@ public class ExceptionLogger {
     public void Log(Exception exception) {
         exceptionLabel.setVisible(true);
         exceptionLabel.setText(exception.toString());
-
         exceptionLabel.getRootPane().invalidate();
         exceptionLabel.getRootPane().validate();
         exceptionLabel.getRootPane().repaint();
     }
 
-    public void setErrorLog(String errorText) {
-        exceptionLabel.setText(errorText);
-    }
 }

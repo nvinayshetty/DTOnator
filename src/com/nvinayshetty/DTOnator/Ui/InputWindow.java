@@ -198,20 +198,20 @@ public class InputWindow extends JFrame {
         nameConflictResolverCommands = getNameConflictResolvers();
         HashSet<NameParserCommand> fieldNameParser = getFieldNameParserCommands();
         String text = inputFeedText.getText();
-        final boolean isValidFeed = validator.isValidFeed(text, exceptionLoggerPane, exceptionLabel);
+        final boolean isValidFeed = true;//alidator.isValidFeed(text, exceptionLoggerPane, exceptionLabel);
         if (isValidFeed) {
             dispose();
             ClassType classType = getClassType();
             EnumSet<FieldEncapsulationOptions> fieldEncapsulationOptions = getFieldEncapsulationOptions();
             PsiFile containingFile = mClass.getContainingFile();
             String validFeed = validator.getValidFeed();
-            WriteCommandAction writeAction = DtoGenerationFactory.getDtoGeneratorFor(getFeedType(), classType, getFieldTYpe(), fieldEncapsulationOptions, project, containingFile, validFeed, mClass, nameConflictResolverCommands, fieldNameParser);
-            writeAction.execute();
+          //  WriteCommandAction writeAction = DtoGenerationFactory.getDtoGeneratorFor(getFeedType(), classType, getFieldTYpe(), fieldEncapsulationOptions,validFeed, mClass, nameConflictResolverCommands, fieldNameParser, customFieldName);
+            //writeAction.execute();
         }
     }
 
     private HashSet<NameConflictResolverCommand> getNameConflictResolvers() {
-        nameConflictResolverCommands = new HashSet<NameConflictResolverCommand>();
+        nameConflictResolverCommands = new HashSet<>();
         if (OnCOnflictPrefixFieldNameRadioButton.isSelected()) {
             String prefixString = getOnConflictFieldPrefixText();
             NameConflictResolverCommand prefixingConflictResolver = new PrefixingConflictResolverCommand(prefixString);
@@ -232,7 +232,6 @@ public class InputWindow extends JFrame {
     }
 
     private FeedType getFeedType() {
-        //Todo:implement Xml support
         return FeedType.JSON;
     }
 

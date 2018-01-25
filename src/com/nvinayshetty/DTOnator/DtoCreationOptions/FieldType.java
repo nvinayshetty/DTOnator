@@ -21,5 +21,5 @@ package com.nvinayshetty.DTOnator.DtoCreationOptions;
  * Created by vinay on 6/6/15.
  */
 public enum FieldType {
-    GSON, POJO,GSON_EXPOSE,JACKSON
+    GSON, POJO,GSON_EXPOSE,JACKSON,CUSTOM,AUTO_VALUE
 }

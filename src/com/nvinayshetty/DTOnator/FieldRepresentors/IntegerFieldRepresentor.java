@@ -29,4 +29,15 @@ public class IntegerFieldRepresentor extends FieldRepresentor {
         return accessModifier.getModifier() + "int" + suffix(key);
     }
 
+    @Override
+    protected String getKotlinValFieldRepresentationFor(AccessModifier accessModifier, String key) {
+        return "val " + key + " :Integer"+"\n";
+    }
+
+    @Override
+    protected String getKotlinVarFieldRepresentationFor(AccessModifier accessModifier, String key) {
+        return "var " + key + " :Integer";
+    }
+
+
 }

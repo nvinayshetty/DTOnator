@@ -24,15 +24,17 @@ import java.util.Iterator;
  * Created by vinay on 12/7/15.
  */
 public class FieldNameParser {
-    HashSet<NameParserCommand> fieldNameParser;
+    HashSet<NameParserCommand> nameParserCommands;
 
-    public FieldNameParser(HashSet<NameParserCommand> fieldNameParser) {
-        this.fieldNameParser = fieldNameParser;
+    public FieldNameParser(HashSet<NameParserCommand> nameParserCommands) {
+        this.nameParserCommands = nameParserCommands;
     }
 
     public String parseField(String field) {
+        if (nameParserCommands == null)
+            return field;
         String parsedFieldName = field;//= field;
-        Iterator<NameParserCommand> fieldParserIterator = fieldNameParser.iterator();
+        Iterator<NameParserCommand> fieldParserIterator = nameParserCommands.iterator();
         while (fieldParserIterator.hasNext()) {
             NameParserCommand parser = fieldParserIterator.next();
             parsedFieldName = parser.parseFieldName(parsedFieldName);
@@ -41,8 +43,10 @@ public class FieldNameParser {
     }
 
     public String undo(String fieldName) {
+        if (nameParserCommands == null)
+            return fieldName;
         String unparsed = fieldName;//= field;
-        Iterator<NameParserCommand> fieldParserIterator = fieldNameParser.iterator();
+        Iterator<NameParserCommand> fieldParserIterator = nameParserCommands.iterator();
         while (fieldParserIterator.hasNext()) {
             NameParserCommand parser = fieldParserIterator.next();
             unparsed = parser.undoParsing(unparsed);

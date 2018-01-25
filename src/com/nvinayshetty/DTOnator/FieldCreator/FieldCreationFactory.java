@@ -24,8 +24,10 @@ import com.nvinayshetty.DTOnator.DtoCreationOptions.FieldType;
  * Created by vinay on 7/6/15.
  */
 public class FieldCreationFactory {
-    public static FieldCreationStrategy getFieldCreatorFor(FieldType fieldType) {
+    public static FieldCreationStrategy getFieldCreatorFor(FieldType fieldType,String cutomFiledPattern) {
         switch (fieldType) {
+            case AUTO_VALUE:
+                return new AutoValueFieldCreator();
             case GSON:
                 return new GsonFieldCreator();
             case POJO:
@@ -34,6 +36,8 @@ public class FieldCreationFactory {
                 return new ExposedGsonFieldCreator();
             case JACKSON:
                 return new JacksonFieldCreator();
+            case CUSTOM:
+                return new CustomFieldCreator(cutomFiledPattern);
 
 
         }
