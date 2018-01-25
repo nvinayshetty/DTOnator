@@ -3,9 +3,7 @@
 ####Download the plugin at https://plugins.jetbrains.com/plugin/7834?pr=idea
 
 Introducing the most powerful json editor in a plugin!    
-
 Format, validate or generate classes in your style and in the language that you like! all in one place.   
-
 Here are the list of new features available in the latest release.   
 
 
