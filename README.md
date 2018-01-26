@@ -6,6 +6,12 @@ Introducing the most powerful json editor in a plugin!
 Format, validate or generate classes in your style and in the language that you like! all in one place.   
 Here are the list of new features available in the latest release.   
 
+To install the plugin 
+Mac:
+Go to Preferences->Plugins->Browse Repositories->search "DTO generator"->Install
+
+Windows/linux
+Go to Settings->Plugins->Browse Repositories->search "DTO generator"->Install
 
 Be more productive write less code!
 
