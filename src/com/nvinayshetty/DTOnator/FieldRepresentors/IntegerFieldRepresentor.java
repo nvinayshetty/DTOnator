@@ -31,12 +31,12 @@ public class IntegerFieldRepresentor extends FieldRepresentor {
 
     @Override
     protected String getKotlinValFieldRepresentationFor(AccessModifier accessModifier, String key) {
-        return "val " + key + " :Integer"+"\n";
+        return "val " + key + " :Int"+"\n";
     }
 
     @Override
     protected String getKotlinVarFieldRepresentationFor(AccessModifier accessModifier, String key) {
-        return "var " + key + " :Integer";
+        return "var " + key + " :Int";
     }
 
 
