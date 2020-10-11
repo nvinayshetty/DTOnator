@@ -26,3 +26,8 @@ Be more productive write less code!
  
  ![Kotlin data classes in single file](https://github.com/nvinayshetty/DTOnator/blob/master/Screenshot/single_jackson_val.gif
  "DTOnator")
+ 
+Praises for DTONATOR
+https://www.sitepoint.com/9-more-essential-plugins-for-android-studio/
+https://medium.com/@vatsalbajpai/top-10-most-useful-plugins-for-android-studio-23051200e2b3
+https://blog.mindorks.com/how-to-become-more-productive-in-android-with-android-studio-plugins-3beb3861fa7
